@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -50,14 +52,18 @@ public class FileEditor{
         }
     }
 
-/*
- *    public static ArrayList<Student> loadStudents(){
- *        BufferedReader fileReader = null;
- *        ArrayList<Student> students = new ArrayList<Student>(0);
- *        try {
- *
- *        }
- *
- *    }
- */
+    /*
+     *public static ArrayList<Student> loadStudents(){
+     *    BufferedReader fileReader = null;
+     *    ArrayList<Student> students = new ArrayList<Student>(0);
+     *    try { 
+     *        String line;
+     *        fileReader = new BufferedReader(new FileReader(studentFileName));
+     *        fileReader.readLine();
+     *        while ((line = fileReader.readLine()) != null) {
+     *            String[] tokens = line.split(COMMA);
+     *             
+     *    }
+     */
+    }
 }
