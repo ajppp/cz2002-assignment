@@ -1,9 +1,9 @@
-package Lesson;
+//package Lesson;
 import java.util.*;
 
 public class Index {
-    private int vacancies;
-    private int maxStudents;
+    private int vacancies = 10;
+    private int maxStudents = 20;
     private ArrayList<Lesson> lessonList;
     private ArrayList<String> waitList;
 
@@ -14,8 +14,15 @@ public class Index {
         this.waitList = waitList;
     }
 
+    public Index (int vacancies, int maxStudents){
+        this.vacancies = vacancies;
+        this.maxStudents = maxStudents;
+    }
+
+    public Index(){}
+
     public int getVacancies(){
-        return this.vacancies;
+        return vacancies;
     }
 
     public void setVacancies(int vacancies){
@@ -23,7 +30,7 @@ public class Index {
     }
 
     public int getMaxStudents(){
-        return this.maxStudents;
+        return maxStudents;
     }
 
     public void setMaxStudents(int maxStudents){
@@ -31,7 +38,7 @@ public class Index {
     }
 
     public ArrayList<Lesson> getLessonList(){
-        return this.lessonList;
+        return lessonList;
     }
 
     public void setLessonList(ArrayList<Lesson> lessonList){
@@ -39,13 +46,11 @@ public class Index {
     }
     
     public ArrayList<String> getWaitList(){
-        return this.waitList;
+        return waitList;
     }
 
     public void setWaitList(ArrayList<String> waitList){
 		this.waitList = waitList;
 	}
-
-
 
 }

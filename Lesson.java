@@ -33,25 +33,37 @@ public class Lesson {
         this.lessonDay = lessonDay;
     }
 
-    public Date getStartTime() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        try {
-            Date d = dateFormat.parse(startTime);
-            return d;
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        return Date date = new Date();
+    /*
+     *public Date getStartTime() throws Exception {
+     *    DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+     *    try {
+     *        Date d = dateFormat.parse(startTime);
+     *        return d;
+     *    } catch (java.text.ParseException e) {
+     *        e.printStackTrace();
+     *    }
+     *    return Date date = new Date();
+     *}
+     */
+
+    public String getStartTime() {
+        return startTime;
     }
 
     public void setStartTime(String startTime){
         this.startTime = startTime;
     }
     
-    public Date getEndTime() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        Date d = dateFormat.parse(endTime);
-        return d;
+    /*
+     *public Date getEndTime() throws Exception {
+     *    DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+     *    Date d = dateFormat.parse(endTime);
+     *    return d;
+     *}
+     */
+
+    public String getEndTime() {
+        return endTime;
     }
 
     public void setEndTime(String endTime){
