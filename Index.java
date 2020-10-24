@@ -4,16 +4,18 @@ import java.util.*;
 public class Index {
     private int vacancies = 10;
     private int maxStudents = 20;
-    private ArrayList<Lesson> lessonList;
-    private ArrayList<String> waitList;
+    private ArrayList<Lesson> lessonList = new ArrayList<Lesson>(1);
+    private ArrayList<String> waitList = new ArrayList<String>(0);
 
+    //Creates the index with vacancies, the maximum number of students, the lessons it consist of and the waitlist
     public Index (int vacancies, int maxStudents, ArrayList<Lesson> lessonList, ArrayList<String> waitList){
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
         this.lessonList = lessonList;
         this.waitList = waitList;
     }
-
+    
+    //Creates the index with vacancies and the maximum number of students
     public Index (int vacancies, int maxStudents){
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
@@ -52,5 +54,4 @@ public class Index {
     public void setWaitList(ArrayList<String> waitList){
 		this.waitList = waitList;
 	}
-
 }

@@ -52,18 +52,31 @@ public class FileEditor{
         }
     }
 
-    /*
-     *public static ArrayList<Student> loadStudents(){
-     *    BufferedReader fileReader = null;
-     *    ArrayList<Student> students = new ArrayList<Student>(0);
-     *    try { 
-     *        String line;
-     *        fileReader = new BufferedReader(new FileReader(studentFileName));
-     *        fileReader.readLine();
-     *        while ((line = fileReader.readLine()) != null) {
-     *            String[] tokens = line.split(COMMA);
-     *             
-     *    }
-     */
-    //}
+    public static ArrayList<Student> loadStudents(){
+        BufferedReader fileReader = null;
+        ArrayList<Student> students = new ArrayList<Student>(0);
+        try { 
+            String line;
+            fileReader = new BufferedReader(new FileReader(studentFileName));
+            fileReader.readLine();
+            while ((line = fileReader.readLine()) != null) {
+                String[] attributes = line.split(COMMA);
+                if (attributes.length > 0) {
+                    Student student = new Student(attributes[studentIdIndex], attributes[studentNameIndex], attributes[studentSchoolIndex], attributes[studentGenderIndex], attributes[studentNationalityIndex]);
+                    students.add(student);
+                }
+            }
+        } catch (Exception e) {
+                System.out.println("Error loading student file");
+                e.printStackTrace();
+        } finally {
+            try {
+                fileReader.close();
+            } catch (IOException e) {
+                System.out.println("Error when closing file reader");
+                e.printStackTrace();
+            }
+        }
+        return students;
+    }
 }
