@@ -1,6 +1,4 @@
-import java.text.DateFormat;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 
 public class Lesson {
     private int lessonType;
@@ -33,37 +31,17 @@ public class Lesson {
         this.lessonDay = lessonDay;
     }
 
-    /*
-     *public Date getStartTime() throws Exception {
-     *    DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-     *    try {
-     *        Date d = dateFormat.parse(startTime);
-     *        return d;
-     *    } catch (java.text.ParseException e) {
-     *        e.printStackTrace();
-     *    }
-     *    return Date date = new Date();
-     *}
-     */
-
-    public String getStartTime() {
-        return startTime;
+    public LocalTime getStartTime(){
+            LocalTime d = LocalTime.parse(startTime);
+            return d;
     }
 
     public void setStartTime(String startTime){
         this.startTime = startTime;
     }
     
-    /*
-     *public Date getEndTime() throws Exception {
-     *    DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-     *    Date d = dateFormat.parse(endTime);
-     *    return d;
-     *}
-     */
-
-    public String getEndTime() {
-        return endTime;
+    public LocalTime getEndTime() {
+        return LocalTime.parse(endTime);
     }
 
     public void setEndTime(String endTime){
