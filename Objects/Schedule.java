@@ -7,8 +7,14 @@ public class Schedule {
         this.timetable = timetable;
     }
 
+<<<<<<< Updated upstream
     public boolean compareClash(String startTime, String endTime, String[] days, String ignoredIndex){
         // 1. convert starttime and endtime into array indices, unless we already pass in index values?
+=======
+    public boolean compareClash(int startTime, int endTime, String[] days, String ignoredIndex){
+        // 1. convert starttime and endtime into array indices, unless we already pass in index values?
+        // in main, take in user input as int already 
+>>>>>>> Stashed changes
         for (int i=0; i<days.length+1; i++){
             for (int j=startTime; j<endTime; j++){
                 if (timetable[j][i][0] != null && timetable[j][i][0] != ignoredIndex){
@@ -25,6 +31,7 @@ public class Schedule {
                 if (timetable[i][j][0] == droppedIndex) {
                     timetable[i][j][0] = null;
                 }
+<<<<<<< Updated upstream
             }
                 
         }
@@ -33,6 +40,15 @@ public class Schedule {
     public void addIndex(String index, String startTime, String endTime, String[] days){
         for (int i = 0; i < days.length+1; i++){
             for (int j = startTime; j < endTime+1; j++){
+=======
+            }    
+        }
+    }
+    
+    public void addIndex(String index, int startTime, int endTime, String[] days){
+        for (int i = 0; i < days.length+1; i++){
+            for (int j = startTime; j < endTime; j++){
+>>>>>>> Stashed changes
                 timetable[j][i][0] = index;
             }
         }
