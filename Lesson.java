@@ -1,18 +1,16 @@
-import java.time.LocalTime;
-
 public class Lesson {
     private int lessonType;
     private int lessonDay;
-    private String startTime;
-    private String endTime;
-    private String venue;
+    private int startPeriod;
+    private int endPeriod;
+    private String lessonVenue;
 
-    public Lesson(int lessonType, int lessonDay, String startTime, String endTime, String venue){
+    public Lesson(int lessonType, int lessonDay, int startPeriod, int endPeriod, String venue){
         this.lessonType = lessonType;
         this.lessonDay = lessonDay;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.venue = venue;
+        this.startPeriod = startPeriod;
+        this.endPeriod = endPeriod;
+        this.lessonVenue = venue;
     }
 
     public int getLessonType() {
@@ -31,30 +29,29 @@ public class Lesson {
         this.lessonDay = lessonDay;
     }
 
-    public LocalTime getStartTime(){
-            LocalTime d = LocalTime.parse(startTime);
-            return d;
+    public int getStartPeriod(){
+            return startPeriod;
     }
 
-    public void setStartTime(String startTime){
-        this.startTime = startTime;
+    public void setStartPeriod(int startPeriod){
+        this.startPeriod = startPeriod;
     }
     
-    public LocalTime getEndTime() {
-        return LocalTime.parse(endTime);
+    public int getEndPeriod() {
+        return endPeriod;
     }
 
-    public void setEndTime(String endTime){
-        this.endTime = endTime;
+    public void setEndPeriod(int endPeriod){
+        this.endPeriod = endPeriod;
     }
 
     public String getVenue() {
-        return this.venue;
+        return lessonVenue;
     }
 
     public void setVenue(String venue){
-        this.venue = venue;
+        lessonVenue = venue;
     }
-
+    
     
 }

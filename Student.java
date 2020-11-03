@@ -4,6 +4,7 @@ public class Student{
     private String studentSchool;
     private String studentGender;
     private String studentNationality;
+    private static final int MAX_AU = 21;
 
     /*
      *used to initialise the student method with all attributes
