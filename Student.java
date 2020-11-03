@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Student{
     private String studentID;
     private String studentName;
     private String studentSchool;
     private String studentGender;
     private String studentNationality;
+    private int studentRegisteredAU = 0;
+    private ArrayList<Index> registeredIndex;
     private static final int MAX_AU = 21;
 
     /*
@@ -31,21 +35,62 @@ public class Student{
         return studentID;
     }
 
+    public void setStudentID(String ID){
+        this.studentID = ID;
+        
+    }
+
     public String getStudentName(){
         return studentName;
+    }
+
+    public void setStudentName(String name){
+        this.studentName = name;
     }
 
     public String getStudentSchool(){
         return studentSchool;
     }
 
+    public void setStudentSchool(String school){
+        this.studentSchool = school;
+    }
+
     public String getStudentGender(){
         return studentGender;
+    }
+
+    public void setStudentGender(String gender){
+        this.studentGender = gender;
     }
 
     public String getStudentNationality(){
         return studentNationality;
     }
+    // check is done in main on whether it can be added
+    // this method is just to add to student
+    public void registerIndex(Index index){
+        if (studentRegisteredAU += index.getAU() <= MAX_AU){
+            registeredIndex.add(index);
+            //add au to student registered au
+            studentRegisteredAU += index.getAU(); 
+        }
+    }
+
+    // drop index, 
+
+    public void dropIndex(int indexNo){
+        registeredIndex.drop(indexNo);
+        studentRegisteredAU -= index.getAU();
+    }
+
+    public ArrayList<Index> getRegisteredIndices(){
+        return registeredIndex;
+    }
+
+
+    // Implement a toString method to return student ID
+    // student name 
 
     /*
      *Method that generates a random student ID for any new Student
