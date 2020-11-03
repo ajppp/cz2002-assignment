@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class Index extends AbstractCourse implements java.io.Serializable{
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 3L;
     private int indexID;
     private int vacancies = 10;
     private int maxStudents = 20;
@@ -15,7 +15,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
         this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
-        indexID = createIndexID();
+        indexID = 0;
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
         this.lessonList = lessonList;
@@ -25,7 +25,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
 
     //Creates the index with vacancies, the maximum number of students, the lessons it consist of and the waitlist
     public Index (int vacancies, int maxStudents, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
-        indexID = createIndexID();
+        indexID = 0;
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
         this.lessonList = lessonList;
@@ -77,21 +77,23 @@ public class Index extends AbstractCourse implements java.io.Serializable{
 		this.studentWaitlist = studentWaitlist;
 	}
 
-    private int createIndexID(){
-        boolean used = false;
-        while (true) {
-            int createdIndexID = (int)(Math.random() * (9999 - 1000)) + 1000; 
-            for (Index index:Main.index){
-                if (createdIndexID == index.getIndexID()){
-                    used = true;
-                    break;
-                }
-            }
-            //if id is not in use, break out of loop and assign index the id
-            if (!used)
-                break;
-        } 
-    }
+    /*
+     *private int createIndexID(){
+     *    boolean used = false;
+     *    while (true) {
+     *        int createdIndexID = (int)(Math.random() * (9999 - 1000)) + 1000; 
+     *        for (Index index:Main.index){
+     *            if (createdIndexID == index.getIndexID()){
+     *                used = true;
+     *                break;
+     *            }
+     *        }
+     *        //if id is not in use, break out of loop and assign index the id
+     *        if (!used)
+     *            break;
+     *    } 
+        }
+     */
     
     //new methods by cloud
     public void addRegisteredStudent(Student student1){

@@ -1,9 +1,9 @@
 import java.util.*;
 
-public class Course extends AbstractCourse{
+public class Course extends AbstractCourse implements java.io.Serializable{
     
     private ArrayList<Index> courseIndex;
-
+    private static final long serialVersionUID = 2L;
 
     public Course (String school, String code, int AU, ArrayList<Index> index){
         courseSchool = school;
