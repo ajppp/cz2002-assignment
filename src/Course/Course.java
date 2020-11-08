@@ -5,7 +5,8 @@ public class Course extends AbstractCourse implements java.io.Serializable{
     private ArrayList<Index> courseIndex;
     private static final long serialVersionUID = 2L;
 
-    public Course (String school, String code, int AU, ArrayList<Index> index){
+    public Course (String name, String school, String code, int AU, ArrayList<Index> index){
+        courseName = name;
         courseSchool = school;
         courseCode = code;
         courseAU = AU;
