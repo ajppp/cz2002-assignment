@@ -80,7 +80,7 @@ public class SerialEditor{
 
     public static void writeLogin(LoginPage login){
         try {
-            FileOutputStream fileOut = new FileOutputStream(courseFileName);
+            FileOutputStream fileOut = new FileOutputStream(loginFileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(login);
         } catch (Exception e) {
@@ -90,9 +90,9 @@ public class SerialEditor{
     }
 
     public static LoginPage loadLogin(){
-        LoginPage login;
+        LoginPage login = new LoginPage();;
         try { 
-            FileInputStream fileIn = new FileInputStream(courseFileName);
+            FileInputStream fileIn = new FileInputStream(loginFileName);
             ObjectInputStream in = new ObjectInputStream(fileIn); 
             login = (LoginPage) in.readObject();
             in.close();

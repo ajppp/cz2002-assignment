@@ -81,7 +81,7 @@ public class Student implements java.io.Serializable{
     // drop index, 
 
     public void dropIndex(int indexNo, int au){
-        registeredIndex.drop(indexNo);
+        registeredIndex.remove(indexNo);
         // wrong, index is outside of this method. need to get au using another method
         // pass au or index[i].getAU();
         studentRegisteredAU -= au;
@@ -101,22 +101,22 @@ public class Student implements java.io.Serializable{
     private String createStudentID(){
         StringBuilder createdStudentID = new StringBuilder("U");
         boolean used;
-         while (true) {
+         //while (true) {
             //generate random seven digit number
             int idNumber = (int) (Math.random() * (1999999 - 1000000)) + 1000000; 
             createdStudentID.append(Integer.toString(idNumber)); 
             createdStudentID.append("C");
             //check if id has been in use
-            for (Student student:Main.students){
-                if (createdStudentID.equals(student.getStudentID())){
-                    used = true;
-                    break;
-                }
-            }
-            //if id is not in use, break out of loop and assign student the id
-            if (!used)
-                break;
-        } 
+            //for (Student student:Main.students){
+                //if (createdStudentID.equals(student.getStudentID())){
+                    //used = true;
+                    //break;
+                //}
+            //}
+            ////if id is not in use, break out of loop and assign student the id
+            //if (!used)
+                //break;
+        //} 
         return createdStudentID.toString();
     }
 }
