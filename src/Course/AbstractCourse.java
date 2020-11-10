@@ -1,4 +1,5 @@
 public abstract class AbstractCourse {
+    protected String courseName;
     protected String courseSchool;
     protected String courseCode;
     protected int courseAU;
@@ -9,6 +10,14 @@ public abstract class AbstractCourse {
 
     public void setSchool(String school){
         courseSchool = school;
+    }
+
+    public String getCourseName(){
+        return courseName;
+    }
+
+    public void setCourseName(String name){
+        courseName = name;
     }
 
     public String getCode(){
