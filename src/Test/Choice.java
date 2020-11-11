@@ -82,7 +82,6 @@ public class Choice {
         }
     }
     public static void printCourses(ArrayList <Course> courses){
-        //for (int i = 0; i < courses.size(); i++) {
         for (Course course: courses){
             int i = 0;
             System.out.printf("%d %s %s \n", i, course.getCode(), course.getCourseName());

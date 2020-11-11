@@ -10,7 +10,7 @@ public class Test{
         Date startTime = new Date(2020, 11, 3, 14, 30);
         Date endTime = new Date(2020, 11, 30, 11, 30);
         LoginPage login = new LoginPage(startTime, endTime);
-        Student cloud = new Student("Claudia", "SCSE", "M", "Vietnamese");
+        Student cloud = new Student("Claudia", "SCSE", "M", "Singaporean");
         registeredStudentList.add(cloud);
         Index dsai = new Index("SCSE", "1234", 3, 39, 40, lessonList, studentWaitlist, registeredStudentList);
         indices.add(dsai);

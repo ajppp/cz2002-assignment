@@ -35,4 +35,8 @@ public abstract class AbstractCourse {
     public void setAU(int AU){
         courseAU = AU;
     }
+
+    public boolean compareCourseCode(Course course){
+        return courseCode.equalsIgnoreCase(course.courseCode);
+    }
 }
