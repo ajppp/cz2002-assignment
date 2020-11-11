@@ -1,7 +1,16 @@
 public abstract class AbstractCourse {
+    protected String courseName;
     protected String courseSchool;
     protected String courseCode;
     protected int courseAU;
+
+    public String getCourseName(){
+        return courseName;
+    }
+
+    public void setCourseName(String name){
+        courseName = name;
+    }
 
     public String getSchool(){
         return courseSchool;

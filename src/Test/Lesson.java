@@ -1,19 +1,15 @@
-import java.text.DateFormat;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-
 public class Lesson {
     private int lessonType;
     private int lessonDay;
-    private String startTime;
-    private String endTime;
+    private int startPeriod;
+    private int endPeriod;
     private String venue;
 
-    public Lesson(int lessonType, int lessonDay, String startTime, String endTime, String venue){
+    public Lesson(int lessonType, int lessonDay, int startPeriod, int endPeriod, String venue){
         this.lessonType = lessonType;
         this.lessonDay = lessonDay;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startPeriod = startPeriod;
+        this.endPeriod = endPeriod;
         this.venue = venue;
     }
 
@@ -33,30 +29,56 @@ public class Lesson {
         this.lessonDay = lessonDay;
     }
 
-    public Date getStartTime() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        try {
-            Date d = dateFormat.parse(startTime);
-            return d;
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        Date date = new Date("12:00");
-        return date;
+/*
+ *    public Date getStartTime() throws Exception {
+ *        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+ *        try {
+ *            Date d = dateFormat.parse(startTime);
+ *            return d;
+ *        } catch (java.text.ParseException e) {
+ *            e.printStackTrace();
+ *        }
+ *        Date date = new Date("12:00");
+ *        return date;
+ *    }
+ *
+ *    public void setStartTime(String startTime){
+ *        this.startTime = startTime;
+ *    }
+ *    
+ *    public Date getEndTime() throws Exception {
+ *        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+ *        Date d = dateFormat.parse(endTime);
+ *        return d;
+ *    }
+ *
+ *    public void setEndTime(String endTime){
+ *        this.endTime = endTime;
+ *    }
+ */
+
+    public int getStartPeriod(){
+        return startPeriod;
     }
 
-    public void setStartTime(String startTime){
-        this.startTime = startTime;
-    }
-    
-    public Date getEndTime() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        Date d = dateFormat.parse(endTime);
-        return d;
+    public void setStartPeriod(int startPeriod){
+        this.startPeriod = startPeriod;
     }
 
-    public void setEndTime(String endTime){
-        this.endTime = endTime;
+    public int getEndPeriod(){
+        return endPeriod;
+    }
+
+    public void setEndPeriod(int endPeriod){
+        this.endPeriod = endPeriod;
+    }
+
+    public String getStartTime(){
+        return Integer.toString((100 * startPeriod) + 830);
+    }
+
+    public String getEndTime(){
+        return Integer.toString((100 * endPeriod) + 830);
     }
 
     public String getVenue() {

@@ -9,6 +9,7 @@ public class Student implements java.io.Serializable{
     private String studentNationality;
     private int studentRegisteredAU = 0;
     private ArrayList<Index> registeredIndex;
+    private _Schedule studentSchedule;
     private static final int MAX_AU = 21;
 
     /*
@@ -72,18 +73,28 @@ public class Student implements java.io.Serializable{
     // this method is just to add to student
     public void registerIndex(Index index){
         if ((studentRegisteredAU += index.getAU()) <= MAX_AU){
-            registeredIndex.add(index);
+            boolean sameCourse = false;
+            for (int i=0; i<=registeredIndex.size(); i++){
+                if (index.getCode() == registeredIndex.get(i).getCode()){
+                    sameCourse = true;
+                    break;
+                }
+            }
+            if (sameCourse){
+                System.out.println("Course already registered! Cannot add course");
+            }
+            else {
+                registeredIndex.add(index);
+                System.out.println("Index added successfully!");
+            }
             //add au to student registered au
             studentRegisteredAU += index.getAU(); 
         }
     }
-
     // drop index, 
 
     public void dropIndex(int indexNo, int au){
         registeredIndex.remove(indexNo);
-        // wrong, index is outside of this method. need to get au using another method
-        // pass au or index[i].getAU();
         studentRegisteredAU -= au;
     }
 

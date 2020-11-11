@@ -42,7 +42,27 @@ public class Choice {
                     int studentChoice = sc.nextInt();
                     switch (studentChoice) {
                         case 1:
-                            // TODO: print list of courses
+                            // TODO: 
+                            System.out.println("Choose the course to be added: ");
+                            for (int i=0; i<courses.size(); i++) {
+                                System.out.printf("%d", i);
+                                System.out.printf("%s", courses.get(i).getCode());
+                                System.out.println(courses.get(i).getCourseName());
+                            }
+                            int courseChoice = sc.nextInt();
+                            for (int j=0; j<= courses.get(courseChoice).getIndex().size(); j++){
+                                System.out.printf("%d", courses.get(courseChoice).getIndex().get(j).getIndexID());
+                            }
+                            System.out.println("Choose index to be added: ");
+                            int indexChoice = sc.nextInt();
+                            // TODO: call the scheduler to see if there are any clashes
+                            if(){
+                                curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
+                            }
+                            else{
+                                System.out.println("There is a clash");
+                            }
+                            
                             break;
                         case 2:
                             // TODO: print list of courses
