@@ -48,14 +48,10 @@ public class Choice {
                             printIndices(courses.get(courseChoice).getIndex());
                             System.out.println("Choose index to be added: ");
                             int indexChoice = sc.nextInt();
-                            // TODO: call the scheduler to see if there are any clashes
-                            if(){
-                                curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
-                            }
-                            else{
+                            if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
                                 System.out.println("There is a clash");
-                            }
-                            
+                            else
+                                curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
                             break;
                         case 2:
                             // TODO: print list of courses
@@ -101,7 +97,9 @@ public class Choice {
             for(Lesson lesson: index.getLessonList()){
                 int j = 0;
                 System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
+                j++;
             }
+            i++;
         }
     }
 
@@ -111,7 +109,7 @@ public class Choice {
         }
     }
 
-    public void compareClash(Student curStudent, Index addedIndex){
+    public static boolean compareClash(Student curStudent, Index addedIndex){
         boolean clash = false;
         // get timing of all lessons in the index to be added
         while (!clash){
@@ -128,20 +126,18 @@ public class Choice {
                             if (addedLessonStartPeriod > registeredLessonStartPeriod && addedLessonStartPeriod < registeredLessonEndPeriod){
                                 System.out.println("clash");
                                 clash = true;
-                                break;
+                                return clash;
                             }
                             else if (addedLessonEndPeriod > registeredLessonStartPeriod && addedLessonEndPeriod < registeredLessonEndPeriod){
                                 System.out.println("clash");
                                 clash = true;
-                                break;
+                                return clash;
                             }
                         }
                     }
                 }
             }
         }
+        return clash;
     }
-    
 }
-
-    }
