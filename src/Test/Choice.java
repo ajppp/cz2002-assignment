@@ -78,7 +78,7 @@ public class Choice {
                             printRegisteredCourses(curStudent);
                             System.out.println("Choose the course to change index: ");
                             courseChoice = sc.nextInt();
-                            String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(indexChoice).getCourseCode();
+                            String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                             indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
                             for (Course course:courses){
                                 if (course.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged))
@@ -99,6 +99,25 @@ public class Choice {
                             break;
                         case 6:
                             // TODO: swap index number of course
+                            printRegisteredCourses(curStudent);
+                            System.out.println("Choose the course to change index: ");
+                            courseChoice = sc.nextInt();
+                            codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
+                            indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
+                            System.out.println("Student ID: ");
+
+                            String studentID = sc.next();
+                            String password = PasswordField.readPassword("Password: "); // remember to put eraser class in same dir
+                            // check if student exists 
+                            if (studentExists){
+                                Student swapperStudent;
+                            }
+                            else{
+                                System.out.println("Student does not exist!");
+                                break;
+                            }
+                            System.out.println("Input index ID to swap: "); 
+                            
                             break;
                         default:
                             System.out.println("Not a valid choice! Please insert a number from 1 - 6");
