@@ -1,6 +1,6 @@
 public class Lesson {
     private int lessonType;
-    private int lessonDay;
+j   private int lessonDay;
     private int startPeriod;
     private int endPeriod;
     private String venue;
@@ -14,15 +14,51 @@ public class Lesson {
     }
 
     public int getLessonType() {
-        return this.lessonType;
+        return lessonType;
     }
+
 
     public void setLessonType(int lessonType){
         this.lessonType = lessonType;
     }
 
+    public String getLessonTypeStr() {
+        String lessonTypeStr;
+        switch (lessonType){
+            case 1:
+                lessonTypeStr = "Lecture";
+                break;
+            case 2:
+                lessonTypeStr = "Tutorial";
+                break;
+            case 3:
+                lessonTypeStr = "Lab";
+        }
+        return lessonTypeStr;
+    }
     public int getLessonDay() {
-        return this.lessonDay;
+        return lessonDay;
+    }
+
+    public String getLessonDayStr(){
+        String lessonDayStr;
+        switch (lessonDay){
+            case 1:
+                lessonDayStr = "Monday";
+                break;
+            case 2:
+                lessonDayStr = "Tuesday";
+                break;
+            case 3:
+                lessonDayStr = "Wednesday";
+                break;
+            case 4:
+                lessonDayStr = "Thursday";
+                break;
+            case 5:
+                lessonDayStr = "Friday";
+        }
+        return lessonDayStr;
     }
 
     public void setLessonDay(int lessonDay){
