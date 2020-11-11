@@ -12,27 +12,27 @@ public abstract class AbstractCourse {
         courseName = name;
     }
 
-    public String getSchool(){
+    public String getCourseSchool(){
         return courseSchool;
     }
 
-    public void setSchool(String school){
+    public void setCourseSchool(String school){
         courseSchool = school;
     }
 
-    public String getCode(){
+    public String getCourseCode(){
         return courseCode;
     }
 
-    public void setCode(String code){
+    public void setCourseCode(String code){
         courseCode = code;
     }
 
-    public int getAU(){
+    public int getCourseAU(){
         return courseAU;
     }
 
-    public void setAU(int AU){
+    public void setCourseAU(int AU){
         courseAU = AU;
     }
 

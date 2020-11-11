@@ -72,10 +72,10 @@ public class Student implements java.io.Serializable{
     // check is done in main on whether it can be added
     // this method is just to add to student
     public void registerIndex(Index index){
-        if ((studentRegisteredAU += index.getAU()) <= MAX_AU){
+        if ((studentRegisteredAU += index.getCourseAU()) <= MAX_AU){
             boolean sameCourse = false;
             for (int i=0; i<=registeredIndex.size(); i++){
-                if (index.getCode() == registeredIndex.get(i).getCode()){
+                if (index.getCode() == registeredIndex.get(i).getCourseCode()){
                     sameCourse = true;
                     break;
                 }
@@ -88,13 +88,20 @@ public class Student implements java.io.Serializable{
                 System.out.println("Index added successfully!");
             }
             //add au to student registered au
-            studentRegisteredAU += index.getAU(); 
+            studentRegisteredAU += index.getCourseAU(); 
         }
     }
-    // drop index, 
 
-    public void dropIndex(int indexNo, int au){
-        registeredIndex.remove(indexNo);
+    public void dropIndex(int indexID, int au){
+        int i = 0, indexLocation = 0;
+        for(Index index: registeredIndex){
+            if (index.getIndexID() == indexID){
+                indexLocation = i;
+                break;
+            }
+            i++;
+        }
+        registeredIndex.remove(indexLocation);
         studentRegisteredAU -= au;
     }
 
