@@ -116,8 +116,16 @@ public class Choice {
                                 System.out.println("Student does not exist!");
                                 break;
                             }
-                            System.out.println("Input index ID to swap: "); 
+                            int i = 0;
+                            for (Index index: swapperStudent.getRegisteredIndices()){
+                                if (index.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged)){
+                                    Index indexOfSwapperStudent = swapperStudent.getRegisteredIndices().get(i).getIndex();
+                                }
+                                i++;
+                            };
+                            indexIDToBeSwapped = indexOfSwapperStudent.getIndexID();
                             
+
                             break;
                         default:
                             System.out.println("Not a valid choice! Please insert a number from 1 - 6");
