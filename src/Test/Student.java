@@ -17,21 +17,23 @@ public class Student implements java.io.Serializable{
      *used to initialise the student method with all attributes
      *only used when reading in student's information from file
      */
-    public Student(String ID, String Name, String School, String Gender, String Nationality){
+    public Student(String ID, String Name, String School, String Gender, String Nationality, String Email){
         studentID = ID;
         studentName = Name;
         studentSchool = School;
         studentGender = Gender;
         studentNationality = Nationality;
+        studentEmail = Email;
     }
 
     //Initialises the student object with the ID, Name, School, Gender and Nationality
-    public Student(String Name, String School, String Gender, String Nationality){
+    public Student(String Name, String School, String Gender, String Nationality, String Email){
         studentID = createStudentID();
         studentName = Name;
         studentSchool = School;
         studentGender = Gender;
         studentNationality = Nationality;
+        studentEmail = Email;
     }
 
     public String getStudentID(){
@@ -69,6 +71,14 @@ public class Student implements java.io.Serializable{
 
     public String getStudentNationality(){
         return studentNationality;
+    }
+
+    public String getStudentEmail(){
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String email){
+        this.studentEmail = email;
     }
     // check is done in main on whether it can be added
     // this method is just to add to student

@@ -2,6 +2,16 @@
 import java.util.*;
 import java.io.*;
 
+// for javax.mail 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+
 public class Index extends AbstractCourse implements java.io.Serializable{
     private static final long serialVersionUID = 3L;
     private int indexID;
@@ -119,6 +129,60 @@ public class Index extends AbstractCourse implements java.io.Serializable{
     public void removeWaitlistedStudent(Student student1){
         studentWaitlist.remove(student1);
     }
+    // this function runs in the BACKEND ONLY!!!!
+    public void waitlistedStudentGetsIndex (Student studentDroppedIndex, Student studentGotIndex){
+        removeRegisteredStudent(studentDroppedIndex);
+        removeWaitlistedStudent(studentGotIndex);
+        addRegisteredStudent(studentGotIndex);
+        sendEmail(studentGotIndex, getIndexID(), this.getCourseCode());
+    }
 
+    public void studentAddedToIndex (Student student1){
+        if (vacancies > 0){
+            addRegisteredStudent(student1);
+            vacancies--;
+        }
+        else {
+            addWaitlistStudent(student1);
+        }
+    }
+
+    public static void sendEmail(Student student, int addedIndex, String courseCode){
+        
+		final String username = "dummyemailforoodp"; // to be added
+		final String password = "dummyemailOODP123"; // to be added
+
+        String studentEmail = student.getStudentEmail();
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("dummyemailforoodp@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(studentEmail)); // to be added an email addr
+			message.setSubject("Successfully Added Course Notification (automatic email)");
+			message.setText("Dear Student,"
+				+ "\n\n Index" + addedIndex + "of course" + courseCode + " has been successfully added to your timetable!");
+
+			Transport.send(message);
+
+			System.out.println("Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+    }
 }
 
