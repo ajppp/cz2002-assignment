@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 // import LoginPage
+import java.text.SimpleDateFormat;
 
 public class Choice {
     public static void main(String[] args){
@@ -19,7 +20,105 @@ public class Choice {
         switch(choice) {
             case 1:
                 // TODO: all the admin stuff
-                break;
+                System.out.println("Please type your Admin ID: ");
+                String inputAdminID = sc.nextLine();
+                System.out.println("Please type your password: ");
+                String inputPassword = sc.nextLine();
+                if (!loginManager.adminCompare(inputAdminID, inputPassword)){
+                    System.out.println("Wrong Password");
+                }
+                else {
+                    System.out.println("Welcome to NTU Stars Planner!");
+                    System.out.println("1. Edit student access period");
+                    System.out.println("2. Add a student");
+                    System.out.println("3. Add/Update a course");
+                    System.out.println("4. Check available slot for an index number (vacancy in a class)");
+                    System.out.println("5. Print student list by index number");
+                    System.out.println("6. Print student list by course");
+                    int adminChoice = sc.nextInt();
+                    switch(adminChoice){
+                        case 1:
+                            // cloud note: i dont know why it is loginTiming, not loginPage. shouldnt it be LoginPage? but loginTiming gives me red squiggly line >:(
+                            System.out.printf("Current start login timing: " + loginTiming.getStartLoginTime());
+                            System.out.printf("Current end login timing: " + loginTiming.getEndLoginTime());
+                            System.out.println("Enter new start login timing (in format HHMM): ");
+                            String newStartLoginTime = sc.nextLine();
+                            Date startLoginTime = new SimpleDateFormat("HHmm").parse(newStartLoginTime);
+                            System.out.println("Enter new end login timing (in format HHMM): ");
+                            String newEndLoginTime = sc.nextLine();
+                            Date endLoginTime =  new SimpleDateFormat("HHmm").parse(newEndLoginTime);
+                            loginPage.setStartLoginTime(startLoginTime);
+                            loginPage.setEndLoginTime(endLoginTime);
+                            System.out.println("Successfully changed login timing period!");
+                            break;
+                        case 2:
+                            System.out.println("Current student list: ");
+                            for (int i=0; i<students.size(); i++){
+                                System.out.printf("%d %d %s", i, students.get(i).getStudentID(), students.get(i).getStudentName());
+                            };
+                            System.out.println("Input new Student name: ");
+                            String studentName = sc.nextLine();
+                            System.out.println("Input new Student school: ");
+                            String studentSchool = sc.nextLine();
+                            System.out.println("Input new Student gender (M/F): ");
+                            String studentGender = sc.nextLine();
+                            System.out.println("Input new Student nationality: ");
+                            String studentNationality = sc.nextLine();
+                            // TODO: use REGEX!!! :D to check email~~~ 
+                            System.out.println("Input new Student email: "); 
+                            String studentEmail = sc.nextLine();
+                            Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
+                            students.add(addedStudent);
+                            break;
+                        case 3:
+                            // sry jeth ill leave u to it
+                            System.out.println("Current courses: ");
+                            printCourses(courses);
+                            System.out.println("1. Add new course");
+                            System.out.println("2. Update existing course");
+                            int case3choice = sc.nextInt();
+                            switch(case3choice){
+                                case 1:    
+
+                            }
+                            break;
+                        case 4:
+                            System.out.println("Choose course to view vacancies: ");
+                            printCourses(courses);
+                            int courseChoice = sc.nextInt();
+                            printIndices(courses.get(courseChoice).getIndex());
+                            System.out.println("Choose index of course to view vacancies: ");
+                            int indexChoice = sc.nextInt();
+                            System.out.printf("The number of vacancies for index %d of course %s is %d", courses.get(courseChoice).getIndex().get(indexChoice).getIndexID(), courses.get(courseChoice).getCourseCode(), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
+                            break;
+                        case 5:
+                            System.out.println("Choose course to view student namelist: ");
+                            printCourses(courses);
+                            courseChoice = sc.nextInt();
+                            printIndices(courses.get(courseChoice).getIndex());
+                            System.out.println("Choose index of course to view student namelist: ");
+                            indexChoice = sc.nextInt();
+                            for (int i=0; i<courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size(); i++){
+                                System.out.printf("%d %d %s", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentName());
+                            }
+                            break;
+                        case 6:
+                            System.out.println("Choose course to view student namelist: ");
+                            printCourses(courses);
+                            courseChoice = sc.nextInt();
+                            // to be clear, i = index, j = student 
+                            for (int i=0; i<courses.get(courseChoice).getIndex().size(); i++){
+                                for (int j=0; j<courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size(); j++) {
+                                    System.out.printf("Namelist of Index %d", courses.get(courseChoice).getIndex().get(i).getIndexID());
+                                    System.out.printf("%d %d %s", j, courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentID(), courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentName());
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            break;
+
             case 2:
                 Calendar cal = Calendar.getInstance();
                 Date dateNow = cal.getTime();
@@ -29,13 +128,14 @@ public class Choice {
                     System.out.printf("End login time: " + loginTiming.getEndLoginTime());
                 }
                 else {
-                    System.out.println("Please insert your UserID");
+                    System.out.println("Please insert your UserID: ");
                     String inputUserID = sc.nextLine();
-                    System.out.println("Please insert your password:");
-                    String inputPassword = sc.nextLine();
+                    System.out.println("Please insert your password: ");
+                    inputPassword = sc.nextLine();
                     Student curStudent;
                     if (!loginManager.studentCompare(inputUserID, inputPassword)){
                         System.out.println("Wrong Password");
+                        return; 
                     }
                     else{
                         for (Student student: students){

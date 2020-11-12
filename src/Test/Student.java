@@ -10,7 +10,7 @@ public class Student implements java.io.Serializable{
     private String studentEmail;
     private int studentRegisteredAU = 0;
     private ArrayList<Index> registeredIndex;
-    private _Schedule studentSchedule;
+    private Schedule studentSchedule;
     private static final int MAX_AU = 21;
 
     /*

@@ -78,6 +78,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
     public void setLessonList(ArrayList<Lesson> lessonList){
 		this.lessonList = lessonList;
     }
+
     
     public ArrayList<Student> getStudentWaitlist(){
         return studentWaitlist;
@@ -114,7 +115,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
         registeredStudents.remove(student1);
     }
 
-    public List<Student> listRegisteredStudents(){
+    public ArrayList<Student> listRegisteredStudents(){
         return registeredStudents;
     }
 
