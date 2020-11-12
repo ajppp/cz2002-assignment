@@ -10,6 +10,7 @@ public class Choice {
         ArrayList <Index> indices = SerialEditor.loadIndices();
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
         LoginPage login = SerialEditor.loadLogin();
+        String loginStudentUserID;
         // TODO: Login with the hashing
 
         Scanner sc = new Scanner(System.in);
@@ -32,6 +33,12 @@ public class Choice {
                 else {
                     // TODO: Login with username and password and curStudent refers to the student who logged in
                     Student curStudent;
+                    for (Student student: students){
+                        if (student.getStudentID() == loginStudentUserID){
+                            curStudent = student;
+                            break;
+                        }
+                    }
                     System.out.println("Welcome to NTU Stars Planner!");
                     System.out.println("1. Add Course");
                     System.out.println("2. Drop Course");
@@ -79,6 +86,7 @@ public class Choice {
                             System.out.println("Choose the course to change index: ");
                             courseChoice = sc.nextInt();
                             String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
+                            Index indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
                             indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
                             for (Course course:courses){
                                 if (course.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged))
@@ -90,11 +98,12 @@ public class Choice {
                             }
                             System.out.println("Choose new index: ");
                             indexChoice = sc.nextInt();
+                            Index indexToBeAdded = courses.get(courseChoice).getIndex().get(indexChoice);
                             int indexIDToBeAdded = courses.get(courseChoice).getIndex().get(indexChoice).getIndexID();
                             // implement the checking
                             if (indexIDToBeDropped != indexIDToBeAdded){
                                 curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(courseChoice).getCourseAU());
-                                curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
+                                curStudent.registerIndex(indexToBeAdded);
                             }
                             break;
                         case 6:
@@ -133,7 +142,6 @@ public class Choice {
                 }
             default:
                 System.out.println("Not valid choice!");
-
         }
     }
     public static void printCourses(ArrayList <Course> courses){

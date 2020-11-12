@@ -7,6 +7,7 @@ public class Student implements java.io.Serializable{
     private String studentSchool;
     private String studentGender;
     private String studentNationality;
+    private String studentEmail;
     private int studentRegisteredAU = 0;
     private ArrayList<Index> registeredIndex;
     private _Schedule studentSchedule;
