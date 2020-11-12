@@ -4,14 +4,12 @@ import java.io.*;
 
 public class Choice {
     public static void main(String[] args){
-        // TODO: read in the login details of student and admin
         // initialise a new array list of students, indices and courses and read in from the existing data.
         ArrayList <Student> students = SerialEditor.loadStudents();
         ArrayList <Index> indices = SerialEditor.loadIndices();
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
-        LoginPage login = SerialEditor.loadLogin();
-        String loginStudentUserID;
-        // TODO: Login with the hashing
+        LoginPage loginTiming = SerialEditor.loadLogin();
+        LoginManager loginManager = SerialEditor.loadLoginDetails();
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to NTU Stars!");
@@ -25,18 +23,26 @@ public class Choice {
             case 2:
                 Calendar cal = Calendar.getInstance();
                 Date dateNow = cal.getTime();
-                if (login.compareCurrentTime(dateNow) == false){
+                if (loginTiming.compareCurrentTime(dateNow) == false){
                     System.out.println("Please try again during the stipulated time!");
-                    System.out.printf("Start login time: " + login.getStartLoginTime());
-                    System.out.printf("End login time: " + login.getEndLoginTime());
+                    System.out.printf("Start login time: " + loginTiming.getStartLoginTime());
+                    System.out.printf("End login time: " + loginTiming.getEndLoginTime());
                 }
                 else {
-                    // TODO: Login with username and password and curStudent refers to the student who logged in
+                    System.out.println("Please insert your UserID");
+                    String inputUserID = sc.nextLine();
+                    System.out.println("Please insert your password:");
+                    String inputPassword = sc.nextLine();
                     Student curStudent;
-                    for (Student student: students){
-                        if (student.getStudentID() == loginStudentUserID){
-                            curStudent = student;
-                            break;
+                    if (!loginManager.studentCompare(inputUserID, inputPassword)){
+                        System.out.println("Wrong Password");
+                    }
+                    else{
+                        for (Student student: students){
+                            if (student.getStudentID() == inputUserID){
+                                curStudent = student;
+                                break;
+                            }
                         }
                     }
                     System.out.println("Welcome to NTU Stars Planner!");
@@ -71,7 +77,6 @@ public class Choice {
                             printRegisteredCourses(curStudent);
                             break;
                         case 4:
-                            // TODO:
                             System.out.println("Choose the course to view vacancies: ");
                             printCourses(courses);
                             courseChoice = sc.nextInt();
@@ -81,7 +86,6 @@ public class Choice {
                             System.out.printf("The number of vacancies for index %d is %d", courses.get(courseChoice).getIndex().get(indexChoice), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
                             break;
                         case 5:
-                            // TODO: change index number of course
                             printRegisteredCourses(curStudent);
                             System.out.println("Choose the course to change index: ");
                             courseChoice = sc.nextInt();

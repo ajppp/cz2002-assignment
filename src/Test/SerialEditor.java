@@ -5,7 +5,9 @@ public class SerialEditor{
     public static final String studentFileName = "student.ser";
     public static final String courseFileName = "course.ser";
     public static final String indexFileName = "index.ser";
-    public static final String loginFileName = "login.ser";
+    public static final String loginTimingFileName = "loginTiming.ser";
+    public static final String loginDetailsFileName = "loginDetails.ser";
+
     public static void writeStudents(ArrayList<Student> student){
         try {
             FileOutputStream fileOut = new FileOutputStream(studentFileName);
@@ -80,7 +82,7 @@ public class SerialEditor{
 
     public static void writeLogin(LoginPage login){
         try {
-            FileOutputStream fileOut = new FileOutputStream(loginFileName);
+            FileOutputStream fileOut = new FileOutputStream(loginTimingFileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(login);
         } catch (Exception e) {
@@ -90,9 +92,9 @@ public class SerialEditor{
     }
 
     public static LoginPage loadLogin(){
-        LoginPage login = new LoginPage();;
+        LoginPage login = new LoginPage();
         try { 
-            FileInputStream fileIn = new FileInputStream(loginFileName);
+            FileInputStream fileIn = new FileInputStream(loginTimingFileName);
             ObjectInputStream in = new ObjectInputStream(fileIn); 
             login = (LoginPage) in.readObject();
             in.close();
@@ -100,6 +102,30 @@ public class SerialEditor{
                 e.printStackTrace();
             }
         return login;
+    }
+
+    public static void writeLoginDetails(LoginManager loginManager){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(studentFileName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(loginManager);
+        } catch (Exception e) {
+            System.out.println("Error in adding login details");
+            e.printStackTrace();
+        }
+    }
+
+    public static LoginManager loadLoginDetails(){
+        LoginManager loginManager = new LoginManager();
+        try { 
+            FileInputStream fileIn = new FileInputStream(studentFileName);
+            ObjectInputStream in = new ObjectInputStream(fileIn); 
+             loginManager = (LoginManager)in.readObject();
+            in.close();
+        } catch (Exception e) {
+                e.printStackTrace();
+            }
+        return loginManager;
     }
 
 }
