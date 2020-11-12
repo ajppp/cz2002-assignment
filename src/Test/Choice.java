@@ -38,7 +38,7 @@ public class Choice {
                     int adminChoice = sc.nextInt();
                     switch(adminChoice){
                         case 1:
-                            // cloud note: i dont know why it is loginTiming, not loginPage. shouldnt it be LoginPage? but loginTiming gives me red squiggly line >:(
+                            // cloud note: i dont know why it is loginTiming, not loginPage. shouldnt it be LoginPage? but loginPage gives me red squiggly line >:(
                             System.out.printf("Current start login timing: " + loginTiming.getStartLoginTime());
                             System.out.printf("Current end login timing: " + loginTiming.getEndLoginTime());
                             System.out.println("Enter new start login timing (in format HHMM): ");
