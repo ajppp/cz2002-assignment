@@ -1,6 +1,8 @@
+//TODO: add error checking in case the admin is an idiot that gives string for ints and whatever... basically if else statement.. yippee for a 1k line main function <3 
 import java.util.*;
 import java.io.*;
 // import LoginPage
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class Choice {
@@ -19,12 +21,11 @@ public class Choice {
         int choice = sc.nextInt();
         switch(choice) {
             case 1:
-                // TODO: all the admin stuff
                 System.out.println("Please type your Admin ID: ");
                 String inputAdminID = sc.nextLine();
                 System.out.println("Please type your password: ");
-                String inputPassword = sc.nextLine();
-                if (!loginManager.adminCompare(inputAdminID, inputPassword)){
+                String inputAdminPassword = sc.nextLine();
+                if (!loginManager.adminCompare(inputAdminID, inputAdminPassword)){
                     System.out.println("Wrong Password");
                 }
                 else {
@@ -39,21 +40,37 @@ public class Choice {
                     switch(adminChoice){
                         case 1:
                             // cloud note: i dont know why it is loginTiming, not loginPage. shouldnt it be LoginPage? but loginPage gives me red squiggly line >:(
-                            System.out.printf("Current start login timing: " + loginTiming.getStartLoginTime());
-                            System.out.printf("Current end login timing: " + loginTiming.getEndLoginTime());
-                            System.out.println("Enter new start login timing (in format HHMM): ");
-                            String newStartLoginTime = sc.nextLine();
-                            Date startLoginTime = new SimpleDateFormat("HHmm").parse(newStartLoginTime);
-                            System.out.println("Enter new end login timing (in format HHMM): ");
-                            String newEndLoginTime = sc.nextLine();
-                            Date endLoginTime =  new SimpleDateFormat("HHmm").parse(newEndLoginTime);
-                            loginPage.setStartLoginTime(startLoginTime);
-                            loginPage.setEndLoginTime(endLoginTime);
+                            // jeth note: nope it is loginTiming, this is because loginPage is the reference type of LoginPage. LoginPage does not exist as an object but only as the class of the object that we call loginTiming :D
+                            System.out.println("Current start login timing: " + loginTiming.getStartLoginTime());
+                            System.out.println("Current end login timing: " + loginTiming.getEndLoginTime());
+                            //jeth note: cloud i think we should change this to not only the timing but the date as well, i think it makes more sense since i think the thing that matters should be the date more than the timing 
+                            // cloud i think im gonna change this to make it simpler for them since entering the correct date format might be a bit too... difficult? anyway i commented out your parts in case you want to change it again
+                            StringBuilder newStartLogin = new StringBuilder();
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                            System.out.println("Enter new start login date (in format dd-mm-yyyy): ");
+        newStartLogin.append(sc.nextLine());
+                            System.out.println("Enter new start login date (in format hh:mm) ");
+        newStartLogin.append(sc.nextLine());
+                            Date startLoginTime = formatter.parse(newStartLogin.toString());
+
+                            StringBuilder newEndLogin = new StringBuilder();
+                            System.out.println("Enter new end login date (in format dd-mm-yyyy): ");
+        newStartLogin.append(sc.nextLine());
+                            System.out.println("Enter new end login date (in format hh:mm) ");
+        newStartLogin.append(sc.nextLine());
+                            Date endLoginTime = formatter.parse(newEndLogin.toString());
+                            /*
+                             *System.out.println("Enter new end login timing (in format HHMM): ");
+                             *String newEndLoginTime = sc.nextLine();
+                             *Date endLoginTime =  new SimpleDateFormat("HHmm").parse(newEndLoginTime);
+                             */
+                            loginTiming.setStartLoginTime(startLoginTime);
+                            loginTiming.setEndLoginTime(endLoginTime);
                             System.out.println("Successfully changed login timing period!");
                             break;
                         case 2:
                             System.out.println("Current student list: ");
-                            for (int i=0; i<students.size(); i++){
+                            for (int i = 0; i < students.size(); i++){
                                 System.out.printf("%d %d %s", i, students.get(i).getStudentID(), students.get(i).getStudentName());
                             };
                             System.out.println("Input new Student name: ");
@@ -65,6 +82,7 @@ public class Choice {
                             System.out.println("Input new Student nationality: ");
                             String studentNationality = sc.nextLine();
                             // TODO: use REGEX!!! :D to check email~~~ 
+                            // as always, cloud is using something/one...
                             System.out.println("Input new Student email: "); 
                             String studentEmail = sc.nextLine();
                             Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
@@ -72,6 +90,7 @@ public class Choice {
                             break;
                         case 3:
                             // sry jeth ill leave u to it
+                            // so you leave me, just like everyone else... 
                             System.out.println("Current courses: ");
                             printCourses(courses);
                             System.out.println("1. Add new course");
@@ -79,9 +98,40 @@ public class Choice {
                             int case3choice = sc.nextInt();
                             switch(case3choice){
                                 case 1:    
-
+                                    System.out.printf("Enter new course name: ");
+                                    String newCourseName = sc.nextLine();
+                                    System.out.printf("\nEnter new course school: ");
+                                        String newCourseSchool = sc.nextLine();
+                                    System.out.printf("\nEnter new course code: ");
+                                    String newCourseCode = sc.nextLine();
+                                    System.out.printf("\nEnter new course AU: ");
+                                    int newCourseAU = sc.nextInt();
+                                    // adding a course is difficult yes i get it... i'll stop complaining about stars yes... please forgive me lay yen
+                                    System.out.println("How many indices does this new course have? ");
+                                    int numCourseIndices = sc.nextInt();
+                                    System.out.println("How many lessons in each index? ");
+                                    int numLessons = sc.nextInt();
+                                    ArrayList<Index> newIndexList = new ArrayList<Index>(numCourseIndices);
+                                    ArrayList<Lesson> newLessonList = new ArrayList<Lesson>(numLessons);
+                                    for (int i = 0; i < numCourseIndices; i++){
+                                        for (int j = 0; j < numLessons; j++){
+                                            System.out.printf("For index %d of %s, insert the lesson type for lesson number %d (0 for lecture, 1 for tutorial, 2 lab )\n", i + 1, newCourseName, j = 1);
+                                            int newLessonType = sc.nextInt();
+                                            System.out.printf("For this lesson, enter the day\n");
+                                            int newLessonDay = sc.nextInt();
+                                            System.out.printf("For this lesson, enter the start period\n");
+                                            int newLessonStartPeriod = sc.nextInt();
+                                            System.out.printf("For this lesson, enter the end period\n");
+                                            int newLessonEndPeriod = sc.nextInt();
+                                            System.out.printf("For this lesson, enter the venue\n");
+                                            String newLessonVenue = sc.nextLine();
+                                            newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
+                                        }
+                                        //TODO add this lesson list to a particular index.... if you are free, help me cloud
+                                    }
                             }
                             break;
+
                         case 4:
                             System.out.println("Choose course to view vacancies: ");
                             printCourses(courses);
@@ -91,6 +141,7 @@ public class Choice {
                             int indexChoice = sc.nextInt();
                             System.out.printf("The number of vacancies for index %d of course %s is %d", courses.get(courseChoice).getIndex().get(indexChoice).getIndexID(), courses.get(courseChoice).getCourseCode(), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
                             break;
+
                         case 5:
                             System.out.println("Choose course to view student namelist: ");
                             printCourses(courses);
@@ -102,6 +153,7 @@ public class Choice {
                                 System.out.printf("%d %d %s", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentName());
                             }
                             break;
+
                         case 6:
                             System.out.println("Choose course to view student namelist: ");
                             printCourses(courses);
@@ -131,9 +183,9 @@ public class Choice {
                     System.out.println("Please insert your UserID: ");
                     String inputUserID = sc.nextLine();
                     System.out.println("Please insert your password: ");
-                    inputPassword = sc.nextLine();
+                    String inputStudentPassword = sc.nextLine();
                     Student curStudent;
-                    if (!loginManager.studentCompare(inputUserID, inputPassword)){
+                    if (!loginManager.studentCompare(inputUserID, inputStudentPassword)){
                         System.out.println("Wrong Password");
                         return; 
                     }
