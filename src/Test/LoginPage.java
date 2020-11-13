@@ -1,4 +1,7 @@
 import java.util.*;
+//import java.util.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 public class LoginPage implements java.io.Serializable{
     private static final long serialVersionUID = 5L;
@@ -19,6 +22,18 @@ public class LoginPage implements java.io.Serializable{
     public Date getEndLoginTime(){
         return endLoginTime;
     }
+
+/*
+ *    public Date getStartLoginTimeString(){
+ *        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+ *        return formatter.format(startLoginTime);
+ *    }
+ *
+ *    public Date getEndLoginTimeString(){
+ *        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+ *        return formatter.format(endLoginTime);
+ *    }
+ */
 
     //only can be done by admin
     public void setStartLoginTime(Date startLoginTime){ // will think about the parameter again

@@ -9,24 +9,25 @@ public class Student implements java.io.Serializable{
     private String studentNationality;
     private String studentEmail;
     private int studentRegisteredAU = 0;
-    private ArrayList<Index> registeredIndex;
-    private Schedule studentSchedule;
+    private ArrayList<Index> registeredIndex = new ArrayList<>(0);
     private static final int MAX_AU = 21;
 
     /*
      *used to initialise the student method with all attributes
      *only used when reading in student's information from file
      */
-    public Student(String ID, String Name, String School, String Gender, String Nationality, String Email){
+    public Student(String ID, String Name, String School, String Gender, String Nationality, String Email, int AU, ArrayList<Index> index){
         studentID = ID;
         studentName = Name;
         studentSchool = School;
         studentGender = Gender;
         studentNationality = Nationality;
         studentEmail = Email;
+        studentRegisteredAU = AU;
+        registeredIndex = index;
     }
 
-    //Initialises the student object with the ID, Name, School, Gender and Nationality
+    //Initialises the student object with the ID, Name, School, Gender and Nationality when the admin adds the student manually
     public Student(String Name, String School, String Gender, String Nationality, String Email){
         studentID = createStudentID();
         studentName = Name;
