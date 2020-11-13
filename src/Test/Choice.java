@@ -131,7 +131,6 @@ public class Choice {
                                             newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
                                         }
                                         //TODO add this lesson list to a particular index.... if you are free, help me cloud
-                                        // aww thanks cloud-chan
                                         System.out.println("How many vacancies does this new index have?");
                                         int newIndexVacancies = sc.nextInt();
                                         System.out.println("What is the maximum number of students this new index has?");
@@ -148,7 +147,8 @@ public class Choice {
                                     // course code, school, its index numbers and vacancy
                                     System.out.printf("Details of course %s", courses.get(case2choice).getCourseName());
                                     System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s \n ", courses.get(case2choice).getCourseName(), courses.get(case2choice).getCourseSchool(), courses.get(case2choice).getCourseCode());
-                                    System.out.printf("(4) Course Indices: ");
+                                    System.out.printf("(4) Course Indices:\n");
+                                    printIndices(courses.get(case2choice).getIndex());
                                     System.out.printf("Choose detail of course to change: ");
                                     case2choice = sc.nextInt();
                                     switch(case2choice){
@@ -172,6 +172,31 @@ public class Choice {
                                             break;
                                         case 4: 
                                             // jeth ill leave you to it
+                                            // again you leave me :((((
+                                            System.out.println("Which index do you want to change?");
+                                            printIndices(courses.get(case2choice).getIndex());
+                                            int choiceOfIndexToBeChanged = sc.nextInt();
+                                            Index indexToChange = courses.get(case2choice).getIndex().get(choiceOfIndexToBeChanged);
+                                            System.out.printf("(1) Change the max number of students\n (2) Change the lessons");
+                                            int changeIndexChoice = sc.nextInt();
+                                            switch(changeIndexChoice){
+                                                case 1:
+                                                    System.out.printf("The number of max students now is %d, what do you want to change it to?", indexToChange.getMaxStudents());
+                                                    indexToChange.setMaxStudents(sc.nextInt());
+                                                    System.out.printf("Successfully changed max students to %d", indexToChange.getMaxStudents());
+                                                    break;
+
+                                                case 2:
+                                                    for(Lesson lesson: indexToChange.getLessonList()){
+                                                        int j = 0;
+                                                        System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
+                                                        j++;
+                                                    }
+                                                    System.out.println("Choose detail of lesson to change");
+                                                    
+
+                                                    }
+                                            }
                                     }
                                     
                             }
