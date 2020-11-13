@@ -93,6 +93,7 @@ public class Choice {
                             // sry jeth ill leave u to it
                             // so you leave me, just like everyone else... 
                             // you've used this line so many times you might as well make it into a song
+                            // we are never talking to each other anymore
                             System.out.println("Current courses: ");
                             printCourses(courses);
                             System.out.println("1. Add new course");
@@ -130,6 +131,7 @@ public class Choice {
                                             newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
                                         }
                                         //TODO add this lesson list to a particular index.... if you are free, help me cloud
+                                        // aww thanks cloud-chan
                                         System.out.println("How many vacancies does this new index have?");
                                         int newIndexVacancies = sc.nextInt();
                                         System.out.println("What is the maximum number of students this new index has?");
