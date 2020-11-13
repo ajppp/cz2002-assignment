@@ -25,7 +25,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
         this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
-        indexID = 0;
+        indexID = createIndexID();
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
         this.lessonList = lessonList;
@@ -88,23 +88,23 @@ public class Index extends AbstractCourse implements java.io.Serializable{
 		this.studentWaitlist = studentWaitlist;
 	}
 
-    /*
-     *private int createIndexID(){
-     *    boolean used = false;
-     *    while (true) {
-     *        int createdIndexID = (int)(Math.random() * (9999 - 1000)) + 1000; 
-     *        for (Index index:Main.index){
-     *            if (createdIndexID == index.getIndexID()){
-     *                used = true;
-     *                break;
-     *            }
-     *        }
-     *        //if id is not in use, break out of loop and assign index the id
-     *        if (!used)
-     *            break;
-     *    } 
-        }
-     */
+     
+    private int createIndexID(){
+        boolean used = false;
+        while (true) {
+            int createdIndexID = (int)(Math.random() * (9999 - 1000)) + 1000; 
+            for (Index index:Main.index){
+                if (createdIndexID == index.getIndexID()){
+                    used = true;
+                    break;
+                }
+            }
+            //if id is not in use, break out of loop and assign index the id
+            if (!used)
+                break;
+        } 
+    }
+     
     
     //new methods by cloud
     public void addRegisteredStudent(Student student1){

@@ -46,18 +46,18 @@ public class Choice {
                             //jeth note: cloud i think we should change this to not only the timing but the date as well, i think it makes more sense since i think the thing that matters should be the date more than the timing 
                             // cloud i think im gonna change this to make it simpler for them since entering the correct date format might be a bit too... difficult? anyway i commented out your parts in case you want to change it again
                             StringBuilder newStartLogin = new StringBuilder();
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                             System.out.println("Enter new start login date (in format dd-mm-yyyy): ");
-        newStartLogin.append(sc.nextLine());
+                            newStartLogin.append(sc.nextLine());
                             System.out.println("Enter new start login date (in format hh:mm) ");
-        newStartLogin.append(sc.nextLine());
+                            newStartLogin.append(sc.nextLine());
                             Date startLoginTime = formatter.parse(newStartLogin.toString());
 
                             StringBuilder newEndLogin = new StringBuilder();
                             System.out.println("Enter new end login date (in format dd-mm-yyyy): ");
-        newStartLogin.append(sc.nextLine());
+                            newStartLogin.append(sc.nextLine());
                             System.out.println("Enter new end login date (in format hh:mm) ");
-        newStartLogin.append(sc.nextLine());
+                            newStartLogin.append(sc.nextLine());
                             Date endLoginTime = formatter.parse(newEndLogin.toString());
                             /*
                              *System.out.println("Enter new end login timing (in format HHMM): ");
@@ -83,6 +83,7 @@ public class Choice {
                             String studentNationality = sc.nextLine();
                             // TODO: use REGEX!!! :D to check email~~~ 
                             // as always, cloud is using something/one...
+                            // yeah im using regex, what are you thinking about?
                             System.out.println("Input new Student email: "); 
                             String studentEmail = sc.nextLine();
                             Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
@@ -91,6 +92,7 @@ public class Choice {
                         case 3:
                             // sry jeth ill leave u to it
                             // so you leave me, just like everyone else... 
+                            // you've used this line so many times you might as well make it into a song
                             System.out.println("Current courses: ");
                             printCourses(courses);
                             System.out.println("1. Add new course");
@@ -101,7 +103,7 @@ public class Choice {
                                     System.out.printf("Enter new course name: ");
                                     String newCourseName = sc.nextLine();
                                     System.out.printf("\nEnter new course school: ");
-                                        String newCourseSchool = sc.nextLine();
+                                    String newCourseSchool = sc.nextLine();
                                     System.out.printf("\nEnter new course code: ");
                                     String newCourseCode = sc.nextLine();
                                     System.out.printf("\nEnter new course AU: ");
@@ -128,7 +130,48 @@ public class Choice {
                                             newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
                                         }
                                         //TODO add this lesson list to a particular index.... if you are free, help me cloud
+                                        System.out.println("How many vacancies does this new index have?");
+                                        int newIndexVacancies = sc.nextInt();
+                                        System.out.println("What is the maximum number of students this new index has?");
+                                        int newIndexMaxStudents = sc.nextInt();
+                                        newIndexList.set(i, new Index(newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
                                     }
+                                    courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
+                                    break;
+                                
+                                case 2:
+                                    System.out.println("Choose which course to update: ");
+                                    printCourses(courses);
+                                    int case2choice = sc.nextInt();
+                                    // course code, school, its index numbers and vacancy
+                                    System.out.printf("Details of course %s", courses.get(case2choice).getCourseName());
+                                    System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s \n ", courses.get(case2choice).getCourseName(), courses.get(case2choice).getCourseSchool(), courses.get(case2choice).getCourseCode());
+                                    System.out.printf("(4) Course Indices: ");
+                                    System.out.printf("Choose detail of course to change: ");
+                                    case2choice = sc.nextInt();
+                                    switch(case2choice){
+                                        case 1:
+                                            System.out.println("Set new course name: ");
+                                            String case2newCourseName = sc.nextLine();
+                                            courses.get(case2choice).setCourseName(case2newCourseName);
+                                            System.out.printf("New course name %s has been changed successfully!", case2newCourseName); // should i use case2newcoursename or courses.get(case2choice).getCourseName()?
+                                            break;
+                                        case 2:
+                                            System.out.println("Change course of school: ");
+                                            String case2newCourseSchool = sc.nextLine();
+                                            courses.get(case2choice).setCourseSchool(case2newCourseSchool);
+                                            System.out.printf("Course school has been changed to %s successfully!", case2newCourseSchool);
+                                            break;
+                                        case 3:
+                                            System.out.println("Change course code: ");
+                                            String case2newCourseCode = sc.nextLine();
+                                            courses.get(case2choice).setCourseCode(case2newCourseCode);
+                                            System.out.printf("Course code has been changed to %s successfully!", case2newCourseCode);
+                                            break;
+                                        case 4: 
+                                            // jeth ill leave you to it
+                                    }
+                                    
                             }
                             break;
 
