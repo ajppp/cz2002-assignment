@@ -60,7 +60,7 @@ public class Test{
         indexList2500.set(2, new Index(20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
         indexList2500.set(3, new Index(20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
 
-        courses.set(0, new Course("Probability and Introduction to Statistics", "SPMS", "MH2500", 4, indexList2500));
+        courses.add(new Course("Probability and Introduction to Statistics", "SPMS", "MH2500", 4, indexList2500));
 
         // creating CM1031
         ArrayList <Lesson> lessonList70089 = new ArrayList<>();
@@ -72,7 +72,7 @@ public class Test{
         ArrayList <Index> indexList1031 = new ArrayList<>();
         indexList1031.set(0, new Index(0, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
-        courses.set(0, new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 4, indexList1031));
+        courses.add(new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 4, indexList1031));
 
         // creating HC4050
         ArrayList <Lesson> lessonList17048 = new ArrayList<>();
@@ -81,7 +81,7 @@ public class Test{
         ArrayList <Index> indexList4050 = new ArrayList<>();
         indexList4050.set(0, new Index(50, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
 
-        courses.set(1, new Course("Chinese Semantics", "SOH", "HC4050", 4, indexList4050));
+        courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 4, indexList4050));
 
         // creating BF2209
         ArrayList <Lesson> lessonList00224 = new ArrayList<>();
@@ -94,7 +94,7 @@ public class Test{
         indexList2209.set(0, new Index(50, 50, 00224, lessonList00224, new ArrayList<Student>(), new ArrayList<Student>(50)));
         indexList2209.set(1, new Index(50, 50, 00225, lessonList00225, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
-        courses.set(2, new Course("Derivative Securities", "NBS", "BF2209", 4, indexList2209));
+        courses.add(new Course("Derivative Securities", "NBS", "BF2209", 4, indexList2209));
 
         //creating ADP26D
         ArrayList <Lesson> lessonList39686 = new ArrayList<>();
@@ -103,7 +103,7 @@ public class Test{
         ArrayList <Index> indexList26D = new ArrayList<>();
         indexList26D.set(0, new Index(5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
 
-        courses.set(3, new Course("Theatre & Technology", "NIE", "ADP26D", 3, indexList26D));
+        courses.add(new Course("Theatre & Technology", "NIE", "ADP26D", 3, indexList26D));
 
         /* registeredStudentList.add(cloud);
         Index dsai = new Index("SCSE", "1234", 3, 39, 40, lessonList, studentWaitlist, registeredStudentList);
