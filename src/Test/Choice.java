@@ -1,13 +1,12 @@
 //TODO: add error checking in case the admin is an idiot that gives string for ints and whatever... basically if else statement.. yippee for a 1k line main function <3 
 import java.util.*;
 import java.io.*;
-// import LoginPage
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class Choice {
     public static void main(String[] args){
-        // initialise a new array list of students, indices and courses and read in from the existing data.
         ArrayList <Student> students = SerialEditor.loadStudents();
         ArrayList <Index> indices = SerialEditor.loadIndices();
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
@@ -43,36 +42,40 @@ public class Choice {
                             // jeth note: nope it is loginTiming, this is because loginPage is the reference type of LoginPage. LoginPage does not exist as an object but only as the class of the object that we call loginTiming :D
                             System.out.println("Current start login timing: " + loginTiming.getStartLoginTime());
                             System.out.println("Current end login timing: " + loginTiming.getEndLoginTime());
-                            //jeth note: cloud i think we should change this to not only the timing but the date as well, i think it makes more sense since i think the thing that matters should be the date more than the timing 
-                            // cloud i think im gonna change this to make it simpler for them since entering the correct date format might be a bit too... difficult? anyway i commented out your parts in case you want to change it again
                             StringBuilder newStartLogin = new StringBuilder();
                             DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                             System.out.println("Enter new start login date (in format dd-mm-yyyy): ");
                             newStartLogin.append(sc.nextLine());
                             System.out.println("Enter new start login date (in format hh:mm) ");
                             newStartLogin.append(sc.nextLine());
-                            Date startLoginTime = formatter.parse(newStartLogin.toString());
-
+                            Date startLoginTime = new Date();
+                            Date endLoginTime = new Date();
+                            try{
+                                startLoginTime = formatter.parse(newStartLogin.toString());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                             StringBuilder newEndLogin = new StringBuilder();
                             System.out.println("Enter new end login date (in format dd-mm-yyyy): ");
                             newStartLogin.append(sc.nextLine());
                             System.out.println("Enter new end login date (in format hh:mm) ");
                             newStartLogin.append(sc.nextLine());
-                            Date endLoginTime = formatter.parse(newEndLogin.toString());
-                            /*
-                             *System.out.println("Enter new end login timing (in format HHMM): ");
-                             *String newEndLoginTime = sc.nextLine();
-                             *Date endLoginTime =  new SimpleDateFormat("HHmm").parse(newEndLoginTime);
-                             */
+                            try{
+                                endLoginTime = formatter.parse(newEndLogin.toString());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                             loginTiming.setStartLoginTime(startLoginTime);
                             loginTiming.setEndLoginTime(endLoginTime);
                             System.out.println("Successfully changed login timing period!");
                             break;
                         case 2:
                             System.out.println("Current student list: ");
-                            for (int i = 0; i < students.size(); i++){
-                                System.out.printf("%d %d %s", i, students.get(i).getStudentID(), students.get(i).getStudentName());
-                            };
+                            for (Student student: students){
+                                int i = 0;
+                                System.out.printf("%d %s %s", i, student.getStudentID(), student.getStudentName());
+                                i++;
+                            }
                             System.out.println("Input new Student name: ");
                             String studentName = sc.nextLine();
                             System.out.println("Input new Student school: ");
@@ -90,10 +93,6 @@ public class Choice {
                             students.add(addedStudent);
                             break;
                         case 3:
-                            // sry jeth ill leave u to it
-                            // so you leave me, just like everyone else... 
-                            // you've used this line so many times you might as well make it into a song
-                            // we are never talking to each other anymore
                             System.out.println("Current courses: ");
                             printCourses(courses);
                             System.out.println("1. Add new course");
@@ -109,7 +108,6 @@ public class Choice {
                                     String newCourseCode = sc.nextLine();
                                     System.out.printf("\nEnter new course AU: ");
                                     int newCourseAU = sc.nextInt();
-                                    // adding a course is difficult yes i get it... i'll stop complaining about stars yes... please forgive me lay yen
                                     System.out.println("How many indices does this new course have? ");
                                     int numCourseIndices = sc.nextInt();
                                     System.out.println("How many lessons in each index? ");
@@ -130,12 +128,13 @@ public class Choice {
                                             String newLessonVenue = sc.nextLine();
                                             newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
                                         }
-                                        //TODO add this lesson list to a particular index.... if you are free, help me cloud
+                                        System.out.printf("Enter the index ID: ");
+                                        int newIndexID = sc.nextInt();
                                         System.out.println("How many vacancies does this new index have?");
                                         int newIndexVacancies = sc.nextInt();
                                         System.out.println("What is the maximum number of students this new index has?");
                                         int newIndexMaxStudents = sc.nextInt();
-                                        newIndexList.set(i, new Index(newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
+                                        newIndexList.set(i, new Index(newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
                                     }
                                     courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
                                     break;
@@ -144,7 +143,6 @@ public class Choice {
                                     System.out.println("Choose which course to update: ");
                                     printCourses(courses);
                                     int case2choice = sc.nextInt();
-                                    // course code, school, its index numbers and vacancy
                                     System.out.printf("Details of course %s", courses.get(case2choice).getCourseName());
                                     System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s \n ", courses.get(case2choice).getCourseName(), courses.get(case2choice).getCourseSchool(), courses.get(case2choice).getCourseCode());
                                     System.out.printf("(4) Course Indices:\n");
@@ -156,8 +154,7 @@ public class Choice {
                                             System.out.println("Set new course name: ");
                                             String case2newCourseName = sc.nextLine();
                                             courses.get(case2choice).setCourseName(case2newCourseName);
-                                            System.out.printf("New course name %s has been changed successfully!", case2newCourseName); // should i use case2newcoursename or courses.get(case2choice).getCourseName()?
-                                            // up to you actually cloud, i mean both works but one just serves as error checking
+                                            System.out.printf("New course name %s has been changed successfully!", case2newCourseName);
                                             break;
                                         case 2:
                                             System.out.println("Change course of school: ");
@@ -172,8 +169,6 @@ public class Choice {
                                             System.out.printf("Course code has been changed to %s successfully!", case2newCourseCode);
                                             break;
                                         case 4: 
-                                            // jeth ill leave you to it
-                                            // again you leave me :((((
                                             System.out.println("Which index do you want to change?");
                                             printIndices(courses.get(case2choice).getIndex());
                                             int choiceOfIndexToBeChanged = sc.nextInt();
@@ -243,7 +238,7 @@ public class Choice {
                             printIndices(courses.get(courseChoice).getIndex());
                             System.out.println("Choose index of course to view student namelist: ");
                             indexChoice = sc.nextInt();
-                            for (int i=0; i<courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size(); i++){
+                            for (int i = 0; i < courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size(); i++){
                                 System.out.printf("%d %d %s", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentName());
                             }
                             break;
@@ -253,14 +248,14 @@ public class Choice {
                             printCourses(courses);
                             courseChoice = sc.nextInt();
                             // to be clear, i = index, j = student 
-                            for (int i=0; i<courses.get(courseChoice).getIndex().size(); i++){
-                                for (int j=0; j<courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size(); j++) {
+                            for (int i = 0; i < courses.get(courseChoice).getIndex().size(); i++){
+                                for (int j = 0; j < courses.get(courseChoice).getIndex().get(j).listRegisteredStudents().size(); j++) {
                                     System.out.printf("Namelist of Index %d", courses.get(courseChoice).getIndex().get(i).getIndexID());
                                     System.out.printf("%d %d %s", j, courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentID(), courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentName());
                                 }
                             break;
-            break;}
-
+                            }
+                break;
             case 2:
                 Calendar cal = Calendar.getInstance();
                 Date dateNow = cal.getTime();
@@ -283,8 +278,8 @@ public class Choice {
                         for (Student student: students){
                             if (student.getStudentID() == inputUserID){
                                 curStudent = student;
-                                break;
                             }
+                            break;
                         }
                     }
                     System.out.println("Welcome to NTU Stars Planner!");
@@ -354,47 +349,50 @@ public class Choice {
                             break;
                         case 6:
                             // TODO: swap index number of course
+                            System.out.println("Please insert your UserID: ");
+                            String swappedStudentUserID = sc.nextLine();
+                            System.out.println("Please insert your password: ");
+                            String swappedStudentPassword = sc.nextLine();
+                            Student swapperStudent;
+                            if (!loginManager.studentCompare(swappedStudentUserID, swappedStudentPassword)){
+                                System.out.println("Wrong Password");
+                                return; 
+                            }
+                            else{
+                                for (Student student : students){
+                                    if (student.getStudentID() == inputUserID){
+                                        swapperStudent = student;
+                                    }
+                                    break;
+                                }
+                            }
                             printRegisteredCourses(curStudent);
                             System.out.println("Choose the course to change index: ");
                             courseChoice = sc.nextInt();
                             codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                             indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
-                            System.out.println("Student ID: ");
-
-                            String studentID = sc.next();
-                            // jeth note: cloud what's this password field thing? anyway help me check the bracketing later since my linter is happy with this but im not sure if im right. 
-                            String password = PasswordField.readPassword("Password: "); // remember to put eraser class in same dir
-                            // check if student exists 
-                            if (studentExists){
-                                Student swapperStudent;
-                            }
-                            else{
-                                System.out.println("Student does not exist!");
-                                break;
-                            }
                             int i = 0;
                             for (Index index: swapperStudent.getRegisteredIndices()){
                                 if (index.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged)){
-                                    Index indexOfSwapperStudent = swapperStudent.getRegisteredIndices().get(i).getIndex();
+                                    Index indexOfSwapperStudent = swapperStudent.getRegisteredIndices().get(i);
+                                    int indexIDToBeSwapped = indexOfSwapperStudent.getIndexID();
                                 }
                                 i++;
-                            };
-                            indexIDToBeSwapped = indexOfSwapperStudent.getIndexID();
-                            
-
+                            }
                             break;
+
                         default:
                             System.out.println("Not a valid choice! Please insert a number from 1 - 6");
                     }
                 }
             default:
                 System.out.println("Not valid choice!");
+            }
         }
-    }
     public static void printCourses(ArrayList <Course> courses){
         for (Course course: courses){
             int i = 0;
-            System.out.printf("%d %s %s \n", i, course.getCode(), course.getCourseName());
+            System.out.printf("%d %s %s \n", i, course.getCourseCode(), course.getCourseName());
             i++;
         }
     }

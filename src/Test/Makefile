@@ -9,12 +9,14 @@ JC = javac
 CLASSES = AbstractCourse.java \
 		  Choice.java \
 		  Course.java \
+		  EraserClass.java \
 		  Index.java \
 		  Lesson.java \
 		  LessonDay.java \
 		  LessonType.java \
 		  LoginManager.java \
 		  LoginPage.java \
+		  PasswordField.java \
 		  Schedule.java \
 		  SerialEditor.java \
 		  Student.java \
