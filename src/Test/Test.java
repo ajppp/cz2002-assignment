@@ -121,14 +121,15 @@ public class Test{
         students = SerialEditor.loadStudents();
         indices = SerialEditor.loadIndices();
         courses = SerialEditor.loadCourses();
+        */
         for (Student student: students){
             System.out.println(student);
         }
         for (Course course: courses){
-            System.out.println(course.getAU());
+            System.out.println(course.getCourseAU());
         }
-        for (Index index: indices){
-            System.out.println(index.getVacancies());
-        } */
+       // for (Index index: indices){
+       //     System.out.println(index.getVacancies());
+       // } 
     }
 }

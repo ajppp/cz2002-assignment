@@ -1,7 +1,7 @@
 //package Lesson;
 import java.util.*;
 import java.io.*;
-
+/* 
 // for javax.mail 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -10,7 +10,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+ */
 
 public class Index extends AbstractCourse implements java.io.Serializable{
     private static final long serialVersionUID = 3L;
@@ -89,7 +89,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
 	}
 
      
-    private int createIndexID(){
+    /* private int createIndexID(){
         boolean used = false;
         while (true) {
             int createdIndexID = (int)(Math.random() * (9999 - 1000)) + 1000; 
@@ -103,7 +103,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
             if (!used)
                 break;
         } 
-    }
+    } */
      
     
     //new methods by cloud
@@ -135,7 +135,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
         removeRegisteredStudent(studentDroppedIndex);
         removeWaitlistedStudent(studentGotIndex);
         addRegisteredStudent(studentGotIndex);
-        sendEmail(studentGotIndex, getIndexID(), this.getCourseCode());
+        // sendEmail(studentGotIndex, getIndexID(), this.getCourseCode());
     }
 
     public void studentAddedToIndex (Student student1){
@@ -147,7 +147,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
             addWaitlistStudent(student1);
         }
     }
-
+/* 
     public static void sendEmail(Student student, int addedIndex, String courseCode){
         
 		final String username = "dummyemailforoodp"; // to be added
@@ -184,6 +184,6 @@ public class Index extends AbstractCourse implements java.io.Serializable{
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-    }
+    } */
 }
 
