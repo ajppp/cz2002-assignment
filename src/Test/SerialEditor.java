@@ -106,7 +106,7 @@ public class SerialEditor{
 
     public static void writeLoginDetails(LoginManager loginManager){
         try {
-            FileOutputStream fileOut = new FileOutputStream(studentFileName);
+            FileOutputStream fileOut = new FileOutputStream(loginDetailsFileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(loginManager);
         } catch (Exception e) {
@@ -118,7 +118,7 @@ public class SerialEditor{
     public static LoginManager loadLoginDetails(){
         LoginManager loginManager = new LoginManager();
         try { 
-            FileInputStream fileIn = new FileInputStream(studentFileName);
+            FileInputStream fileIn = new FileInputStream(loginDetailsFileName);
             ObjectInputStream in = new ObjectInputStream(fileIn); 
              loginManager = (LoginManager)in.readObject();
             in.close();
