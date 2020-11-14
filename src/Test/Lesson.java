@@ -33,6 +33,8 @@ j   private int lessonDay;
                 break;
             case 3:
                 lessonTypeStr = "Lab";
+            case 4: 
+                lessonTypeStr = "Seminar";
         }
         return lessonTypeStr;
     }
