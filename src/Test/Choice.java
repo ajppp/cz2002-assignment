@@ -157,6 +157,7 @@ public class Choice {
                                             String case2newCourseName = sc.nextLine();
                                             courses.get(case2choice).setCourseName(case2newCourseName);
                                             System.out.printf("New course name %s has been changed successfully!", case2newCourseName); // should i use case2newcoursename or courses.get(case2choice).getCourseName()?
+                                            // up to you actually cloud, i mean both works but one just serves as error checking
                                             break;
                                         case 2:
                                             System.out.println("Change course of school: ");
@@ -192,14 +193,37 @@ public class Choice {
                                                         System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
                                                         j++;
                                                     }
-                                                    System.out.println("Choose detail of lesson to change");
-                                                    
-
+                                                    System.out.println("Choose which lesson to change");
+                                                    Lesson lessonToChange = indexToChange.getLessonList().get(sc.nextInt());
+                                                    System.out.printf("(1) Change lesson type (2) Change lesson day (3) Change lesson start time (4) Change lesson end time (5) Change lesson venue\n");
+                                                    int lessonAttributeToChange = sc.nextInt();
+                                                    switch(lessonAttributeToChange){
+                                                        case 1:
+                                                            System.out.printf("insert the lesson type (0 for lecture, 1 for tutorial, 2 lab )\n");
+                                                            lessonToChange.setLessonType(sc.nextInt());
+                                                            break;
+                                                        case 2:
+                                                            System.out.printf("For this lesson, enter the day\n");
+                                                            lessonToChange.setLessonDay(sc.nextInt());
+                                                            break;
+                                                        case 3:
+                                                            System.out.printf("For this lesson, enter the start period\n");
+                                                            lessonToChange.setStartPeriod(sc.nextInt());
+                                                            break;
+                                                        case 4:
+                                                            System.out.printf("For this lesson, enter the end period\n");
+                                                            lessonToChange.setEndPeriod(sc.nextInt());
+                                                            break;
+                                                        case 5:
+                                                            System.out.printf("For this lesson, enter the venue\n");
+                                                            lessonToChange.setVenue(sc.nextLine());
+                                                            break;
                                                     }
+                                                }
                                             }
+                                        }
                                     }
-                                    
-                            }
+                                }
                             break;
 
                         case 4:
@@ -234,12 +258,8 @@ public class Choice {
                                     System.out.printf("Namelist of Index %d", courses.get(courseChoice).getIndex().get(i).getIndexID());
                                     System.out.printf("%d %d %s", j, courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentID(), courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentName());
                                 }
-                            }
                             break;
-                    }
-                }
-            }
-            break;
+            break;}
 
             case 2:
                 Calendar cal = Calendar.getInstance();
@@ -279,10 +299,10 @@ public class Choice {
                         case 1:
                             System.out.println("Choose the course to be added: ");
                             printCourses(courses);
-                            int courseChoice = sc.nextInt();
+                            courseChoice = sc.nextInt();
                             printIndices(courses.get(courseChoice).getIndex());
                             System.out.println("Choose index to be added: ");
-                            int indexChoice = sc.nextInt();
+                            indexChoice = sc.nextInt();
                             if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
                                 System.out.println("There is a clash");
                             else
@@ -342,6 +362,7 @@ public class Choice {
                             System.out.println("Student ID: ");
 
                             String studentID = sc.next();
+                            // jeth note: cloud what's this password field thing? anyway help me check the bracketing later since my linter is happy with this but im not sure if im right. 
                             String password = PasswordField.readPassword("Password: "); // remember to put eraser class in same dir
                             // check if student exists 
                             if (studentExists){
