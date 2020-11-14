@@ -21,11 +21,11 @@ public class Index extends AbstractCourse implements java.io.Serializable{
     private ArrayList<Student> studentWaitlist = new ArrayList<Student>(0);
     private ArrayList<Student> registeredStudents = new ArrayList<Student>(0);
 
-    public Index (String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
+    public Index (String courseSchool, String courseCode, int courseAU, int indexID, int vacancies, int maxStudents, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
         this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
-        indexID = createIndexID();
+        this.indexID = indexID();
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
         this.lessonList = lessonList;
@@ -34,10 +34,10 @@ public class Index extends AbstractCourse implements java.io.Serializable{
     }
 
     //Creates the index with vacancies, the maximum number of students, the lessons it consist of and the waitlist
-    public Index (int vacancies, int maxStudents, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
-        indexID = 0;
+    public Index (int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
+        this.indexID = indexID;
         this.lessonList = lessonList;
         this.studentWaitlist = studentWaitlist;
         this.registeredStudents = registeredStudents;
