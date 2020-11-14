@@ -87,7 +87,7 @@ public class Student implements java.io.Serializable{
         if ((studentRegisteredAU += index.getCourseAU()) <= MAX_AU){
             boolean sameCourse = false;
             for (int i=0; i<=registeredIndex.size(); i++){
-                if (index.getCode() == registeredIndex.get(i).getCourseCode()){
+                if (index.getCourseCode()== registeredIndex.get(i).getCourseCode()){
                     sameCourse = true;
                     break;
                 }
