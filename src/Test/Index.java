@@ -25,7 +25,7 @@ public class Index extends AbstractCourse implements java.io.Serializable{
         this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
-        this.indexID = indexID();
+        this.indexID = indexID;
         this.vacancies = vacancies;
         this.maxStudents = maxStudents;
         this.lessonList = lessonList;

@@ -32,7 +32,6 @@ public class Test{
         students.add(h);
         students.add(i);
         students.add(j);
-
         // creating MH2500
         ArrayList <Lesson> lessonList71050 = new ArrayList<>();
         lessonList71050.set(0, new Lesson(1, 5, 0, 2, "online"));

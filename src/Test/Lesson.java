@@ -1,6 +1,6 @@
 public class Lesson {
     private int lessonType;
-j   private int lessonDay;
+    private int lessonDay;
     private int startPeriod;
     private int endPeriod;
     private String venue;
@@ -33,8 +33,12 @@ j   private int lessonDay;
                 break;
             case 3:
                 lessonTypeStr = "Lab";
+                break;
             case 4: 
                 lessonTypeStr = "Seminar";
+                break;
+            default:
+                lessonTypeStr = "Lecture";
         }
         return lessonTypeStr;
     }
@@ -59,6 +63,10 @@ j   private int lessonDay;
                 break;
             case 5:
                 lessonDayStr = "Friday";
+                break;
+            default:
+                lessonDayStr = "Saturday";
+                break;
         }
         return lessonDayStr;
     }
