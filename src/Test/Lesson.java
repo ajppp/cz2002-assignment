@@ -1,4 +1,5 @@
-public class Lesson {
+public class Lesson implements java.io.Serializable{
+    private static final long serialVersionUID = 8L;
     private int lessonType;
     private int lessonDay;
     private int startPeriod;
