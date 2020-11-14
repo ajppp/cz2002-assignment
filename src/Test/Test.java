@@ -34,73 +34,73 @@ public class Test{
         students.add(j);
         // creating MH2500
         ArrayList <Lesson> lessonList71050 = new ArrayList<>();
-        lessonList71050.set(0, new Lesson(1, 5, 0, 2, "online"));
-        lessonList71050.set(1, new Lesson(1, 2, 1, 2, "online"));
-        lessonList71050.set(2, new Lesson(2, 4, 3, 4, "LHS-TR+27"));
+        lessonList71050.add(new Lesson(1, 5, 0, 2, "online"));
+        lessonList71050.add(new Lesson(1, 2, 1, 2, "online"));
+        lessonList71050.add(new Lesson(2, 4, 3, 4, "LHS-TR+27"));
         
         ArrayList <Lesson> lessonList71051 = new ArrayList<>();
-        lessonList71051.set(0, new Lesson(1, 5, 0, 2, "online"));
-        lessonList71051.set(1, new Lesson(1, 2, 1, 2, "online"));
-        lessonList71051.set(2, new Lesson(2, 4, 3, 4, "LHS-TR+28"));
+        lessonList71051.add(new Lesson(1, 5, 0, 2, "online"));
+        lessonList71051.add(new Lesson(1, 2, 1, 2, "online"));
+        lessonList71051.add(new Lesson(2, 4, 3, 4, "LHS-TR+28"));
 
         ArrayList <Lesson> lessonList71052 = new ArrayList<>();
-        lessonList71052.set(0, new Lesson(1, 5, 0, 2, "online"));
-        lessonList71052.set(1, new Lesson(1, 2, 1, 2, "online"));
-        lessonList71052.set(2, new Lesson(2, 4, 3, 4, "LHS-TR+31"));
+        lessonList71052.add(new Lesson(1, 5, 0, 2, "online"));
+        lessonList71052.add(new Lesson(1, 2, 1, 2, "online"));
+        lessonList71052.add(new Lesson(2, 4, 3, 4, "LHS-TR+31"));
 
         ArrayList <Lesson> lessonList71054 = new ArrayList<>();
-        lessonList71054.set(0, new Lesson(1, 5, 0, 2, "online"));
-        lessonList71054.set(1, new Lesson(1, 2, 1, 2, "online"));
-        lessonList71054.set(2, new Lesson(2, 4, 3, 4, "LHS-TR+24"));
+        lessonList71054.add(new Lesson(1, 5, 0, 2, "online"));
+        lessonList71054.add(new Lesson(1, 2, 1, 2, "online"));
+        lessonList71054.add(new Lesson(2, 4, 3, 4, "LHS-TR+24"));
 
         ArrayList <Index> indexList2500 = new ArrayList<>();
-        indexList2500.set(0, new Index(20, 20, 71050, lessonList71050, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.set(1, new Index(20, 20, 71051, lessonList71051, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.set(2, new Index(20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.set(3, new Index(20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index(20, 20, 71050, lessonList71050, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index(20, 20, 71051, lessonList71051, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index(20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index(20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
 
         courses.add(new Course("Probability and Introduction to Statistics", "SPMS", "MH2500", 4, indexList2500));
 
         // creating CM1031
         ArrayList <Lesson> lessonList70089 = new ArrayList<>();
-        lessonList70089.set(0, new Lesson(1, 3, 5, 6, "online"));
-        lessonList70089.set(1, new Lesson(1, 4, 5, 7, "online"));
-        lessonList70089.set(2, new Lesson(2, 4, 2, 3, "SPMS-TR+5"));
-        lessonList70089.set(3, new Lesson(3, 1, 5, 8, "CBC Lab"));
+        lessonList70089.add(new Lesson(1, 3, 5, 6, "online"));
+        lessonList70089.add(new Lesson(1, 4, 5, 7, "online"));
+        lessonList70089.add(new Lesson(2, 4, 2, 3, "SPMS-TR+5"));
+        lessonList70089.add(new Lesson(3, 1, 5, 8, "CBC Lab"));
 
         ArrayList <Index> indexList1031 = new ArrayList<>();
-        indexList1031.set(0, new Index(0, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        indexList1031.add(new Index(0, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
         courses.add(new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 4, indexList1031));
 
         // creating HC4050
         ArrayList <Lesson> lessonList17048 = new ArrayList<>();
-        lessonList17048.set(0, new Lesson(4, 1, 2, 3, "TR+64"));
+        lessonList17048.add(new Lesson(4, 1, 2, 3, "TR+64"));
 
         ArrayList <Index> indexList4050 = new ArrayList<>();
-        indexList4050.set(0, new Index(50, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
+        indexList4050.add(new Index(50, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
 
         courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 4, indexList4050));
 
         // creating BF2209
         ArrayList <Lesson> lessonList00224 = new ArrayList<>();
-        lessonList00224.set(0, new Lesson(4, 3, 0, 4, "S4-SR2"));
+        lessonList00224.add(new Lesson(4, 3, 0, 4, "S4-SR2"));
 
         ArrayList <Lesson> lessonList00225 = new ArrayList<>();
-        lessonList00225.set(0, new Lesson(4, 4, 0, 4, "LHS-TR+47"));
+        lessonList00225.add(new Lesson(4, 4, 0, 4, "LHS-TR+47"));
 
         ArrayList <Index> indexList2209 = new ArrayList<>();
-        indexList2209.set(0, new Index(50, 50, 00224, lessonList00224, new ArrayList<Student>(), new ArrayList<Student>(50)));
-        indexList2209.set(1, new Index(50, 50, 00225, lessonList00225, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        indexList2209.add(new Index(50, 50, 00224, lessonList00224, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        indexList2209.add(new Index(50, 50, 00225, lessonList00225, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
         courses.add(new Course("Derivative Securities", "NBS", "BF2209", 4, indexList2209));
 
         //creating ADP26D
         ArrayList <Lesson> lessonList39686 = new ArrayList<>();
-        lessonList39686.set(0, new Lesson(1, 2, 7, 10, "3A-B2-03"));
+        lessonList39686.add(new Lesson(1, 2, 7, 10, "3A-B2-03"));
 
         ArrayList <Index> indexList26D = new ArrayList<>();
-        indexList26D.set(0, new Index(5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
+        indexList26D.add(new Index(5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
 
         courses.add(new Course("Theatre & Technology", "NIE", "ADP26D", 3, indexList26D));
 
