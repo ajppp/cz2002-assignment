@@ -34,4 +34,4 @@ data:
 	$(RM) Test.class
 
 run:
-	java Main
+	java Choice
