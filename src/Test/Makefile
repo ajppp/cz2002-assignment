@@ -13,10 +13,12 @@ CLASSES = AbstractCourse.java \
 		  Lesson.java \
 		  LessonDay.java \
 		  LessonType.java \
+		  LoginManager.java \
 		  LoginPage.java \
-		  Main.java \
+		  Schedule.java \
 		  SerialEditor.java \
-		  Student.java\
+		  Student.java \
+		  Test.java
 
 
 default: classes
