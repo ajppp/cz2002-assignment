@@ -1,4 +1,5 @@
 //TODO: add error checking in case the admin is an idiot that gives string for ints and whatever... basically if else statement.. yippee for a 1k line main function <3 
+//TODO: separate everything into their own functions to prevent stupid mistake like bracketing
 import java.util.*;
 import java.io.*;
 import java.text.DateFormat;
@@ -8,11 +9,9 @@ import java.text.ParseException;
 public class Choice {
     public static void main(String[] args){
         ArrayList <Student> students = SerialEditor.loadStudents();
-        ArrayList <Index> indices = SerialEditor.loadIndices();
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
         LoginPage loginTiming = SerialEditor.loadLogin();
         LoginManager loginManager = SerialEditor.loadLoginDetails();
-
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to NTU Stars!");
         System.out.println("1. Admin");
@@ -20,207 +19,48 @@ public class Choice {
         int choice = sc.nextInt();
         switch(choice) {
             case 1:
-                System.out.println("Please type your Admin ID: ");
-                String inputAdminID = sc.nextLine();
-                System.out.println("Please type your password: ");
-                String inputAdminPassword = sc.nextLine();
-                if (!loginManager.adminCompare(inputAdminID, inputAdminPassword)){
-                    System.out.println("Wrong Password");
+                if (AdminManager.login(loginManager) == 0){
+                    System.out.println("You have entered the wrong password too many times");
+                    return;
                 }
-                else {
-                    System.out.println("Welcome to NTU Stars Planner!");
-                    System.out.println("1. Edit student access period");
-                    System.out.println("2. Add a student");
-                    System.out.println("3. Add/Update a course");
-                    System.out.println("4. Check available slot for an index number (vacancy in a class)");
-                    System.out.println("5. Print student list by index number");
-                    System.out.println("6. Print student list by course");
+                else if (AdminManager.login(loginManager) == 1){
+                    AdminManager.printAdminOptions();
                     int adminChoice = sc.nextInt();
                     switch(adminChoice){
                         case 1:
-                            // cloud note: i dont know why it is loginTiming, not loginPage. shouldnt it be LoginPage? but loginPage gives me red squiggly line >:(
-                            // jeth note: nope it is loginTiming, this is because loginPage is the reference type of LoginPage. LoginPage does not exist as an object but only as the class of the object that we call loginTiming :D
-                            System.out.println("Current start login timing: " + loginTiming.getStartLoginTime());
-                            System.out.println("Current end login timing: " + loginTiming.getEndLoginTime());
-                            StringBuilder newStartLogin = new StringBuilder();
-                            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                            System.out.println("Enter new start login date (in format dd-mm-yyyy): ");
-                            newStartLogin.append(sc.nextLine());
-                            System.out.println("Enter new start login date (in format hh:mm) ");
-                            newStartLogin.append(sc.nextLine());
-                            Date startLoginTime = new Date();
-                            Date endLoginTime = new Date();
-                            try{
-                                startLoginTime = formatter.parse(newStartLogin.toString());
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            StringBuilder newEndLogin = new StringBuilder();
-                            System.out.println("Enter new end login date (in format dd-mm-yyyy): ");
-                            newStartLogin.append(sc.nextLine());
-                            System.out.println("Enter new end login date (in format hh:mm) ");
-                            newStartLogin.append(sc.nextLine());
-                            try{
-                                endLoginTime = formatter.parse(newEndLogin.toString());
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            loginTiming.setStartLoginTime(startLoginTime);
-                            loginTiming.setEndLoginTime(endLoginTime);
-                            System.out.println("Successfully changed login timing period!");
+                            AdminManager.editAccessPeriod(loginTiming);
                             break;
                         case 2:
-                            System.out.println("Current student list: ");
-                            for (Student student: students){
-                                int i = 0;
-                                System.out.printf("%d %s %s", i, student.getStudentID(), student.getStudentName());
-                                i++;
-                            }
-                            System.out.println("Input new Student name: ");
-                            String studentName = sc.nextLine();
-                            System.out.println("Input new Student school: ");
-                            String studentSchool = sc.nextLine();
-                            System.out.println("Input new Student gender (M/F): ");
-                            String studentGender = sc.nextLine();
-                            System.out.println("Input new Student nationality: ");
-                            String studentNationality = sc.nextLine();
-                            // TODO: use REGEX!!! :D to check email~~~ 
-                            // as always, cloud is using something/one...
-                            // yeah im using regex, what are you thinking about?
-                            System.out.println("Input new Student email: "); 
-                            String studentEmail = sc.nextLine();
-                            Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
-                            students.add(addedStudent);
+                            AdminManager.addStudent(students);
                             break;
                         case 3:
                             System.out.println("Current courses: ");
                             printCourses(courses);
                             System.out.println("1. Add new course");
                             System.out.println("2. Update existing course");
+                            System.out.println("3. Update existing course index");
                             int case3choice = sc.nextInt();
                             switch(case3choice){
                                 case 1:    
-                                    System.out.printf("Enter new course name: ");
-                                    String newCourseName = sc.nextLine();
-                                    System.out.printf("\nEnter new course school: ");
-                                    String newCourseSchool = sc.nextLine();
-                                    System.out.printf("\nEnter new course code: ");
-                                    String newCourseCode = sc.nextLine();
-                                    System.out.printf("\nEnter new course AU: ");
-                                    int newCourseAU = sc.nextInt();
-                                    System.out.println("How many indices does this new course have? ");
-                                    int numCourseIndices = sc.nextInt();
-                                    System.out.println("How many lessons in each index? ");
-                                    int numLessons = sc.nextInt();
-                                    ArrayList<Index> newIndexList = new ArrayList<Index>(numCourseIndices);
-                                    ArrayList<Lesson> newLessonList = new ArrayList<Lesson>(numLessons);
-                                    for (int i = 0; i < numCourseIndices; i++){
-                                        for (int j = 0; j < numLessons; j++){
-                                            System.out.printf("For index %d of %s, insert the lesson type for lesson number %d (0 for lecture, 1 for tutorial, 2 lab )\n", i + 1, newCourseName, j = 1);
-                                            int newLessonType = sc.nextInt();
-                                            System.out.printf("For this lesson, enter the day\n");
-                                            int newLessonDay = sc.nextInt();
-                                            System.out.printf("For this lesson, enter the start period\n");
-                                            int newLessonStartPeriod = sc.nextInt();
-                                            System.out.printf("For this lesson, enter the end period\n");
-                                            int newLessonEndPeriod = sc.nextInt();
-                                            System.out.printf("For this lesson, enter the venue\n");
-                                            String newLessonVenue = sc.nextLine();
-                                            newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
-                                        }
-                                        System.out.printf("Enter the index ID: ");
-                                        int newIndexID = sc.nextInt();
-                                        System.out.println("How many vacancies does this new index have?");
-                                        int newIndexVacancies = sc.nextInt();
-                                        System.out.println("What is the maximum number of students this new index has?");
-                                        int newIndexMaxStudents = sc.nextInt();
-                                        newIndexList.set(i, new Index(newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
-                                    }
-                                    courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
+                                    AdminManager.addCourse(courses);
                                     break;
-                                
                                 case 2:
                                     System.out.println("Choose which course to update: ");
                                     printCourses(courses);
-                                    int case2choice = sc.nextInt();
-                                    System.out.printf("Details of course %s", courses.get(case2choice).getCourseName());
-                                    System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s \n ", courses.get(case2choice).getCourseName(), courses.get(case2choice).getCourseSchool(), courses.get(case2choice).getCourseCode());
-                                    System.out.printf("(4) Course Indices:\n");
-                                    printIndices(courses.get(case2choice).getIndex());
-                                    System.out.printf("Choose detail of course to change: ");
-                                    case2choice = sc.nextInt();
-                                    switch(case2choice){
-                                        case 1:
-                                            System.out.println("Set new course name: ");
-                                            String case2newCourseName = sc.nextLine();
-                                            courses.get(case2choice).setCourseName(case2newCourseName);
-                                            System.out.printf("New course name %s has been changed successfully!", case2newCourseName);
-                                            break;
-                                        case 2:
-                                            System.out.println("Change course of school: ");
-                                            String case2newCourseSchool = sc.nextLine();
-                                            courses.get(case2choice).setCourseSchool(case2newCourseSchool);
-                                            System.out.printf("Course school has been changed to %s successfully!", case2newCourseSchool);
-                                            break;
-                                        case 3:
-                                            System.out.println("Change course code: ");
-                                            String case2newCourseCode = sc.nextLine();
-                                            courses.get(case2choice).setCourseCode(case2newCourseCode);
-                                            System.out.printf("Course code has been changed to %s successfully!", case2newCourseCode);
-                                            break;
-                                        case 4: 
-                                            System.out.println("Which index do you want to change?");
-                                            printIndices(courses.get(case2choice).getIndex());
-                                            int choiceOfIndexToBeChanged = sc.nextInt();
-                                            Index indexToChange = courses.get(case2choice).getIndex().get(choiceOfIndexToBeChanged);
-                                            System.out.printf("(1) Change the max number of students\n (2) Change the lessons");
-                                            int changeIndexChoice = sc.nextInt();
-                                            switch(changeIndexChoice){
-                                                case 1:
-                                                    System.out.printf("The number of max students now is %d, what do you want to change it to?", indexToChange.getMaxStudents());
-                                                    indexToChange.setMaxStudents(sc.nextInt());
-                                                    System.out.printf("Successfully changed max students to %d", indexToChange.getMaxStudents());
-                                                    break;
-
-                                                case 2:
-                                                    for(Lesson lesson: indexToChange.getLessonList()){
-                                                        int j = 0;
-                                                        System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
-                                                        j++;
-                                                    }
-                                                    System.out.println("Choose which lesson to change");
-                                                    Lesson lessonToChange = indexToChange.getLessonList().get(sc.nextInt());
-                                                    System.out.printf("(1) Change lesson type (2) Change lesson day (3) Change lesson start time (4) Change lesson end time (5) Change lesson venue\n");
-                                                    int lessonAttributeToChange = sc.nextInt();
-                                                    switch(lessonAttributeToChange){
-                                                        case 1:
-                                                            System.out.printf("insert the lesson type (0 for lecture, 1 for tutorial, 2 lab )\n");
-                                                            lessonToChange.setLessonType(sc.nextInt());
-                                                            break;
-                                                        case 2:
-                                                            System.out.printf("For this lesson, enter the day\n");
-                                                            lessonToChange.setLessonDay(sc.nextInt());
-                                                            break;
-                                                        case 3:
-                                                            System.out.printf("For this lesson, enter the start period\n");
-                                                            lessonToChange.setStartPeriod(sc.nextInt());
-                                                            break;
-                                                        case 4:
-                                                            System.out.printf("For this lesson, enter the end period\n");
-                                                            lessonToChange.setEndPeriod(sc.nextInt());
-                                                            break;
-                                                        case 5:
-                                                            System.out.printf("For this lesson, enter the venue\n");
-                                                            lessonToChange.setVenue(sc.nextLine());
-                                                            break;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                    int updateCourseChoice = sc.nextInt();
+                                    AdminManager.updateCourse(courses.get(updateCourseChoice));
+                                    break;
+                                case 3:
+                                    System.out.println("Choose which course to update");
+                                    printCourses(courses);
+                                    updateCourseChoice = sc.nextInt();
+                                    System.out.println("Choose which index to update");
+                                    printIndices(courses.get(updateCourseChoice).getIndex());
+                                    int updateCourseIndexChoice = sc.nextInt();
+                                    AdminManager.updateIndex(courses.get(updateCourseChoice).getIndex().get(updateCourseIndexChoice));
+                                    break;
+                            }
                             break;
-
                         case 4:
                             System.out.println("Choose course to view vacancies: ");
                             printCourses(courses);
@@ -230,7 +70,6 @@ public class Choice {
                             int indexChoice = sc.nextInt();
                             System.out.printf("The number of vacancies for index %d of course %s is %d", courses.get(courseChoice).getIndex().get(indexChoice).getIndexID(), courses.get(courseChoice).getCourseCode(), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
                             break;
-
                         case 5:
                             System.out.println("Choose course to view student namelist: ");
                             printCourses(courses);
@@ -254,34 +93,16 @@ public class Choice {
                                     System.out.printf("%d %d %s", j, courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentID(), courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentName());
                                 }
                             break;
-                            }
-                break;
-            case 2:
-                Calendar cal = Calendar.getInstance();
-                Date dateNow = cal.getTime();
-                if (loginTiming.compareCurrentTime(dateNow) == false){
-                    System.out.println("Please try again during the stipulated time!");
-                    System.out.printf("Start login time: " + loginTiming.getStartLoginTime());
-                    System.out.printf("End login time: " + loginTiming.getEndLoginTime());
-                }
-                else {
-                    System.out.println("Please insert your UserID: ");
-                    String inputUserID = sc.nextLine();
-                    System.out.println("Please insert your password: ");
-                    String inputStudentPassword = sc.nextLine();
-                    Student curStudent;
-                    if (!loginManager.studentCompare(inputUserID, inputStudentPassword)){
-                        System.out.println("Wrong Password");
-                        return; 
-                    }
-                    else{
-                        for (Student student: students){
-                            if (student.getStudentID() == inputUserID){
-                                curStudent = student;
-                            }
-                            break;
                         }
                     }
+                }
+                break;
+            case 2:
+                if(StudentManager.studentLogin(loginManager, loginTiming, students) == 0){
+                    System.out.println("Thanks for using NTU Stars. Ciao");
+                    return;
+                }
+                else if (StudentManager.studentLogin(loginManager, loginTiming, students) == 1){
                     System.out.println("Welcome to NTU Stars Planner!");
                     System.out.println("1. Add Course");
                     System.out.println("2. Drop Course");
