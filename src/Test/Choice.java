@@ -12,6 +12,7 @@ public class Choice {
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
         LoginPage loginTiming = SerialEditor.loadLoginTiming();
         LoginManager loginManager = SerialEditor.loadLoginDetails();
+        System.out.println(loginManager.getStudentLogin().size());
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to NTU Stars!");
         System.out.println("1. Admin");
