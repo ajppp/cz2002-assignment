@@ -108,7 +108,7 @@ public class Test{
         // Generate Password for each student
         for (Student student: students){
             loginManager.storeStudentPassword(student.getStudentID(), "password");
-            System.out.println(loginManager.studentLogin.get(student.getStudentID()));
+            System.out.println(student.getStudentID());
         }
 
         //Save an admin <3
@@ -118,18 +118,8 @@ public class Test{
         SerialEditor.writeCourses(courses);
         SerialEditor.writeLoginTiming(login);
         SerialEditor.writeLoginDetails(loginManager);
-        ArrayList<Course> testCourses = new ArrayList<>();
-        testCourses = SerialEditor.loadCourses();
         for(Student student: students){
             FileEditor.writeStudents(student);
-        }
-        for (Student student: students){
-            System.out.println(student.getStudentID());
-        }
-        for (Course course: testCourses){
-            System.out.printf("size of course array list: %d\n", courses.size());
-            System.out.printf("name of course : %s\n", course.getCourseName());
-            System.out.printf("code of course : %s\n", course.getCourseCode());
         }
        // for (Index index: indices){
        //     System.out.println(index.getVacancies());

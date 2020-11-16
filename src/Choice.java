@@ -30,16 +30,23 @@ public class Choice {
                         switch(adminChoice){
                             case 1:
                                 loginTiming = AdminManager.editAccessPeriod(loginTiming);
+                                System.out.println(loginTiming.getStartLoginTime().toGMTString());
+                                System.out.println(loginTiming.getEndLoginTime().toGMTString());
                                 SerialEditor.writeLoginTiming(loginTiming);
                                 break;
                             case 2:
-                                AdminManager.addStudent(students);
+                                Student newStudent = AdminManager.addStudent(students);
+                                SerialEditor.writeStudents(students);
+                                loginManager.storeStudentPassword(newStudent.getStudentID(), "password");
+                                SerialEditor.writeLoginDetails(loginManager);
+                                System.out.printf("The added student's ID is: %s\n", newStudent.getStudentID());
                                 break;
                             case 3:
                                 printCourses(courses);
                                 System.out.println("1. Add new course");
                                 System.out.println("2. Update existing course");
                                 System.out.println("3. Update existing course index");
+                                // we do not update indices, we add indices
                                 int case3choice = sc.nextInt();
                                 switch(case3choice){
                                     case 1:    
@@ -203,39 +210,56 @@ public class Choice {
                                 break;
                             case 6:
                                 // TODO: swap index number of course
-                                /*
-                                 *System.out.println("Please insert your UserID: ");
-                                 *String swappedStudentUserID = sc.nextLine();
-                                 *System.out.println("Please insert your password: ");
-                                 *String swappedStudentPassword = sc.nextLine();
-                                 *Student swapperStudent;
-                                 *if (!loginManager.studentCompare(swappedStudentUserID, swappedStudentPassword)){
-                                 *    System.out.println("Wrong Password");
-                                 *    return; 
-                                 *}
-                                 *else{
-                                 *    for (Student student : students){
-                                 *        if (student.getStudentID() == inputUserID){
-                                 *            swapperStudent = student;
-                                 *        }
-                                 *        break;
-                                 *    }
-                                 *}
-                                 *printRegisteredCourses(curStudent);
-                                 *System.out.println("Choose the course to change index: ");
-                                 *courseChoice = sc.nextInt();
-                                 *codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
-                                 *indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
-                                 *int i = 0;
-                                 *for (Index index: swapperStudent.getRegisteredIndices()){
-                                 *    if (index.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged)){
-                                 *        Index indexOfSwapperStudent = swapperStudent.getRegisteredIndices().get(i);
-                                 *        int indexIDToBeSwapped = indexOfSwapperStudent.getIndexID();
-                                 *    }
-                                 *    i++;
-                                 *}
-                                 *break;
-                                 */
+                                printRegisteredCourses(curStudent);
+                                System.out.println("Choose the course to change index: ");
+                                courseChoice = sc.nextInt() - 1;
+
+                                Student swapperStudent = new Student();
+                                studentLoginResult = StudentManager.studentLogin(loginManager, loginTiming, students, swapperStudent);
+                                if(studentLoginResult.equals("0")){
+                                    System.out.println("Wrong password!");
+                                    break;
+                                }
+                                else {
+                                    for (Student student: students){
+                                        if (student.getStudentID().equals(studentLoginResult)){
+                                            swapperStudent = student;
+                                            break;
+                                        }
+                                    }
+                                }
+                                codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
+                                indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
+                                indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
+                                for (Index index: swapperStudent.getRegisteredIndices()){
+                                    if (index.getCourseCode().equals(codeOfCourseToBeChanged)){
+                                        curStudent.dropIndex(indexIDToBeDropped, index.getCourseAU());
+                                        curStudent.registerIndex(index);
+                                        index.removeRegisteredStudent(swapperStudent);
+                                        index.addRegisteredStudent(curStudent);
+                                        
+                                        swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
+                                        swapperStudent.registerIndex(indexToBeDropped);
+                                        indexToBeDropped.removeRegisteredStudent(curStudent);
+                                        indexToBeDropped.addRegisteredStudent(swapperStudent);
+                                        System.out.println("Successfully swapped index with student!");
+
+                                        /* for (Course course: courses){
+                                            for (Index index1: course.getIndex()){
+                                                if (indexIDToBeDropped == index1.getIndexID()){
+                                                    index1.studentAddedToIndex(swapperStudent);
+                                                    index1.removeStudentFromIndex(curStudent);
+                                                }
+                                                else if (newIndexID == index1.getIndexID()){
+                                                    index1.studentAddedToIndex(curStudent);
+                                                    index1.removeStudentFromIndex(swapperStudent);
+                                                }
+                                            }
+                                        break;
+                                        } */
+                                    }
+                                }
+                                break;
                             case 7:
                                 SerialEditor.writeCourses(courses);
                                 SerialEditor.writeStudents(students);

@@ -41,10 +41,11 @@ public class AdminManager{
         System.out.println("Current start login timing: " + loginTiming.getStartLoginTime());
         System.out.println("Current end login timing: " + loginTiming.getEndLoginTime());
         StringBuilder newStartLogin = new StringBuilder();
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         System.out.println("Enter new start login date (in format dd-mm-yyyy): ");
         newStartLogin.append(sc.nextLine());
         System.out.println("Enter new start login date (in format hh:mm) ");
+        newStartLogin.append(" ");
         newStartLogin.append(sc.nextLine());
         Date startLoginTime = new Date();
         Date endLoginTime = new Date();
@@ -55,9 +56,10 @@ public class AdminManager{
         }
         StringBuilder newEndLogin = new StringBuilder();
         System.out.println("Enter new end login date (in format dd-mm-yyyy): ");
-        newStartLogin.append(sc.nextLine());
+        newEndLogin.append(sc.nextLine());
         System.out.println("Enter new end login date (in format hh:mm) ");
-        newStartLogin.append(sc.nextLine());
+        newEndLogin.append(" ");
+        newEndLogin.append(sc.nextLine());
         try{
             endLoginTime = formatter.parse(newEndLogin.toString());
         } catch (ParseException e) {
@@ -69,12 +71,12 @@ public class AdminManager{
         return loginTiming;
     }
     
-    public static void addStudent(ArrayList<Student> students){
+    public static Student addStudent(ArrayList<Student> students){
         Scanner sc = new Scanner(System.in);
         System.out.println("Current student list: ");
+        int i = 1;
         for (Student student: students){
-            int i = 0;
-            System.out.printf("%d %s %s", i, student.getStudentID(), student.getStudentName());
+            System.out.printf("%d %s %s\n", i, student.getStudentID(), student.getStudentName());
             i++;
         }
         System.out.println("Input new Student name: ");
@@ -92,6 +94,7 @@ public class AdminManager{
         String studentEmail = sc.nextLine();
         Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
         students.add(addedStudent);
+        return addedStudent;
     }
 
     public static void addCourse(ArrayList<Course> courses){
