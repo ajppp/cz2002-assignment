@@ -98,13 +98,19 @@ public class Choice {
                 break;
             case 2:
                 Student curStudent = new Student();
-                int studentLoginResult = StudentManager.studentLogin(loginManager, loginTiming, students, curStudent);
-                if(studentLoginResult == 0){
+                String studentLoginResult = StudentManager.studentLogin(loginManager, loginTiming, students, curStudent);
+                if(studentLoginResult.equals("0")){
                     System.out.println("Thanks for using NTU Stars. Ciao");
                     return;
                 }
-                else if (studentLoginResult == 1){
+                else{
                     int studentChoice;
+                    for (Student student: students){
+                        if (student.getStudentID().equals(studentLoginResult)){
+                            curStudent = student;
+                            break;
+                        }
+                    }
                     do {
                         System.out.println("Welcome to NTU Stars Planner!");
                         System.out.println("1. Add Course");
@@ -119,59 +125,76 @@ public class Choice {
                             case 1:
                                 System.out.println("Choose the course to be added: ");
                                 printCourses(courses);
-                                int courseChoice = sc.nextInt();
+                                int courseChoice = sc.nextInt() - 1;
                                 printIndices(courses.get(courseChoice).getIndex());
                                 System.out.println("Choose index to be added: ");
-                                int indexChoice = sc.nextInt();
+                                int indexChoice = sc.nextInt() - 1;
                                 if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
                                     System.out.println("There is a clash");
-                                else
+                                else {
                                     curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
-                                    System.out.println("There are no clashes");
+                                    // changing course details
+                                    courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(curStudent);
+                                }
                                 break;
                             case 2:
                                 printRegisteredCourses(curStudent);
                                 System.out.println("Choose the course to be dropped: ");
-                                indexChoice = sc.nextInt();
+                                indexChoice = sc.nextInt() - 1;
                                 int indexIDToBeDropped = curStudent.getRegisteredIndices().get(indexChoice).getIndexID();
+                                String courseCodeToDrop = curStudent.getRegisteredIndices().get(indexChoice).getCourseCode();
+                                // changing course details
+                                for(Course course: courses){
+                                    if(course.getCourseCode().equals(courseCodeToDrop)){
+                                        for(Index index: course.getIndex()){
+                                            if(index.getIndexID() == indexIDToBeDropped){
+                                                index.removeStudentFromIndex(curStudent);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
                                 curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(indexChoice).getCourseAU());
                                 break;
                             case 3:
                                 printRegisteredCourses(curStudent);
-                                System.out.println("finished printing registered courses");
+                                System.out.println("Finished printing registered courses");
                                 break;
                             case 4:
                                 System.out.println("Choose the course to view vacancies: ");
                                 printCourses(courses);
-                                courseChoice = sc.nextInt();
+                                courseChoice = sc.nextInt() - 1;
                                 printIndices(courses.get(courseChoice).getIndex());
-                                System.out.println("Choose index to view vacancies: ");
+                                /* System.out.println("Choose index to view vacancies: ");
                                 indexChoice = sc.nextInt();
-                                System.out.printf("The number of vacancies for index %d is %d", courses.get(courseChoice).getIndex().get(indexChoice), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
+                                System.out.printf("The number of vacancies for index %d is %d", courses.get(courseChoice).getIndex().get(indexChoice), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies()); */
                                 break;
                             case 5:
                                 printRegisteredCourses(curStudent);
                                 System.out.println("Choose the course to change index: ");
-                                courseChoice = sc.nextInt();
+                                courseChoice = sc.nextInt() - 1;
                                 String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                                 Index indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
                                 indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
                                 for (Course course:courses){
-                                    if (course.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged))
+                                    if (course.getCourseCode().equalsIgnoreCase(codeOfCourseToBeChanged)){
+                                        int i = 1;
                                         for (Index index:course.getIndex()){
-                                            int i = 0;
                                             System.out.printf("%d) %d %d %d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
                                             i++;
                                         }
+                                    }
                                 }
                                 System.out.println("Choose new index: ");
-                                indexChoice = sc.nextInt();
+                                indexChoice = sc.nextInt() - 1;
                                 Index indexToBeAdded = courses.get(courseChoice).getIndex().get(indexChoice);
                                 int indexIDToBeAdded = courses.get(courseChoice).getIndex().get(indexChoice).getIndexID();
                                 // implement the checking
                                 if (indexIDToBeDropped != indexIDToBeAdded){
                                     curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(courseChoice).getCourseAU());
                                     curStudent.registerIndex(indexToBeAdded);
+                                    indexToBeDropped.removeStudentFromIndex(curStudent);
+                                    indexToBeAdded.studentAddedToIndex(curStudent);
                                 }
                                 break;
                             case 6:
@@ -221,7 +244,7 @@ public class Choice {
             }
         }
     public static void printCourses(ArrayList<Course> courses){
-        int i = 0;
+        int i = 1;
         for (Course course: courses){
             System.out.printf("%d %s %s \n", i, course.getCourseCode(), course.getCourseName());
             i++;
@@ -229,13 +252,11 @@ public class Choice {
     }
 
     public static void printIndices(ArrayList <Index> indices){
-        int i = 0;
+        int i = 1;
         for (Index index: indices){
-            System.out.printf("%d %d %d\n", index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
-            int j = 0;
+            System.out.printf("%d)Index ID: %d\nIndex Vacancy:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
             for(Lesson lesson: index.getLessonList()){
-                System.out.printf("\n %d %s %s %s %s %s \n", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
-                j++;
+                System.out.printf("%s %s %s %s %s \n", lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
             }
             i++;
         }
@@ -243,7 +264,7 @@ public class Choice {
 
     public static void printRegisteredCourses(Student curStudent){
         for (int i = 0; i < curStudent.getRegisteredIndices().size(); i++){
-            System.out.printf("%d|%d|%s\n", i, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
+            System.out.printf("%d|%d|%s\n", i+1, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
         }
     }
 
