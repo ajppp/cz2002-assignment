@@ -111,6 +111,9 @@ public class Test{
             System.out.println(loginManager.studentLogin.get(student.getStudentID()));
         }
 
+        //Save an admin <3
+        loginManager.storeAdminPassword("Cloud", "Cloud123");
+
         SerialEditor.writeStudents(students);
         SerialEditor.writeCourses(courses);
         SerialEditor.writeLoginTiming(login);

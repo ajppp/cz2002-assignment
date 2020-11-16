@@ -14,6 +14,10 @@ public class LoginManager implements java.io.Serializable{
         return studentLogin;
     }
 
+    public Dictionary<String, String> getAdminLogin(){
+        return adminLogin;
+    }
+
     public static String hashPassword(String Password){
         String generatedPassword = null;
         Scanner sc = new Scanner(System.in);
@@ -34,20 +38,17 @@ public class LoginManager implements java.io.Serializable{
     }
 
     public int studentCompare(String inputUsername, String inputPassword){
-        //System.out.printf("size : %d\n", getStudentLogin().size());
-        //System.out.println("Password stored in dictionary:");
-        //System.out.println(getStudentLogin().get(inputUsername));
-        //System.out.println("Password hashed now:");
-        //System.out.println(hashPassword(inputPassword));
-        //System.out.println(getStudentLogin().get(inputUsername).equals(hashPassword(inputPassword)));
         if(getStudentLogin().get(inputUsername).equals(hashPassword(inputPassword))) {
             return 1;
         }
         else return 0;
     }
 
-    public boolean adminCompare(String inputUsername, String inputPassword){
-        return (adminLogin.get(inputUsername) == hashPassword(inputPassword));
+    public int adminCompare(String inputUsername, String inputPassword){
+        if(getAdminLogin().get(inputUsername).equals(hashPassword(inputPassword))) {
+            return 1;
+        }
+        else return 0;
     }
 
     public void storeStudentPassword(String inputStudentUsername, String inputStudentPassword){
@@ -55,10 +56,14 @@ public class LoginManager implements java.io.Serializable{
     }
     
     public void storeAdminPassword(String inputAdminUsername, String inputAdminPassword){
-        studentLogin.put(inputAdminUsername, hashPassword(inputAdminPassword));
+        adminLogin.put(inputAdminUsername, hashPassword(inputAdminPassword));
     }
 
     public String returnStudentPassword(String studentUsername){
         return studentLogin.get(studentUsername);
+    }
+
+    public String returnAdminPassword(String adminUsername){
+        return studentLogin.get(adminUsername);
     }
 }

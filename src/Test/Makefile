@@ -25,6 +25,8 @@ classes: $(CLASSES:.java=.class)
 
 clean:
 	$(RM) *.class
+	$(RM) *.ser
+	$(RM) *.csv
 
 test: 
 	java Test

@@ -13,13 +13,13 @@ public class AdminManager{
             String inputAdminID = sc.nextLine();
             System.out.println("Please type your password: ");
             String inputAdminPassword = sc.nextLine();
-            if (!loginManager.adminCompare(inputAdminID, inputAdminPassword)){
+            if (loginManager.adminCompare(inputAdminID, inputAdminPassword) == 0){
                 System.out.println("Wrong Password. Please try again");
                 if (i == 3){
                     return 0;
                 }
             }
-            else if (loginManager.adminCompare(inputAdminID, inputAdminPassword)){
+            else if (loginManager.adminCompare(inputAdminID, inputAdminPassword) == 1){
                 correctPassword = true;
                 return 1;
             }
