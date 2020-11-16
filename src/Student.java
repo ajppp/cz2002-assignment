@@ -9,7 +9,7 @@ public class Student implements java.io.Serializable{
     private String studentNationality;
     private String studentEmail;
     private int studentRegisteredAU = 0;
-    private ArrayList<Index> registeredIndex = new ArrayList<>(0);
+    private ArrayList<Index> registeredIndex = new ArrayList<>();
     private static final int MAX_AU = 21;
 
     /*
@@ -92,10 +92,12 @@ public class Student implements java.io.Serializable{
     public void registerIndex(Index index){
         if ((studentRegisteredAU += index.getCourseAU()) <= MAX_AU){
             boolean sameCourse = false;
-            for (int i=0; i<=registeredIndex.size(); i++){
-                if (index.getCourseCode()== registeredIndex.get(i).getCourseCode()){
-                    sameCourse = true;
-                    break;
+            if (registeredIndex.size() > 0){
+                for (int i=0; i < registeredIndex.size(); i++){
+                    if (index.getCourseCode()== registeredIndex.get(i).getCourseCode()){
+                        sameCourse = true;
+                        break;
+                    }
                 }
             }
             if (sameCourse){

@@ -24,7 +24,8 @@ public class Index implements java.io.Serializable{
     private ArrayList<Student> studentWaitlist = new ArrayList<Student>(0);
     private ArrayList<Student> registeredStudents = new ArrayList<Student>(0);
 
-    public Index (String courseSchool, String courseCode, int courseAU, int indexID, int vacancies, int maxStudents, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
+    public Index (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
+        this.courseName = courseName;
         this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
