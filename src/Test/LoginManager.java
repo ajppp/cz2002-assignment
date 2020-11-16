@@ -5,10 +5,12 @@ import java.util.*;
 
 public class LoginManager implements java.io.Serializable{
     private static final long serialVersionUID = 7L;
-    private Dictionary<String, String> studentLogin = new Hashtable<String, String>();
-    private Dictionary<String, String> adminLogin = new Hashtable<String, String>();
+    private static Dictionary<String, String> studentLogin = new Hashtable<String, String>();
+    private static Dictionary<String, String> adminLogin = new Hashtable<String, String>();
 
-    public String hashPassword(String Password){
+    public LoginManager(){}
+
+    public static String hashPassword(String Password){
         String generatedPassword = null;
         Scanner sc = new Scanner(System.in);
         try{
@@ -27,12 +29,13 @@ public class LoginManager implements java.io.Serializable{
         return generatedPassword;
     }
 
-    public boolean studentCompare(String inputUsername, String inputPassword){
-        return (studentLogin.get(inputUsername) == inputPassword);
+    public static boolean studentCompare(String inputUsername, String inputPassword){
+        System.out.println(studentLogin.get(inputUsername));
+        return (studentLogin.get(inputUsername) == hashPassword(inputPassword));
     }
 
-    public boolean adminCompare(String inputUsername, String inputPassword){
-        return (adminLogin.get(inputUsername) == inputPassword);
+    public static boolean adminCompare(String inputUsername, String inputPassword){
+        return (adminLogin.get(inputUsername) == hashPassword(inputPassword));
     }
 
     public void storeStudentPassword(String inputStudentUsername, String inputStudentPassword){
@@ -41,5 +44,9 @@ public class LoginManager implements java.io.Serializable{
     
     public void storeAdminPassword(String inputAdminUsername, String inputAdminPassword){
         studentLogin.put(inputAdminUsername, inputAdminPassword);
+    }
+
+    public String returnStudentPassword(String studentUsername){
+        return studentLogin.get(studentUsername);
     }
 }

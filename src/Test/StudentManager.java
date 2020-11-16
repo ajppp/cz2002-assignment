@@ -14,8 +14,8 @@ public class StudentManager{
             return 0;
         }
         else{
+            int i = 0;
             do { 
-                int i = 0;
                 System.out.println("Please insert your UserID: ");
                 String inputUserID = sc.nextLine();
                 System.out.println("Please insert your password: ");
@@ -35,6 +35,7 @@ public class StudentManager{
                         }
                     }
                 }
+                i++;
             } while (correctPassword = false);
         }
         return 0;

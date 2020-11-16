@@ -80,7 +80,7 @@ public class SerialEditor{
         return course;
     }
 
-    public static void writeLogin(LoginPage login){
+    public static void writeLoginTiming(LoginPage login){
         try {
             FileOutputStream fileOut = new FileOutputStream(loginTimingFileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -91,7 +91,7 @@ public class SerialEditor{
         }
     }
 
-    public static LoginPage loadLogin(){
+    public static LoginPage loadLoginTiming(){
         LoginPage login = new LoginPage();
         try { 
             FileInputStream fileIn = new FileInputStream(loginTimingFileName);
