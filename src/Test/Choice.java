@@ -10,7 +10,7 @@ public class Choice {
     public static void main(String[] args){
         ArrayList <Student> students = SerialEditor.loadStudents();
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
-        LoginPage loginTiming = SerialEditor.loadLogin();
+        LoginPage loginTiming = SerialEditor.loadLoginTiming();
         LoginManager loginManager = SerialEditor.loadLoginDetails();
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to NTU Stars!");

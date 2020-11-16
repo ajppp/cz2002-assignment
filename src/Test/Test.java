@@ -10,6 +10,7 @@ public class Test{
         Date startTime = new Date(120, 10, 3, 14, 30);
         Date endTime = new Date(120, 10, 30, 11, 30);
         LoginPage login = new LoginPage(startTime, endTime);
+        LoginManager loginManager = new LoginManager();
         Student cloud = new Student("Claudia", "SCSE", "M", "Singaporean", "dummyemailforoodp@gmail.com");
         Student a = new Student("Sarah Lim", "SCSE", "F", "Malaysian", "dummyemailforoodp@gmail.com");
         Student b = new Student("Hazel Wang", "FASS", "F", "PRC", "dummyemailforoodp@gmail.com");
@@ -104,6 +105,11 @@ public class Test{
 
         courses.add(new Course("Theatre & Technology", "NIE", "ADP26D", 3, indexList26D));
 
+        // Generate Password for each student
+        for (Student student: students){
+            loginManager.storeStudentPassword(student.getStudentID(), "password");
+        }
+
         /* registeredStudentList.add(cloud);
         Index dsai = new Index("SCSE", "1234", 3, 39, 40, lessonList, studentWaitlist, registeredStudentList);
         indices.add(dsai);
@@ -111,9 +117,9 @@ public class Test{
         students.add(cloud);
         courses.add(oodp); */
         SerialEditor.writeStudents(students);
-        // SerialEditor.writeIndices(indices);
         SerialEditor.writeCourses(courses);
-        SerialEditor.writeLogin(login);
+        SerialEditor.writeLoginTiming(login);
+        SerialEditor.writeLoginDetails(loginManager);
         for(Student student: students){
             FileEditor.writeStudents(student);
         }
@@ -129,6 +135,9 @@ public class Test{
         }
         for (Course course: courses){
             System.out.println(course.getCourseAU());
+        }
+        for (Student student:students){
+            System.out.println(loginManager.returnStudentPassword(student.getStudentID()));
         }
        // for (Index index: indices){
        //     System.out.println(index.getVacancies());
