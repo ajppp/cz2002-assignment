@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class StudentManager{
+    public static String inputUserID;
+
     public static int studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students, Student curStudent){
         Scanner sc = new Scanner(System.in);
         Calendar cal = Calendar.getInstance();
@@ -27,12 +29,10 @@ public class StudentManager{
                     }
                 }
                 else if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 1) { 
-                    System.out.println("We are in the if statement");
                     for (Student student: students){
                         if (student.getStudentID().equals(inputUserID)){
-                            curStudent = student;
+                            this.inputUserID = inputUserID;
                             correctPassword = true;
-                            System.out.println("We are in the correct username password");
                             return 1;
                         }
                     }
@@ -41,5 +41,9 @@ public class StudentManager{
             } while (correctPassword = false);
         }
         return 0;
+    }
+    
+    public String returnStudentID(){
+        return inputUserID;
     }
 }
