@@ -43,11 +43,6 @@ public class Student implements java.io.Serializable{
         return studentID;
     }
 
-  /*   public void setStudentID(String ID){
-        this.studentID = ID;
-        
-    } */
-
     public String getStudentName(){
         return studentName;
     }

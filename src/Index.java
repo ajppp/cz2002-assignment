@@ -18,11 +18,11 @@ public class Index implements java.io.Serializable{
     private int courseAU;
     private static final long serialVersionUID = 3L;
     private int indexID;
-    private int vacancies = 10;
-    private int maxStudents = 20;
-    private ArrayList<Lesson> lessonList = new ArrayList<Lesson>(1);
-    private ArrayList<Student> studentWaitlist = new ArrayList<Student>(0);
-    private ArrayList<Student> registeredStudents = new ArrayList<Student>(0);
+    private int vacancies;
+    private int maxStudents;
+    private ArrayList<Lesson> lessonList = new ArrayList<Lesson>();
+    private ArrayList<Student> studentWaitlist = new ArrayList<Student>();
+    private ArrayList<Student> registeredStudents = new ArrayList<Student>();
 
     public Index (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
         this.courseName = courseName;
@@ -145,6 +145,8 @@ public class Index implements java.io.Serializable{
     //new methods by cloud
     public void addRegisteredStudent(Student student1){
         registeredStudents.add(student1);
+        System.out.println(student1.getStudentID());
+        System.out.println("Successfully added student");
     }
 
     public void removeRegisteredStudent(Student student1){
@@ -161,6 +163,7 @@ public class Index implements java.io.Serializable{
 
     public void addWaitlistStudent(Student student1) {
         studentWaitlist.add(student1);
+        System.out.println("Successfully added to waitlist");
     }
 
     public void removeWaitlistedStudent(Student student1){
@@ -185,17 +188,23 @@ public class Index implements java.io.Serializable{
     }
 
     public void removeStudentFromIndex(Student student1){
-        for(Student student : registeredStudents){
-            if (student1.getStudentID().equals(student.getStudentID())){
-                removeRegisteredStudent(student1);
-                return;
+        if(registeredStudents.size() > 0){
+            for(Student student: registeredStudents){
+                System.out.println(student.getStudentID());
+                if (student1.getStudentID().equals(student.getStudentID())){
+                    removeRegisteredStudent(student1);
+                    vacancies++;
+                    break;
+                }
             }
         }
 
-        for(Student student: studentWaitlist){
-            if (student1.getStudentID().equals(student.getStudentID())){
-                removeWaitlistedStudent(student1);
-                return;
+        if(studentWaitlist.size() > 0){
+            for(Student student: studentWaitlist){
+                if (student1.getStudentID().equals(student.getStudentID())){
+                    removeWaitlistedStudent(student1);
+                    break;
+                }
             }
         }
     }

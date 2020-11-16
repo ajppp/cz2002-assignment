@@ -2,9 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class StudentManager{
-    public static String inputUserID;
-
-    public static int studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students, Student curStudent){
+    public static String studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students, Student curStudent){
         Scanner sc = new Scanner(System.in);
         Calendar cal = Calendar.getInstance();
         Date dateNow = cal.getTime();
@@ -13,7 +11,7 @@ public class StudentManager{
             System.out.println("Please try again during the stipulated time!");
             System.out.printf("Start login time: " + loginTiming.getStartLoginTime());
             System.out.printf("End login time: " + loginTiming.getEndLoginTime());
-            return 0;
+            return "0";
         }
         else{
             int i = 0;
@@ -25,25 +23,22 @@ public class StudentManager{
                 if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 0){
                     System.out.println("Wrong Username or Password. Please try again");
                     if (i == 3){
-                        return 0;
+                        return "0";
                     }
                 }
                 else if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 1) { 
-                    for (Student student: students){
+                    return inputUserID;
+                   /*  for (Student student: students){
                         if (student.getStudentID().equals(inputUserID)){
-                            this.inputUserID = inputUserID;
+                            curStudent = student;
                             correctPassword = true;
-                            return 1;
+                            return inputUserID;
                         }
-                    }
+                    } */
                 }
                 i++;
             } while (correctPassword = false);
         }
-        return 0;
-    }
-    
-    public String returnStudentID(){
-        return inputUserID;
+        return "0";
     }
 }
