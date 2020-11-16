@@ -43,10 +43,10 @@ public class Student implements java.io.Serializable{
         return studentID;
     }
 
-    public void setStudentID(String ID){
+  /*   public void setStudentID(String ID){
         this.studentID = ID;
         
-    }
+    } */
 
     public String getStudentName(){
         return studentName;
@@ -82,6 +82,10 @@ public class Student implements java.io.Serializable{
 
     public void setStudentEmail(String email){
         this.studentEmail = email;
+    }
+
+    public void setStudentNationality(String nationality){
+        this.studentNationality = nationality;
     }
     // check is done in main on whether it can be added
     // this method is just to add to student

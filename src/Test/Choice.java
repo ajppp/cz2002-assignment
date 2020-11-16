@@ -214,20 +214,20 @@ public class Choice {
                 System.out.println("Not valid choice!");
             }
         }
-    public static void printCourses(ArrayList <Course> courses){
+    public static void printCourses(ArrayList<Course> courses){
+        int i = 0;
         for (Course course: courses){
-            int i = 0;
             System.out.printf("%d %s %s \n", i, course.getCourseCode(), course.getCourseName());
             i++;
         }
     }
 
     public static void printIndices(ArrayList <Index> indices){
+        int i = 0;
         for (Index index: indices){
-            int i = 0;
             System.out.printf("%d %d %d\n", index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+            int j = 0;
             for(Lesson lesson: index.getLessonList()){
-                int j = 0;
                 System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
                 j++;
             }
