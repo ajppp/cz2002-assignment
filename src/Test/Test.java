@@ -114,19 +114,19 @@ public class Test{
         SerialEditor.writeStudents(students);
         SerialEditor.writeCourses(courses);
         SerialEditor.writeLoginTiming(login);
-        System.out.println(loginManager.studentLogin.size());
         SerialEditor.writeLoginDetails(loginManager);
+        ArrayList<Course> testCourses = new ArrayList<>();
+        testCourses = SerialEditor.loadCourses();
         for(Student student: students){
             FileEditor.writeStudents(student);
         }
         for (Student student: students){
             System.out.println(student.getStudentID());
         }
-        for (Course course: courses){
-            System.out.println(course.getCourseAU());
-        }
-        for (Student student:students){
-            System.out.println(loginManager.returnStudentPassword(student.getStudentID()));
+        for (Course course: testCourses){
+            System.out.printf("size of course array list: %d\n", courses.size());
+            System.out.printf("name of course : %s\n", course.getCourseName());
+            System.out.printf("code of course : %s\n", course.getCourseCode());
         }
        // for (Index index: indices){
        //     System.out.println(index.getVacancies());

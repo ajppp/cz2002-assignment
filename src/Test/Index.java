@@ -11,7 +11,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  */
 
-public class Index extends AbstractCourse implements java.io.Serializable{
+public class Index implements java.io.Serializable{
+    private String courseName;
+    private String courseSchool;
+    private String courseCode;
+    private int courseAU;
     private static final long serialVersionUID = 3L;
     private int indexID;
     private int vacancies = 10;
@@ -49,6 +53,38 @@ public class Index extends AbstractCourse implements java.io.Serializable{
     }
 
     public Index(){}
+
+    public String getCourseName(){
+        return courseName;
+    }
+
+    public void setCourseName(String name){
+        courseName = name;
+    }
+
+    public String getCourseSchool(){
+        return courseSchool;
+    }
+
+    public void setCourseSchool(String school){
+        courseSchool = school;
+    }
+
+    public String getCourseCode(){
+        return courseCode;
+    }
+
+    public void setCourseCode(String code){
+        courseCode = code;
+    }
+
+    public int getCourseAU(){
+        return courseAU;
+    }
+
+    public void setCourseAU(int AU){
+        courseAU = AU;
+    }
 
     public int getVacancies(){
         return vacancies;

@@ -1,4 +1,5 @@
-public abstract class AbstractCourse {
+public class AbstractCourse {
+    
     protected String courseName;
     protected String courseSchool;
     protected String courseCode;
