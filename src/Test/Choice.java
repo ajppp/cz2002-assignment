@@ -136,6 +136,7 @@ public class Choice {
                             break;
                         case 3:
                             printRegisteredCourses(curStudent);
+                            System.out.println("finished printing registered courses");
                             break;
                         case 4:
                             System.out.println("Choose the course to view vacancies: ");
@@ -226,10 +227,10 @@ public class Choice {
     public static void printIndices(ArrayList <Index> indices){
         int i = 0;
         for (Index index: indices){
-            System.out.printf(" %d %d %d\n", index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+            System.out.printf("%d %d %d\n", index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
             int j = 0;
             for(Lesson lesson: index.getLessonList()){
-                System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
+                System.out.printf("\n %d %s %s %s %s %s \n", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
                 j++;
             }
             i++;
