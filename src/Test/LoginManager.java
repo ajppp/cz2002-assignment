@@ -33,14 +33,17 @@ public class LoginManager implements java.io.Serializable{
         return generatedPassword;
     }
 
-    public boolean studentCompare(String inputUsername, String inputPassword){
-        System.out.printf("size : %d\n", getStudentLogin().size());
-        System.out.println("Password stored in dictionary:");
-        System.out.println(getStudentLogin().get(inputUsername));
-        System.out.println("Password hashed now:");
-        System.out.println(hashPassword(inputPassword));
-
-        return (studentLogin.get(inputUsername) == hashPassword(inputPassword));
+    public int studentCompare(String inputUsername, String inputPassword){
+        //System.out.printf("size : %d\n", getStudentLogin().size());
+        //System.out.println("Password stored in dictionary:");
+        //System.out.println(getStudentLogin().get(inputUsername));
+        //System.out.println("Password hashed now:");
+        //System.out.println(hashPassword(inputPassword));
+        //System.out.println(getStudentLogin().get(inputUsername).equals(hashPassword(inputPassword)));
+        if(getStudentLogin().get(inputUsername).equals(hashPassword(inputPassword))) {
+            return 1;
+        }
+        else return 0;
     }
 
     public boolean adminCompare(String inputUsername, String inputPassword){
