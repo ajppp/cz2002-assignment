@@ -6,8 +6,7 @@ JC = javac
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-CLASSES = AbstractCourse.java \
-		  Choice.java \
+CLASSES = Choice.java \
 		  Course.java \
 		  EraserClass.java \
 		  Index.java \
@@ -27,10 +26,8 @@ classes: $(CLASSES:.java=.class)
 clean:
 	$(RM) *.class
 
-data: 
-	$(JC) $(JFLAGS) Test.java
+test: 
 	java Test
-	$(RM) Test.class
 
 run:
 	java Choice

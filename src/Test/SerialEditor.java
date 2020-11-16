@@ -72,7 +72,7 @@ public class SerialEditor{
         try { 
             FileInputStream fileIn = new FileInputStream(courseFileName);
             ObjectInputStream in = new ObjectInputStream(fileIn); 
-            course = (ArrayList <Course>)in.readObject();
+            course = (ArrayList<Course>)in.readObject();
             in.close();
         } catch (Exception e) {
                 e.printStackTrace();

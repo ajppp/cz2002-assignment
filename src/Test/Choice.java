@@ -1,5 +1,4 @@
 //TODO: add error checking in case the admin is an idiot that gives string for ints and whatever... basically if else statement.. yippee for a 1k line main function <3 
-//TODO: separate everything into their own functions to prevent stupid mistake like bracketing
 import java.util.*;
 import java.io.*;
 import java.text.DateFormat;
@@ -12,7 +11,9 @@ public class Choice {
         ArrayList <Course> courses = SerialEditor.loadCourses(); 
         LoginPage loginTiming = SerialEditor.loadLoginTiming();
         LoginManager loginManager = SerialEditor.loadLoginDetails();
-        System.out.println(loginManager.getStudentLogin().size());
+        for(Course course:courses){
+            System.out.printf("%s %s \n", course.getCourseCode(), course.getCourseName());
+        }
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to NTU Stars!");
         System.out.println("1. Admin");
@@ -225,7 +226,7 @@ public class Choice {
     public static void printIndices(ArrayList <Index> indices){
         int i = 0;
         for (Index index: indices){
-            System.out.printf("%d %d %d\n", index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+            System.out.printf(" %d %d %d\n", index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
             int j = 0;
             for(Lesson lesson: index.getLessonList()){
                 System.out.printf("%d %s %s %s %s %s", j, lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
