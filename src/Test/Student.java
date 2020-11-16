@@ -36,6 +36,8 @@ public class Student implements java.io.Serializable{
         studentNationality = Nationality;
         studentEmail = Email;
     }
+    
+    public Student(){}
 
     public String getStudentID(){
         return studentID;

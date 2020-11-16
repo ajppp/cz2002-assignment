@@ -1,3 +1,0 @@
-public enum LessonDay{
-    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY
-}

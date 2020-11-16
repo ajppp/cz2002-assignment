@@ -7,8 +7,8 @@ public class Test{
         ArrayList <Lesson> lessonList = new ArrayList<>();
         ArrayList <Student> studentWaitlist = new ArrayList<>();
         ArrayList <Student> registeredStudentList = new ArrayList<>();
-        Date startTime = new Date(2020, 11, 3, 14, 30);
-        Date endTime = new Date(2020, 11, 30, 11, 30);
+        Date startTime = new Date(120, 10, 3, 14, 30);
+        Date endTime = new Date(120, 10, 30, 11, 30);
         LoginPage login = new LoginPage(startTime, endTime);
         Student cloud = new Student("Claudia", "SCSE", "M", "Singaporean", "dummyemailforoodp@gmail.com");
         Student a = new Student("Sarah Lim", "SCSE", "F", "Malaysian", "dummyemailforoodp@gmail.com");
@@ -114,6 +114,9 @@ public class Test{
         // SerialEditor.writeIndices(indices);
         SerialEditor.writeCourses(courses);
         SerialEditor.writeLogin(login);
+        for(Student student: students){
+            FileEditor.writeStudents(student);
+        }
         /* students.remove(cloud);
         indices.remove(dsai);
         courses.remove(oodp);
@@ -122,7 +125,7 @@ public class Test{
         courses = SerialEditor.loadCourses();
         */
         for (Student student: students){
-            System.out.println(student);
+            System.out.println(student.getStudentID());
         }
         for (Course course: courses){
             System.out.println(course.getCourseAU());

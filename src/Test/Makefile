@@ -12,12 +12,9 @@ CLASSES = AbstractCourse.java \
 		  EraserClass.java \
 		  Index.java \
 		  Lesson.java \
-		  LessonDay.java \
-		  LessonType.java \
 		  LoginManager.java \
 		  LoginPage.java \
 		  PasswordField.java \
-		  Schedule.java \
 		  SerialEditor.java \
 		  Student.java \
 		  Test.java

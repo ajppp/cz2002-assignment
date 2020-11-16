@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class StudentManager{
-    public static int studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students){
+    public static int studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students, Student curStudent){
         Scanner sc = new Scanner(System.in);
         Calendar cal = Calendar.getInstance();
         Date dateNow = cal.getTime();
@@ -20,7 +20,6 @@ public class StudentManager{
                 String inputUserID = sc.nextLine();
                 System.out.println("Please insert your password: ");
                 String inputStudentPassword = sc.nextLine();
-                Student curStudent;
                 if (!loginManager.studentCompare(inputUserID, inputStudentPassword)){
                     System.out.println("Wrong Username or Password. Please try again");
                     if (i == 3){
