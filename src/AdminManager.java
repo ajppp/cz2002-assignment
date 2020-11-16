@@ -129,7 +129,7 @@ public class AdminManager{
             int newIndexVacancies = sc.nextInt();
             System.out.println("What is the maximum number of students this new index has?");
             int newIndexMaxStudents = sc.nextInt();
-            newIndexList.set(i, new Index(newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
+            newIndexList.set(i, new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
         }
         courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
     }
