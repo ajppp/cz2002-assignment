@@ -1,4 +1,4 @@
-cd src/Test
+cd src
 make clean
 make
 make test
