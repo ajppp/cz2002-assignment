@@ -108,28 +108,17 @@ public class Test{
         // Generate Password for each student
         for (Student student: students){
             loginManager.storeStudentPassword(student.getStudentID(), "password");
+            System.out.println(loginManager.studentLogin.get(student.getStudentID()));
         }
 
-        /* registeredStudentList.add(cloud);
-        Index dsai = new Index("SCSE", "1234", 3, 39, 40, lessonList, studentWaitlist, registeredStudentList);
-        indices.add(dsai);
-        Course oodp = new Course("SCSE", "CZ2002", 3, indices);
-        students.add(cloud);
-        courses.add(oodp); */
         SerialEditor.writeStudents(students);
         SerialEditor.writeCourses(courses);
         SerialEditor.writeLoginTiming(login);
+        System.out.println(loginManager.studentLogin.size());
         SerialEditor.writeLoginDetails(loginManager);
         for(Student student: students){
             FileEditor.writeStudents(student);
         }
-        /* students.remove(cloud);
-        indices.remove(dsai);
-        courses.remove(oodp);
-        students = SerialEditor.loadStudents();
-        indices = SerialEditor.loadIndices();
-        courses = SerialEditor.loadCourses();
-        */
         for (Student student: students){
             System.out.println(student.getStudentID());
         }

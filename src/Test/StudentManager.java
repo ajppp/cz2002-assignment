@@ -20,7 +20,7 @@ public class StudentManager{
                 String inputUserID = sc.nextLine();
                 System.out.println("Please insert your password: ");
                 String inputStudentPassword = sc.nextLine();
-                if (!loginManager.studentCompare(inputUserID, inputStudentPassword)){
+                if (loginManager.studentCompare(inputUserID, inputStudentPassword) == false){
                     System.out.println("Wrong Username or Password. Please try again");
                     if (i == 3){
                         return 0;
