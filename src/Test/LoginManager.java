@@ -5,8 +5,8 @@ import java.util.*;
 
 public class LoginManager implements java.io.Serializable{
     private static final long serialVersionUID = 7L;
-    private Dictionary studentLogin = new Hashtable();
-    private Dictionary adminLogin = new Hashtable();
+    private Dictionary<String, String> studentLogin = new Hashtable<String, String>();
+    private Dictionary<String, String> adminLogin = new Hashtable<String, String>();
 
     public String hashPassword(String Password){
         String generatedPassword = null;
@@ -33,5 +33,13 @@ public class LoginManager implements java.io.Serializable{
 
     public boolean adminCompare(String inputUsername, String inputPassword){
         return (adminLogin.get(inputUsername) == inputPassword);
+    }
+
+    public void storeStudentPassword(String inputStudentUsername, String inputStudentPassword){
+        studentLogin.put(inputStudentUsername, hashPassword(inputStudentPassword));
+    }
+    
+    public void storeAdminPassword(String inputAdminUsername, String inputAdminPassword){
+        studentLogin.put(inputAdminUsername, inputAdminPassword);
     }
 }
