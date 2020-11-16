@@ -79,13 +79,17 @@ public class Student implements java.io.Serializable{
         this.studentEmail = email;
     }
 
+    public int getStudentRegisteredAU(){
+        return studentRegisteredAU;
+    }
+
     public void setStudentNationality(String nationality){
         this.studentNationality = nationality;
     }
     // check is done in main on whether it can be added
     // this method is just to add to student
     public void registerIndex(Index index){
-        if ((studentRegisteredAU += index.getCourseAU()) <= MAX_AU){
+        if ((studentRegisteredAU + index.getCourseAU()) <= MAX_AU){
             boolean sameCourse = false;
             if (registeredIndex.size() > 0){
                 for (int i=0; i < registeredIndex.size(); i++){

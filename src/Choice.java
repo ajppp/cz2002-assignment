@@ -24,78 +24,81 @@ public class Choice {
                     return;
                 }
                 else if (adminLoginResult == 1){
-                    AdminManager.printAdminOptions();
-                    int adminChoice = sc.nextInt();
-                    switch(adminChoice){
-                        case 1:
-                            AdminManager.editAccessPeriod(loginTiming);
-                            break;
-                        case 2:
-                            AdminManager.addStudent(students);
-                            break;
-                        case 3:
-                            printCourses(courses);
-                            System.out.println("1. Add new course");
-                            System.out.println("2. Update existing course");
-                            System.out.println("3. Update existing course index");
-                            int case3choice = sc.nextInt();
-                            switch(case3choice){
-                                case 1:    
-                                    AdminManager.addCourse(courses);
-                                    break;
-                                case 2:
-                                    System.out.println("Choose which course to update: ");
-                                    printCourses(courses);
-                                    int updateCourseChoice = sc.nextInt();
-                                    AdminManager.updateCourse(courses.get(updateCourseChoice));
-                                    break;
-                                case 3:
-                                    System.out.println("Choose which course to update");
-                                    printCourses(courses);
-                                    updateCourseChoice = sc.nextInt();
-                                    System.out.println("Choose which index to update");
-                                    printIndices(courses.get(updateCourseChoice).getIndex());
-                                    int updateCourseIndexChoice = sc.nextInt();
-                                    AdminManager.updateIndex(courses.get(updateCourseChoice).getIndex().get(updateCourseIndexChoice));
-                                    break;
-                            }
-                            break;
-                        case 4:
-                            System.out.println("Choose course to view vacancies: ");
-                            printCourses(courses);
-                            int courseChoice = sc.nextInt();
-                            printIndices(courses.get(courseChoice).getIndex());
-                            System.out.println("Choose index of course to view vacancies: ");
-                            int indexChoice = sc.nextInt();
-                            System.out.printf("The number of vacancies for index %d of course %s is %d", courses.get(courseChoice).getIndex().get(indexChoice).getIndexID(), courses.get(courseChoice).getCourseCode(), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
-                            break;
-                        case 5:
-                            System.out.println("Choose course to view student namelist: ");
-                            printCourses(courses);
-                            courseChoice = sc.nextInt();
-                            printIndices(courses.get(courseChoice).getIndex());
-                            System.out.println("Choose index of course to view student namelist: ");
-                            indexChoice = sc.nextInt();
-                            for (int i = 0; i < courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size(); i++){
-                                System.out.printf("%d %d %s", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i).getStudentName());
-                            }
-                            break;
-
-                        case 6:
-                            System.out.println("Choose course to view student namelist: ");
-                            printCourses(courses);
-                            courseChoice = sc.nextInt();
-                            // to be clear, i = index, j = student 
-                            for (int i = 0; i < courses.get(courseChoice).getIndex().size(); i++){
-                                for (int j = 0; j < courses.get(courseChoice).getIndex().get(j).listRegisteredStudents().size(); j++) {
-                                    System.out.printf("Namelist of Index %d", courses.get(courseChoice).getIndex().get(i).getIndexID());
-                                    System.out.printf("%d %d %s", j, courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentID(), courses.get(courseChoice).getIndex().get(i).listRegisteredStudents().get(j).getStudentName());
+                    while(true){
+                        AdminManager.printAdminOptions();
+                        int adminChoice = sc.nextInt();
+                        switch(adminChoice){
+                            case 1:
+                                loginTiming = AdminManager.editAccessPeriod(loginTiming);
+                                SerialEditor.writeLoginTiming(loginTiming);
+                                break;
+                            case 2:
+                                AdminManager.addStudent(students);
+                                break;
+                            case 3:
+                                printCourses(courses);
+                                System.out.println("1. Add new course");
+                                System.out.println("2. Update existing course");
+                                System.out.println("3. Update existing course index");
+                                int case3choice = sc.nextInt();
+                                switch(case3choice){
+                                    case 1:    
+                                        AdminManager.addCourse(courses);
+                                        break;
+                                    case 2:
+                                        System.out.println("Choose which course to update: ");
+                                        printCourses(courses);
+                                        int updateCourseChoice = sc.nextInt() - 1;
+                                        AdminManager.updateCourse(courses.get(updateCourseChoice));
+                                        break;
+                                    case 3:
+                                        System.out.println("Choose which course to update");
+                                        printCourses(courses);
+                                        updateCourseChoice = sc.nextInt() - 1;
+                                        System.out.println("Choose which index to update");
+                                        printIndices(courses.get(updateCourseChoice).getIndex());
+                                        int updateCourseIndexChoice = sc.nextInt() - 1;
+                                        AdminManager.updateIndex(courses.get(updateCourseChoice).getIndex().get(updateCourseIndexChoice));
+                                        break;
                                 }
-                            break;
+                                break;
+                            case 4:
+                                System.out.println("Choose course to view vacancies: ");
+                                printCourses(courses);
+                                int courseChoice = sc.nextInt() - 1;
+                                printIndices(courses.get(courseChoice).getIndex());
+                                System.out.println("Choose index of course to view vacancies: ");
+                                int indexChoice = sc.nextInt() - 1;
+                                System.out.printf("The number of vacancies for index %d of course %s is %d\n", courses.get(courseChoice).getIndex().get(indexChoice).getIndexID(), courses.get(courseChoice).getCourseCode(), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
+                                break;
+                            case 5:
+                                System.out.println("Choose course to view student namelist: ");
+                                printCourses(courses);
+                                courseChoice = sc.nextInt() - 1;
+                                printIndices(courses.get(courseChoice).getIndex());
+                                System.out.println("Choose index of course to view student namelist: ");
+                                indexChoice = sc.nextInt() - 1;
+                                for (int i = 1; i < courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size() + 1; i++){
+                                    System.out.printf("%d %s %s\n", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentName());
+                                }
+                                break;
+    
+                            case 6:
+                                System.out.println("Choose course to view student namelist: ");
+                                printCourses(courses);
+                                courseChoice = sc.nextInt() - 1;
+                                // to be clear, i = index, j = student 
+                                for (int i = 1; i < courses.get(courseChoice).getIndex().size() + 1; i++){
+                                    for (int j = 1; j < courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().size() + 1; j++) {
+                                        System.out.printf("Namelist of Index %d\n", courses.get(courseChoice).getIndex().get(i - 1).getIndexID());
+                                        System.out.printf("%d %s %s\n", j, courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentID(), courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentName());
+                                    }
+                                }
+                                break;
+                            }
                         }
                     }
-                }
-                break;
+                    
             case 2:
                 Student curStudent = new Student();
                 String studentLoginResult = StudentManager.studentLogin(loginManager, loginTiming, students, curStudent);
@@ -120,6 +123,7 @@ public class Choice {
                         System.out.println("5. Change Index Number of Course");
                         System.out.println("6. Swap Index Number with Another Student");
                         System.out.println("7. Exit :D");
+                        System.out.println(curStudent.getStudentRegisteredAU());
                         studentChoice = sc.nextInt();
                         switch (studentChoice) {
                             case 1:
@@ -232,12 +236,19 @@ public class Choice {
                                  *}
                                  *break;
                                  */
+                            case 7:
+                                SerialEditor.writeCourses(courses);
+                                SerialEditor.writeStudents(students);
+                                System.out.println("Thanks for using NTU Stars. Bye");
+                                System.exit(0);
+                                break;
 
                             default:
-                                System.out.println("Not a valid choice! Please insert a number from 1 - 6");
+                                SerialEditor.writeCourses(courses);
+                                SerialEditor.writeStudents(students);
                         }
 
-                    } while (studentChoice != 7);
+                    } while (true);
                 }
             default:
                 System.out.println("Not valid choice!");
