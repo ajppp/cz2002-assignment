@@ -183,6 +183,22 @@ public class Index implements java.io.Serializable{
             addWaitlistStudent(student1);
         }
     }
+
+    public void removeStudentFromIndex(Student student1){
+        for(Student student : registeredStudents){
+            if (student1.getStudentID().equals(student.getStudentID())){
+                removeRegisteredStudent(student1);
+                return;
+            }
+        }
+
+        for(Student student: studentWaitlist){
+            if (student1.getStudentID().equals(student.getStudentID())){
+                removeWaitlistedStudent(student1);
+                return;
+            }
+        }
+    }
 /* 
     public static void sendEmail(Student student, int addedIndex, String courseCode){
         
