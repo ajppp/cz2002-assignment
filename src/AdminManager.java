@@ -36,7 +36,7 @@ public class AdminManager{
         System.out.println("6. Print student list by course");
     }
 
-    public static void editAccessPeriod(LoginPage loginTiming){
+    public static LoginPage editAccessPeriod(LoginPage loginTiming){
         Scanner sc = new Scanner(System.in);
         System.out.println("Current start login timing: " + loginTiming.getStartLoginTime());
         System.out.println("Current end login timing: " + loginTiming.getEndLoginTime());
@@ -66,6 +66,7 @@ public class AdminManager{
         loginTiming.setStartLoginTime(startLoginTime);
         loginTiming.setEndLoginTime(endLoginTime);
         System.out.println("Successfully changed login timing period!");
+        return loginTiming;
     }
     
     public static void addStudent(ArrayList<Student> students){
