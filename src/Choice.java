@@ -102,6 +102,13 @@ public class Choice {
                                     }
                                 }
                                 break;
+
+                            case 7:
+                                SerialEditor.writeCourses(courses);
+                                SerialEditor.writeStudents(students);
+                                System.out.printf("Thanks for using NTU Stars Admin. Bye");
+                                System.exit(0);
+                                break;
                             }
                         }
                     }

@@ -34,6 +34,7 @@ public class AdminManager{
         System.out.println("4. Check available slot for an index number (vacancy in a class)");
         System.out.println("5. Print student list by index number");
         System.out.println("6. Print student list by course");
+        System.out.println("7. Save your progress and exit");
     }
 
     public static LoginPage editAccessPeriod(LoginPage loginTiming){
@@ -115,7 +116,7 @@ public class AdminManager{
         ArrayList<Lesson> newLessonList = new ArrayList<Lesson>(numLessons);
         for (int i = 0; i < numCourseIndices; i++){
             for (int j = 0; j < numLessons; j++){
-                System.out.printf("For index %d of %s, insert the lesson type for lesson number %d (0 for lecture, 1 for tutorial, 2 lab )\n", i + 1, newCourseName, j = 1);
+                System.out.printf("For index %d of %s, insert the lesson type for lesson number %d (1 for lecture, 2 for tutorial, 3 for lab, 4 for seminar)\n", i + 1, newCourseName, j + 1);
                 int newLessonType = sc.nextInt();
                 System.out.printf("For this lesson, enter the day\n");
                 int newLessonDay = sc.nextInt();
@@ -129,11 +130,13 @@ public class AdminManager{
             }
             System.out.printf("Enter the index ID: ");
             int newIndexID = sc.nextInt();
-            System.out.println("How many vacancies does this new index have?");
-            int newIndexVacancies = sc.nextInt();
+            /*
+             *System.out.println("How many vacancies does this new index have?");
+             *int newIndexVacancies = sc.nextInt();
+             */
             System.out.println("What is the maximum number of students this new index has?");
             int newIndexMaxStudents = sc.nextInt();
-            newIndexList.set(i, new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexVacancies, newIndexMaxStudents, newLessonList, new ArrayList<Student>(0), new ArrayList<Student>(0)));
+            newIndexList.set(i, new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexMaxStudents, newIndexMaxStudents, newLessonList));   
         }
         courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
     }
@@ -141,7 +144,7 @@ public class AdminManager{
     public static void updateCourse(Course course){
         Scanner sc = new Scanner(System.in);
         System.out.printf("Details of course %s", course.getCourseName());
-        System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s \n ", course.getCourseName(), course.getCourseSchool(), course.getCourseCode());
+        System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s\n, (4) Add New Index ", course.getCourseName(), course.getCourseSchool(), course.getCourseCode());
         System.out.printf("Choose detail of course to change: ");
         int courseAttributeToChange = sc.nextInt();
         switch(courseAttributeToChange){
@@ -163,8 +166,32 @@ public class AdminManager{
                 course.setCourseCode(case2newCourseCode);
                 System.out.printf("Course code has been changed to %s successfully!", case2newCourseCode);
                 break;
+            case 4:   
+                System.out.printf("Enter the index ID: ");
+                int newIndexID = sc.nextInt();
+                System.out.println("What is the maximum number of students this new index has?");
+                int newIndexMaxStudents = sc.nextInt();
+                System.out.println("How many lessons does this index have?");
+                int numLessons = sc.nextInt();
+                ArrayList<Lesson> newIndexLessonArrayList = new ArrayList<Lesson>();
+                for (int i = 0; i < numLessons; i++){
+                    System.out.printf("insert the lesson type for lesson number %d (1 for lecture, 2 for tutorial, 3 for lab, 4 for seminar)\n", i + 1);
+                    int newLessonType = sc.nextInt();
+                    System.out.printf("For this lesson, enter the day\n");
+                    int newLessonDay = sc.nextInt();
+                    System.out.printf("For this lesson, enter the start period\n");
+                    int newLessonStartPeriod = sc.nextInt();
+                    System.out.printf("For this lesson, enter the end period\n");
+                    int newLessonEndPeriod = sc.nextInt();
+                    System.out.printf("For this lesson, enter the venue\n");
+                    String newLessonVenue = sc.nextLine();
+                    newIndexLessonArrayList.add(new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
+                }
+                course.getIndex().add(new Index(course.getCourseName(), course.getCourseSchool(), course.getCourseCode(), course.getCourseAU(), newIndexMaxStudents, newIndexMaxStudents, newIndexID, newIndexLessonArrayList));
+                System.out.println("successfully added index to course");
+                
+            }
         }
-    }
 
     public static void updateIndex(Index index){
         Scanner sc = new Scanner(System.in);
