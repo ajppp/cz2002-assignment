@@ -3,6 +3,7 @@ import java.util.*;
 
 public class StudentManager{
     public static String studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students, Student curStudent){
+        Console console = System.console();
         Scanner sc = new Scanner(System.in);
         Calendar cal = Calendar.getInstance();
         Date dateNow = cal.getTime();
@@ -16,10 +17,12 @@ public class StudentManager{
         else{
             int i = 0;
             do { 
-                System.out.println("Please insert your UserID: ");
-                String inputUserID = sc.nextLine();
-                System.out.println("Please insert your password: ");
-                String inputStudentPassword = sc.nextLine();
+                console.printf("Please type your Admin ID: ");
+                String inputUserID = console.readLine();
+                console.printf(inputUserID + "\n");
+                console.printf("Please type your password: ");
+                char[] passwordChars = console.readPassword();
+                String inputStudentPassword = new String(passwordChars);
                 if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 0){
                     System.out.println("Wrong Username or Password. Please try again");
                     if (i == 3){

@@ -6,14 +6,16 @@ import java.text.ParseException;
 
 public class AdminManager{
     public static int login(LoginManager loginManager){
+        Console console = System.console();
         Scanner sc = new Scanner(System.in);
         int result;
         for(int i = 0; i < 3; i++){
-            System.out.printf("i = %d\n", i);
-            System.out.println("Please type your Admin ID: ");
-            String inputAdminID = sc.nextLine();
-            System.out.println("Please type your password: ");
-            String inputAdminPassword = sc.nextLine();
+            console.printf("Please type your Admin ID: ");
+            String inputAdminID = console.readLine();
+            console.printf(inputAdminID + "\n");
+            console.printf("Please type your password: ");
+            char[] passwordChars = console.readPassword();
+            String inputAdminPassword = new String(passwordChars);
             result = loginManager.adminCompare(inputAdminID, inputAdminPassword);
             if (result == 1){
                 System.out.println("we are in the if block");

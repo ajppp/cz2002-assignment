@@ -8,12 +8,10 @@ JC = javac
 
 CLASSES = Choice.java \
 		  Course.java \
-		  EraserClass.java \
 		  Index.java \
 		  Lesson.java \
 		  LoginManager.java \
 		  LoginPage.java \
-		  PasswordField.java \
 		  SerialEditor.java \
 		  Student.java \
 		  Test.java
