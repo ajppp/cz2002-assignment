@@ -70,7 +70,7 @@ public class Test{
         lessonList70089.add(new Lesson(3, 1, 5, 8, "CBC Lab"));
 
         ArrayList <Index> indexList1031 = new ArrayList<>();
-        indexList1031.add(new Index("Basic Organic Chemistry with Laboratory","SPMS", "CM1031", 4, 0, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        indexList1031.add(new Index("Basic Organic Chemistry with Laboratory","SPMS", "CM1031", 4, 50, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
         courses.add(new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 4, indexList1031));
 
@@ -79,7 +79,7 @@ public class Test{
         lessonList17048.add(new Lesson(4, 1, 2, 3, "TR+64"));
 
         ArrayList <Index> indexList4050 = new ArrayList<>();
-        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 4, 50, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
+        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 4, 0, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
 
         courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 4, indexList4050));
 

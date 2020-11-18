@@ -138,7 +138,7 @@ public class Choice {
                         System.out.println("5. Change Index Number of Course");
                         System.out.println("6. Swap Index Number with Another Student");
                         System.out.println("7. Exit :D");
-                        System.out.println(curStudent.getStudentRegisteredAU());
+                        System.out.printf("No of current AUS: %d\n", curStudent.getStudentRegisteredAU());
                         studentChoice = sc.nextInt();
                         switch (studentChoice) {
                             case 1:
@@ -187,8 +187,14 @@ public class Choice {
                                 curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(indexChoice).getCourseAU());
                                 break;
                             case 3:
-                                printRegisteredCourses(curStudent);
-                                System.out.println("Finished printing registered courses");
+                                System.out.println("These are your registered courses:");
+                                System.out.printf("%s\n", "--------------------");
+                                    for (Index index: curStudent.getRegisteredIndices()){
+                                        if (index.listRegisteredStudents().contains(curStudent)){
+                                            System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
+                                        }
+                                }
+                                System.out.println("Finished printing registered courses \n");
                                 break;
                             case 4:
                                 System.out.println("Choose the course to view vacancies: ");
@@ -305,20 +311,36 @@ public class Choice {
             System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
             System.out.printf("%s\n", "--------------------");
             for(Lesson lesson: index.getLessonList()){
-                System.out.printf("%s %s %s %s %s \n", lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
+                System.out.printf("%s %s %s-%s %s \n", lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
             }
             i++;
         }
     }
 
     public static void printRegisteredCourses(Student curStudent){
+        System.out.println("These are your registered courses (with waitlisted courses):");
         for (int i = 0; i < curStudent.getRegisteredIndices().size(); i++){
-            System.out.println("These are your registered courses:");
             System.out.printf("%s\n", "--------------------");
             
             System.out.printf("%d|%d|%s\n", i+1, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
         }
     }
+
+   /*  public static void printConfirmedCourses (Student curStudent){
+        System.out.println("These are your registered courses:");
+        for (int i = 0; i < curStudent.getRegisteredIndices().size(); i++){
+            System.out.printf("%s\n", "--------------------");
+            for (Course course: courses){ // how to access courses ?
+                for (Index index : course.getIndex()){
+                    for (Student student: index.listRegisteredStudents()){
+                        if (curStudent.getStudentID()) == student.getStudentID()){
+                            System.out.printf("%d|%d|%s\n", i+1, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
+                        }
+                    }
+                }
+            }
+        }
+    } */
 
     public static boolean compareClash(Student curStudent, Index addedIndex){
         boolean clash = false;
