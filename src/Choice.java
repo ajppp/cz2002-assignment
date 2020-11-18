@@ -163,8 +163,6 @@ public class Choice {
                         }
                     }
                     do {
-                        students = SerialEditor.loadStudents();
-                        courses = SerialEditor.loadCourses();
                         System.out.println("Welcome to NTU Stars Planner!");
                         System.out.println("1. Add Course");
                         System.out.println("2. Drop Course");
@@ -183,7 +181,7 @@ public class Choice {
                                 while (courseChoice == -1){
                                     System.out.println("Choose course to be added: ");
                                     int temp = sc.nextInt() - 1;
-                                    if (temp > 0 && temp < courses.size()){
+                                    if (temp >= 0 && temp < courses.size()){
                                         courseChoice = temp;
                                     }
                                 }
@@ -202,7 +200,7 @@ public class Choice {
                                     while (indexChoice == -1){
                                         System.out.println("Choose index to be added: ");
                                         int temp = sc.nextInt() - 1;
-                                        if (temp > 0 && temp < courses.get(courseChoice).getIndex().size()){
+                                        if (temp >= 0 && temp < courses.get(courseChoice).getIndex().size()){
                                             indexChoice = temp;
                                         }
                                     }
@@ -214,8 +212,6 @@ public class Choice {
                                         courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(curStudent);
                                     }
                                 }
-                                SerialEditor.writeCourses(courses);
-                                SerialEditor.writeStudents(students);
                                 break;
                             case 2:
                                 printRegisteredCourses(curStudent);
@@ -235,8 +231,6 @@ public class Choice {
                                     }
                                 }
                                 curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(indexChoice).getCourseAU());
-                                SerialEditor.writeCourses(courses);
-                                SerialEditor.writeStudents(students);
                                 break;
                             case 3:
                                 System.out.println("These are your registered courses:");
@@ -307,8 +301,6 @@ public class Choice {
                                         }
                                     }
                                 }
-                                SerialEditor.writeCourses(courses);
-                                SerialEditor.writeStudents(students);
                                 break;
                             case 6:
                                 printRegisteredCourses(curStudent);
@@ -358,8 +350,6 @@ public class Choice {
                                         }
                                     }
                                 }
-                                SerialEditor.writeCourses(courses);
-                                SerialEditor.writeStudents(students);
                                 break;
                             case 7:
                                 SerialEditor.writeCourses(courses);

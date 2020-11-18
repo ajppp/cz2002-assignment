@@ -79,7 +79,7 @@ public class Test{
         lessonList17048.add(new Lesson(4, 1, 2, 3, "TR+64"));
 
         ArrayList <Index> indexList4050 = new ArrayList<>();
-        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 4, 0, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
+        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 4, 1, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
 
         courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 4, indexList4050));
 

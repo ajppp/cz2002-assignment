@@ -25,8 +25,7 @@ public class Index implements java.io.Serializable{
     private ArrayList<Student> registeredStudents = new ArrayList<Student>();
 
     public Index (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
-        this.courseName = courseName;
-        this.courseSchool = courseSchool;
+        this.courseName = courseName; this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
         this.indexID = indexID;
@@ -163,12 +162,14 @@ public class Index implements java.io.Serializable{
         }
     }
     // this function runs in the BACKEND ONLY!!!!
-    public void waitlistedStudentGetsIndex(Student studentDroppedIndex, Student studentGotIndex){
-        removeRegisteredStudent(studentDroppedIndex);
-        removeWaitlistedStudent(studentGotIndex);
-        addRegisteredStudent(studentGotIndex);
-        // sendEmail(studentGotIndex, getIndexID(), this.getCourseCode());
-    }
+    /*
+     *public void waitlistedStudentGetsIndex(Student studentDroppedIndex, Student studentGotIndex){
+     *    removeRegisteredStudent(studentDroppedIndex);
+     *    removeWaitlistedStudent(studentGotIndex);
+     *    addRegisteredStudent(studentGotIndex);
+     *    sendEmail(studentGotIndex, getIndexID(), this.getCourseCode());
+     *}
+     */
 
     public void studentAddedToIndex(Student student1){
         if (vacancies > 0){
@@ -201,6 +202,15 @@ public class Index implements java.io.Serializable{
                     break;
                 }
             }
+        }
+
+        if (studentWaitlist.size() > 0){
+            Student firstStudentOnWaitlist = studentWaitlist.get(0);
+            addRegisteredStudent(firstStudentOnWaitlist);
+            removeWaitlistedStudent(firstStudentOnWaitlist);
+            vacancies--;
+            //TODO: add current index to the student's registered index
+            sendEmail(firstStudentOnWaitlist, getIndexID(), this.getCourseCode());
         }
     }
  

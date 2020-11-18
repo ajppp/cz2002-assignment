@@ -36,7 +36,7 @@ compile:
 	$(JC) $(SOURCE) -cp "$(DEPENDENCIES)" -d $(CLASSPATH)
 
 clean:
-	$(RM) $(DATA) $(CLASSES)
+	$(RM) $(DATA) $(CLASSPATH)
 
 test: 
 	$(RM) $(DATA)
