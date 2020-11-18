@@ -3,3 +3,4 @@ make clean
 make
 make test
 make run
+make clean

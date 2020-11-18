@@ -65,6 +65,6 @@ public class Course implements java.io.Serializable{
     }
 
     public boolean compareCourseCode(Course course){
-        return courseCode.equalsIgnoreCase(course.courseCode);
+        return courseCode.equals(course.courseCode);
     }
 }

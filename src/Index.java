@@ -161,7 +161,7 @@ public class Index implements java.io.Serializable{
     }
 
     public void removeRegisteredStudent(Student student1){
-        System.out.printf("size of array list before removal: %d",registeredStudents.size());
+        System.out.printf("size of array list before removal: %d\n",registeredStudents.size());
         for(int i = 0; i < registeredStudents.size(); i++){
             if(student1.getStudentID().equals(registeredStudents.get(i).getStudentID())){
                 registeredStudents.remove(i);
@@ -169,7 +169,7 @@ public class Index implements java.io.Serializable{
             }
         }
         System.out.println("Successfully removed registered student");
-        System.out.printf("size of array list after removal: %d",registeredStudents.size());
+        System.out.printf("size of array list after removal: %d\n",registeredStudents.size());
     }
 
     public ArrayList<Student> listRegisteredStudents(){
@@ -194,14 +194,14 @@ public class Index implements java.io.Serializable{
         }
     }
     // this function runs in the BACKEND ONLY!!!!
-    public void waitlistedStudentGetsIndex (Student studentDroppedIndex, Student studentGotIndex){
+    public void waitlistedStudentGetsIndex(Student studentDroppedIndex, Student studentGotIndex){
         removeRegisteredStudent(studentDroppedIndex);
         removeWaitlistedStudent(studentGotIndex);
         addRegisteredStudent(studentGotIndex);
         // sendEmail(studentGotIndex, getIndexID(), this.getCourseCode());
     }
 
-    public void studentAddedToIndex (Student student1){
+    public void studentAddedToIndex(Student student1){
         if (vacancies > 0){
             addRegisteredStudent(student1);
             vacancies--;

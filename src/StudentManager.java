@@ -17,7 +17,7 @@ public class StudentManager{
         else{
             int i = 0;
             do { 
-                console.printf("Please type your Admin ID: ");
+                console.printf("Please type your Student ID: ");
                 String inputUserID = console.readLine();
                 console.printf(inputUserID + "\n");
                 console.printf("Please type your password: ");

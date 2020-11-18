@@ -145,21 +145,32 @@ public class Choice {
                                 System.out.println("Choose the course to be added: ");
                                 printCourses(courses);
                                 int courseChoice = sc.nextInt() - 1;
-                                printIndices(courses.get(courseChoice).getIndex());
-                                System.out.println("Choose index to be added: ");
-                                int indexChoice = sc.nextInt() - 1;
-                                if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
-                                    System.out.println("There is a clash");
-                                else {
-                                    curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
-                                    // changing course details
-                                    courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(curStudent);
+                                int sameCourse = 0;
+                                for (Index index: curStudent.getRegisteredIndices()){
+                                    if (courses.get(courseChoice).getCourseCode().equals(index.getCourseCode())){
+                                        System.out.println("You have been registered or are in the waitlist for this course. Please drop the index before trying to add. Thanks");
+                                        sameCourse = 1;
+                                        break;
+                                    }
+
+                                }
+                                if (sameCourse == 0){
+                                    printIndices(courses.get(courseChoice).getIndex());
+                                    System.out.println("Choose index to be added: ");
+                                    int indexChoice = sc.nextInt() - 1;
+                                    if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
+                                        System.out.println("There is a clash");
+                                    else {
+                                        curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
+                                        // changing course details
+                                        courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(curStudent);
+                                    }
                                 }
                                 break;
                             case 2:
                                 printRegisteredCourses(curStudent);
                                 System.out.println("Choose the course to be dropped: ");
-                                indexChoice = sc.nextInt() - 1;
+                                int indexChoice = sc.nextInt() - 1;
                                 int indexIDToBeDropped = curStudent.getRegisteredIndices().get(indexChoice).getIndexID();
                                 String courseCodeToDrop = curStudent.getRegisteredIndices().get(indexChoice).getCourseCode();
                                 // changing course details
@@ -291,7 +302,8 @@ public class Choice {
     public static void printIndices(ArrayList <Index> indices){
         int i = 1;
         for (Index index: indices){
-            System.out.printf("%d)Index ID: %d\nIndex Vacancy:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+            System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+            System.out.printf("%s\n", "--------------------");
             for(Lesson lesson: index.getLessonList()){
                 System.out.printf("%s %s %s %s %s \n", lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());
             }
@@ -301,6 +313,9 @@ public class Choice {
 
     public static void printRegisteredCourses(Student curStudent){
         for (int i = 0; i < curStudent.getRegisteredIndices().size(); i++){
+            System.out.println("These are your registered courses:");
+            System.out.printf("%s\n", "--------------------");
+            
             System.out.printf("%d|%d|%s\n", i+1, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
         }
     }
