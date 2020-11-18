@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-/* 
+ 
 // for javax.mail 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -9,7 +9,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
- */
 
 public class Index implements java.io.Serializable{
     private String courseName;
@@ -232,7 +231,7 @@ public class Index implements java.io.Serializable{
             }
         }
     }
-/* 
+ 
     public static void sendEmail(Student student, int addedIndex, String courseCode){
         
 		final String username = "dummyemailforoodp"; // to be added
@@ -269,6 +268,6 @@ public class Index implements java.io.Serializable{
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-    } */
+    } 
 }
 

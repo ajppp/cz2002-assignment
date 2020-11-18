@@ -24,9 +24,12 @@ classes: $(CLASSES:.java=.class)
 clean:
 	$(RM) *.class
 	$(RM) *.ser
+	$(RM) *.args
 	$(RM) *.csv
 
 test: 
+	$(RM) *.ser
+	$(RM) *.csv
 	java Test
 
 run:

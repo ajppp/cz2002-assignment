@@ -111,8 +111,12 @@ public class Test{
             System.out.println(student.getStudentID());
         }
 
-        //Save an admin <3
-        loginManager.storeAdminPassword("Cloud", "Cloud123");
+        // Generate admins
+        loginManager.storeAdminPassword("Claudia", "Claudia123");
+        loginManager.storeAdminPassword("Jethro", "Jethro123");
+        loginManager.storeAdminPassword("Elroy", "Elroy123");
+        loginManager.storeAdminPassword("Lianran", "Lianran123");
+        loginManager.storeAdminPassword("Isabela", "Isabela123");
 
         SerialEditor.writeStudents(students);
         SerialEditor.writeCourses(courses);
