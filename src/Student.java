@@ -156,4 +156,11 @@ public class Student implements java.io.Serializable{
         //} 
         return createdStudentID.toString();
     }
+
+    public void swapIndex(Index index1, Index index2){
+        registeredIndex.add(index1);
+        dropIndex(index2.getIndexID(), index2.getCourseAU());
+        studentRegisteredAU += index1.getCourseAU();
+        System.out.println("done swapping");
+    }
 }

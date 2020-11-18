@@ -17,13 +17,13 @@ public class Course implements java.io.Serializable{
         courseIndex = index;
     }
 
-    public Course (String name, String school, String code, int AU){
+    /* public Course (String name, String school, String code, int AU){
         courseName = name;
         courseSchool = school;
         courseCode = code;
         courseAU = AU;
     }
-
+ */
     public ArrayList<Index> getIndex(){
         return courseIndex;
     }

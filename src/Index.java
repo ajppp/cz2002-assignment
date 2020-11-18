@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.lang.reflect.Array;
  
 /*
  * for javax.mail 
@@ -140,7 +141,7 @@ public class Index implements java.io.Serializable{
     //new methods by cloud
     public void addRegisteredStudent(Student student1){
         registeredStudents.add(student1);
-        System.out.println(student1.getStudentID() + "successfully added to wait list");
+        System.out.println(student1.getStudentID() + " successfully added to registered student list");
     }
 
     public void removeRegisteredStudent(Student student1){
@@ -157,6 +158,10 @@ public class Index implements java.io.Serializable{
 
     public ArrayList<Student> listRegisteredStudents(){
         return registeredStudents;
+    }
+
+    public ArrayList<Student> listStudentWaitlist(){
+        return studentWaitlist;
     }
 
     public int listNoOfRegisteredStudents(){
