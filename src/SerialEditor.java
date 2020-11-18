@@ -2,11 +2,11 @@ import java.util.*;
 import java.io.*;
 
 public class SerialEditor{
-    public static final String studentFileName = "student.ser";
-    public static final String courseFileName = "course.ser";
-    public static final String indexFileName = "index.ser";
-    public static final String loginTimingFileName = "loginTiming.ser";
-    public static final String loginDetailsFileName = "loginDetails.ser";
+    public static final String studentFileName = "data/student.ser";
+    public static final String courseFileName = "data/course.ser";
+    public static final String indexFileName = "data/index.ser";
+    public static final String loginTimingFileName = "data/loginTiming.ser";
+    public static final String loginDetailsFileName = "data/loginDetails.ser";
 
     public static void writeStudents(ArrayList<Student> student){
         try {

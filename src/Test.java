@@ -122,9 +122,9 @@ public class Test{
         SerialEditor.writeCourses(courses);
         SerialEditor.writeLoginTiming(login);
         SerialEditor.writeLoginDetails(loginManager);
-        for(Student student: students){
-            FileEditor.writeStudents(student);
-        }
+        //for(Student student: students){
+            //FileEditor.writeStudents(student);
+        //}
        // for (Index index: indices){
        //     System.out.println(index.getVacancies());
        // } 
