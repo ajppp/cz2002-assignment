@@ -102,8 +102,41 @@ public class Choice {
                                     }
                                 }
                                 break;
-
                             case 7:
+                                int i = 1;
+                                for (Student student: students){
+                                    System.out.printf("%d) %s %s\n", i, student.getStudentID(), student.getStudentName());
+                                    i++;
+                                }
+                                int studentChoice = sc.nextInt() - 1;
+                                Student addedStudent = students.get(studentChoice);
+                                System.out.println("Choose course to add student: ");
+                                printCourses(courses);
+                                courseChoice = sc.nextInt() - 1;
+
+                                int sameCourse = 0;
+                                for (Index index: addedStudent.getRegisteredIndices()){
+                                    if (courses.get(courseChoice).getCourseCode().equals(index.getCourseCode())){
+                                        System.out.println("You have been registered or are in the waitlist for this course. Please drop the index before trying to add. Thanks");
+                                        sameCourse = 1;
+                                        break;
+                                    }
+
+                                }
+                                if (sameCourse == 0){
+                                    printIndices(courses.get(courseChoice).getIndex());
+                                    System.out.println("Choose index to be added: ");
+                                    indexChoice = sc.nextInt() - 1;
+                                    if(compareClash(addedStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
+                                        System.out.println("There is a clash");
+                                    else {
+                                        addedStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
+                                        // changing course details
+                                        courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(addedStudent);
+                                    }
+                                }
+                                break;
+                            case 8:
                                 SerialEditor.writeCourses(courses);
                                 SerialEditor.writeStudents(students);
                                 System.out.printf("Thanks for using NTU Stars Admin. Bye");
@@ -146,7 +179,14 @@ public class Choice {
                             case 1:
                                 System.out.println("Choose the course to be added: ");
                                 printCourses(courses);
-                                int courseChoice = sc.nextInt() - 1;
+                                int courseChoice = -1;
+                                while (courseChoice == -1){
+                                    System.out.println("Choose course to be added: ");
+                                    int temp = sc.nextInt() - 1;
+                                    if (temp > 0 && temp < courses.size()){
+                                        courseChoice = temp;
+                                    }
+                                }
                                 int sameCourse = 0;
                                 for (Index index: curStudent.getRegisteredIndices()){
                                     if (courses.get(courseChoice).getCourseCode().equals(index.getCourseCode())){
@@ -158,8 +198,14 @@ public class Choice {
                                 }
                                 if (sameCourse == 0){
                                     printIndices(courses.get(courseChoice).getIndex());
-                                    System.out.println("Choose index to be added: ");
-                                    int indexChoice = sc.nextInt() - 1;
+                                    int indexChoice = -1;
+                                    while (indexChoice == -1){
+                                        System.out.println("Choose index to be added: ");
+                                        int temp = sc.nextInt() - 1;
+                                        if (temp > 0 && temp < courses.get(courseChoice).getIndex().size()){
+                                            indexChoice = temp;
+                                        }
+                                    }
                                     if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
                                         System.out.println("There is a clash");
                                     else {
@@ -238,7 +284,7 @@ public class Choice {
                                         int i = 1;
                                         if (course.getIndex().size() > 1){
                                             for (Index index:course.getIndex()){
-                                                System.out.printf("%d) Index ID:%d \nVacancy:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+                                                System.out.printf("%d) Index ID:%d \nVacancy:%d\n Index Total Size:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
                                                 i++;
                                             }
                                             System.out.println("Choose new index: ");
@@ -344,7 +390,7 @@ public class Choice {
     public static void printIndices(ArrayList <Index> indices){
         int i = 1;
         for (Index index: indices){
-            System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+            System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\n Index Total Size:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
             System.out.printf("%s\n", "--------------------");
             for(Lesson lesson: index.getLessonList()){
                 System.out.printf("%s %s %s-%s %s \n", lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());

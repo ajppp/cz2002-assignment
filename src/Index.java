@@ -51,22 +51,6 @@ public class Index implements java.io.Serializable{
         this.lessonList = lessonList;
     }
 
-    //Creates the index with vacancies, the maximum number of students, the lessons it consist of and the waitlist
-    public Index (int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
-        this.vacancies = vacancies;
-        this.maxStudents = maxStudents;
-        this.indexID = indexID;
-        this.lessonList = lessonList;
-        this.studentWaitlist = studentWaitlist;
-        this.registeredStudents = registeredStudents;
-    }
-    
-    //Creates the index with vacancies and the maximum number of students
-    public Index (int vacancies, int maxStudents){
-        this.vacancies = vacancies;
-        this.maxStudents = maxStudents;
-    }
-
     public Index(){}
 
     public String getCourseName(){

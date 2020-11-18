@@ -36,7 +36,8 @@ public class AdminManager{
         System.out.println("4. Check available slot for an index number (vacancy in a class)");
         System.out.println("5. Print student list by index number");
         System.out.println("6. Print student list by course");
-        System.out.println("7. Save your progress and exit");
+        System.out.println("7. Add student to course");
+        System.out.println("8. Save your progress and exit");
     }
 
     public static LoginPage editAccessPeriod(LoginPage loginTiming){
@@ -84,10 +85,26 @@ public class AdminManager{
         }
         System.out.println("Input new Student name: ");
         String studentName = sc.nextLine();
+        for (Student student: students){
+            if (studentName.equals(student.getStudentName())){
+                System.out.println("Student already exists!");
+                break;
+            }
+        }
         System.out.println("Input new Student school: ");
         String studentSchool = sc.nextLine();
-        System.out.println("Input new Student gender (M/F): ");
-        String studentGender = sc.nextLine();
+        String studentGender = "F";
+        boolean correctInput = false;
+        do{
+            System.out.println("Input new Student gender (M/F): ");
+            studentGender = sc.nextLine();
+            if (!(studentGender.equals('M')) && !(studentGender.equals('M'))){
+                System.out.println("Not valid entry! Try again");
+            }
+            else{
+                correctInput = true;
+            }
+        } while (!correctInput);
         System.out.println("Input new Student nationality: ");
         String studentNationality = sc.nextLine();
         // TODO: use REGEX!!! :D to check email~~~ 
@@ -97,6 +114,12 @@ public class AdminManager{
         String studentEmail = sc.nextLine();
         Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
         students.add(addedStudent);
+        System.out.println("Updated student list: ");
+        i = 1;
+        for (Student student: students){
+            System.out.printf("%d %s %s\n", i, student.getStudentID(), student.getStudentName());
+            i++;
+        }
         return addedStudent;
     }
 
@@ -104,14 +127,27 @@ public class AdminManager{
         Scanner sc = new Scanner(System.in);
         System.out.printf("Enter new course name: ");
         String newCourseName = sc.nextLine();
+        for (Course course: courses){
+            if (newCourseName.equals(course.getCourseName())){
+                System.out.println("Course already exists!");
+                break;
+            }
+        }
         System.out.printf("\nEnter new course school: ");
         String newCourseSchool = sc.nextLine();
         System.out.printf("\nEnter new course code: ");
         String newCourseCode = sc.nextLine();
         System.out.printf("\nEnter new course AU: ");
         int newCourseAU = sc.nextInt();
-        System.out.println("How many indices does this new course have? ");
-        int numCourseIndices = sc.nextInt();
+        int numCourseIndices = 0;    
+        do{
+            System.out.println("How many indices does this new course have? ");
+            numCourseIndices = sc.nextInt();
+            while (!sc.hasNextInt()){
+                System.out.println("Enter a positive number");
+                sc.next();
+            }
+        } while (numCourseIndices < 0);
         System.out.println("How many lessons in each index? ");
         int numLessons = sc.nextInt();
         ArrayList<Index> newIndexList = new ArrayList<Index>(numCourseIndices);
@@ -141,6 +177,12 @@ public class AdminManager{
             newIndexList.set(i, new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexMaxStudents, newIndexMaxStudents, newLessonList));   
         }
         courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
+        System.out.println("Updated course list: ");
+        int i = 1;
+        for (Course course: courses){
+            System.out.printf("%d %s %s\n", i, course.getCourseCode(), course.getCourseName());
+            i++;
+        }
     }
 
     public static void updateCourse(Course course){
