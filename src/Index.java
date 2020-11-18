@@ -140,8 +140,7 @@ public class Index implements java.io.Serializable{
     //new methods by cloud
     public void addRegisteredStudent(Student student1){
         registeredStudents.add(student1);
-        System.out.println(student1.getStudentID());
-        System.out.println("Successfully added student");
+        System.out.println(student1.getStudentID() + "successfully added to wait list");
     }
 
     public void removeRegisteredStudent(Student student1){
@@ -189,6 +188,7 @@ public class Index implements java.io.Serializable{
         if (vacancies > 0){
             addRegisteredStudent(student1);
             vacancies--;
+            System.out.println("The current vacancy is" + vacancies);
         }
         else {
             addWaitlistStudent(student1);

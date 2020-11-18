@@ -209,27 +209,35 @@ public class Choice {
                                 String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                                 Index indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
                                 indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
+                            
                                 for (Course course:courses){
                                     if (course.getCourseCode().equals(codeOfCourseToBeChanged)){
                                         int i = 1;
-                                        for (Index index:course.getIndex()){
-                                            System.out.printf("%d) Index ID:%d \nVacancy:%d\n Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
-                                            i++;
+                                        if (course.getIndex().size() > 1){
+                                            for (Index index:course.getIndex()){
+                                                System.out.printf("%d) Index ID:%d \nVacancy:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getStudentWaitlist().size());
+                                                i++;
+                                            }
+                                            System.out.println("Choose new index: ");
+                                            indexChoice = sc.nextInt() - 1;
+                                            Index indexToSwapTo = new Index();
+                                            for (Course course1:courses){
+                                                if (course1.getCourseCode().equals(codeOfCourseToBeChanged)){
+                                                    indexToSwapTo = course1.getIndex().get(indexChoice);
+                                                }
+                                            }
+                                            curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(courseChoice).getCourseAU());
+                                            curStudent.registerIndex(indexToSwapTo);
+                                            indexToBeDropped.removeStudentFromIndex(curStudent);
+                                            indexToSwapTo.studentAddedToIndex(curStudent);
+                                            break;
                                         }
-                                        break;
+                                        else{
+                                            System.out.println("This course only has one index!");
+                                            break;
+                                        }
                                     }
                                 }
-                                System.out.println("Choose new index: ");
-                                indexChoice = sc.nextInt() - 1;
-                                Index indexToBeAdded = courses.get(courseChoice).getIndex().get(indexChoice);
-                                int indexIDToBeAdded = courses.get(courseChoice).getIndex().get(indexChoice).getIndexID();
-                                // implement the checking
-                                //if (indexIDToBeDropped != indexIDToBeAdded){
-                                    curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(courseChoice).getCourseAU());
-                                    curStudent.registerIndex(indexToBeAdded);
-                                    indexToBeDropped.removeStudentFromIndex(curStudent);
-                                    indexToBeAdded.studentAddedToIndex(curStudent);
-                                //}
                                 break;
                             case 6:
                                 printRegisteredCourses(curStudent);
