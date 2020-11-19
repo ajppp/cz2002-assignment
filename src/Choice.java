@@ -334,22 +334,21 @@ public class Choice {
                                         }
                                     }
                                 }
-                                String currentStudentCourseCode = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
+                                String affectedCourseCode = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                                 Index currentStudentIndex = curStudent.getRegisteredIndices().get(courseChoice);
-                                String affectedCourseCode = "0";
+                                // String affectedCourseCode = "0";
                                 int curStudentsNewIndexID = 0;
                                 int swapperStudentsNewIndexID = 0;
                                 for (Index index: swapperStudent.getRegisteredIndices()){
-                                    for (Index index1: curStudent.getRegisteredIndices()){
-                                        if (index1.getCourseCode().equals(index.getCourseCode())){
-                                            curStudent.registerIndex(index);
-                                            curStudentsNewIndexID = index.getIndexID();
-                                            curStudent.dropIndex(index1.getIndexID(), index1.getCourseAU());
-                                            swapperStudent.registerIndex(index1);
-                                            swapperStudentsNewIndexID = index1.getIndexID();
-                                            swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
-                                            System.out.println("finished swapping students");
-                                            break;
+                                    if (index.getCourseCode().equals(affectedCourseCode)){
+                                        curStudent.registerIndex(index);
+                                        curStudentsNewIndexID = index.getIndexID();
+                                        curStudent.dropIndex(currentStudentIndex.getIndexID(), currentStudentIndex.getCourseAU();
+                                        swapperStudent.registerIndex(currentStudentIndex);
+                                        swapperStudentsNewIndexID = currentStudentIndex.getIndexID();
+                                        swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
+                                        System.out.println("finished swapping students");
+                                        break;
                                         }
                                     }
                                 }
