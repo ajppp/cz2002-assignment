@@ -101,18 +101,15 @@ public class AdminManager{
         do{
             System.out.println("Input new Student gender (M/F): ");
             studentGender = sc.nextLine();
-            if (!(studentGender.equals('M')) || !(studentGender.equals('M'))){
-                System.out.println("Not valid entry! Try again");
+            if (studentGender.equals("M") || studentGender.equals("F")){
+                correctInput = true;
             }
             else{
-                correctInput = true;
+                System.out.println("Not valid entry! Insert either M or F");
             }
         } while (!correctInput);
         System.out.println("Input new Student nationality: ");
         String studentNationality = sc.nextLine();
-        // TODO: use REGEX!!! :D to check email~~~ 
-        // as always, cloud is using something/one...
-        // yeah im using regex, what are you thinking about?
         System.out.println("Input new Student email: "); 
         String studentEmail = sc.nextLine();
         Student addedStudent = new Student(studentName, studentSchool, studentGender, studentNationality, studentEmail);
