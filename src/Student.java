@@ -89,7 +89,10 @@ public class Student implements java.io.Serializable{
     // check is done in main on whether it can be added
     // this method is just to add to student
     public void registerIndex(Index index){
-        if ((studentRegisteredAU + index.getCourseAU()) <= MAX_AU){
+        int newAU = studentRegisteredAU + index.getCourseAU();
+        if (newAU > MAX_AU){
+            System.out.println("You have exceeded the total AUs. Please drop a course before adding");
+        } else {
             boolean sameCourse = false;
             if (registeredIndex.size() > 0){
                 for (int i=0; i < registeredIndex.size(); i++){
