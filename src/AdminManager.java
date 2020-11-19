@@ -184,10 +184,6 @@ public class AdminManager{
             }
             System.out.printf("Enter the index ID: ");
             int newIndexID = sc.nextInt();
-            /*
-             *System.out.println("How many vacancies does this new index have?");
-             *int newIndexVacancies = sc.nextInt();
-             */
             System.out.println("What is the maximum number of students this new index has?");
             int newIndexMaxStudents = sc.nextInt();
             newIndexList.add(new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexMaxStudents, newIndexMaxStudents, newIndexID, newLessonList));   
