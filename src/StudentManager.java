@@ -15,8 +15,6 @@ public class StudentManager{
             return "0";
         }
         else{
-            int i = 0;
-            do { 
                 boolean correctUserID = false;
                 String inputUserID = "0";
                 while(!correctUserID){
@@ -29,27 +27,18 @@ public class StudentManager{
                         console.printf("User ID does not exist. Please try again\n");
                     }
                 }
-                console.printf("Please type your password: ");
-                char[] passwordChars = console.readPassword();
-                String inputStudentPassword = new String(passwordChars);
-                if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 0){
-                    System.out.println("Wrong Username or Password. Please try again");
-                    if (i == 3){
-                        return "0";
+                String inputStudentPassword = "0";
+                for (int i = 0; i < 3; i++){
+                    console.printf("Please type your password: ");
+                    char[] passwordChars = console.readPassword();
+                    inputStudentPassword = new String(passwordChars);
+                    if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 0){
+                        System.out.println("Wrong Username or Password. Please try again");
+                        }
+                    else if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 1){
+                        return inputUserID;
                     }
                 }
-                else if (loginManager.studentCompare(inputUserID, inputStudentPassword) == 1) { 
-                    return inputUserID;
-                   /*  for (Student student: students){
-                        if (student.getStudentID().equals(inputUserID)){
-                            curStudent = student;
-                            correctPassword = true;
-                            return inputUserID;
-                        }
-                    } */
-                }
-                i++;
-            } while (correctPassword = false);
         }
         return "0";
     }
