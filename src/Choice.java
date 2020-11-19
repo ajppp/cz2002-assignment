@@ -78,12 +78,30 @@ public class Choice {
                                 System.out.printf("The number of vacancies for index %d of course %s is %d\n", courses.get(courseChoice).getIndex().get(indexChoice).getIndexID(), courses.get(courseChoice).getCourseCode(), courses.get(courseChoice).getIndex().get(indexChoice).getVacancies());
                                 break;
                             case 5:
-                                System.out.println("Choose course to view student namelist: ");
                                 printCourses(courses);
-                                courseChoice = sc.nextInt() - 1;
+                                courseChoice = -1;
+                                while (courseChoice == -1){
+                                    System.out.println("Choose course to view student namelist: ");
+                                    int temp = sc.nextInt() - 1;
+                                    if (temp >= 0 && temp < courses.size()){
+                                        courseChoice = temp;
+                                    }
+                                    else{
+                                        System.out.println("The course does not exist. Please enter a valid number from the option given above");
+                                    }
+                                }
                                 printIndices(courses.get(courseChoice).getIndex());
-                                System.out.println("Choose index of course to view student namelist: ");
-                                indexChoice = sc.nextInt() - 1;
+                                indexChoice = -1;
+                                while (indexChoice == -1){
+                                    System.out.println("Choose index of course to view student namelist: ");
+                                    int temp = sc.nextInt() - 1;
+                                    if (temp >= 0 && temp < courses.get(courseChoice).getIndex().size()){
+                                        indexChoice = temp;
+                                    }
+                                    else{
+                                        System.out.println("The index does not exist. Please enter a valid number from the option given above");
+                                    }
+                                }
                                 for (int i = 1; i < courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size() + 1; i++){
                                     System.out.printf("%d %s %s %s %s\n", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentName(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentNationality(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentGender());
                                 }
@@ -92,7 +110,17 @@ public class Choice {
                             case 6:
                                 System.out.println("Choose course to view student namelist: ");
                                 printCourses(courses);
-                                courseChoice = sc.nextInt() - 1;
+                                courseChoice = -1;
+                                while (courseChoice == -1){
+                                    System.out.println("Choose course to be viewed: ");
+                                    int temp = sc.nextInt() - 1;
+                                    if (temp >= 0 && temp < courses.size()){
+                                        courseChoice = temp;
+                                    }
+                                    else{
+                                        System.out.println("The course does not exist. Please enter a valid number from the option given above");
+                                    }
+                                }
                                 // to be clear, i = index, j = student 
                                 for (int i = 1; i < courses.get(courseChoice).getIndex().size() + 1; i++){
                                     System.out.printf("Namelist of Index %d\n", courses.get(courseChoice).getIndex().get(i - 1).getIndexID());
@@ -343,13 +371,12 @@ public class Choice {
                                     if (index.getCourseCode().equals(affectedCourseCode)){
                                         curStudent.registerIndex(index);
                                         curStudentsNewIndexID = index.getIndexID();
-                                        curStudent.dropIndex(currentStudentIndex.getIndexID(), currentStudentIndex.getCourseAU();
+                                        curStudent.dropIndex(currentStudentIndex.getIndexID(), currentStudentIndex.getCourseAU());
                                         swapperStudent.registerIndex(currentStudentIndex);
                                         swapperStudentsNewIndexID = currentStudentIndex.getIndexID();
                                         swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
                                         System.out.println("finished swapping students");
                                         break;
-                                        }
                                     }
                                 }
                                 //for (Index index: swapperStudent.getRegisteredIndices()){

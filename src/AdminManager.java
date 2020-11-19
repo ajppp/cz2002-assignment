@@ -125,6 +125,22 @@ public class AdminManager{
 
     public static void addCourse(ArrayList<Course> courses){
         Scanner sc = new Scanner(System.in);
+        String newCourseCode = "0";
+
+        int i = 0;
+        while (i == 0){
+        System.out.printf("\nEnter new course code: ");
+        newCourseCode = sc.nextLine();
+        for (Course course: courses){
+            if (newCourseCode.equals(course.getCourseCode())){
+                System.out.println("Course already exists!");
+                break;
+            }
+            else{
+                i = 1;
+            }
+        }
+        }
         System.out.printf("Enter new course name: ");
         String newCourseName = sc.nextLine();
         for (Course course: courses){
@@ -135,36 +151,36 @@ public class AdminManager{
         }
         System.out.printf("\nEnter new course school: ");
         String newCourseSchool = sc.nextLine();
-        System.out.printf("\nEnter new course code: ");
-        String newCourseCode = sc.nextLine();
         System.out.printf("\nEnter new course AU: ");
         int newCourseAU = sc.nextInt();
-        int numCourseIndices = 0;    
-        do{
-            System.out.println("How many indices does this new course have? ");
-            numCourseIndices = sc.nextInt();
-            while (!sc.hasNextInt()){
-                System.out.println("Enter a positive number");
-                sc.next();
-            }
-        } while (numCourseIndices < 0);
+        System.out.println("How many indices does this new course have? ");
+        int numCourseIndices = sc.nextInt();    
         System.out.println("How many lessons in each index? ");
         int numLessons = sc.nextInt();
         ArrayList<Index> newIndexList = new ArrayList<Index>(numCourseIndices);
         ArrayList<Lesson> newLessonList = new ArrayList<Lesson>(numLessons);
-        for (int i = 0; i < numCourseIndices; i++){
+        for (i = 0; i < numCourseIndices; i++){
             for (int j = 0; j < numLessons; j++){
                 System.out.printf("For index %d of %s, insert the lesson type for lesson number %d (1 for lecture, 2 for tutorial, 3 for lab, 4 for seminar)\n", i + 1, newCourseName, j + 1);
-                int newLessonType = sc.nextInt();
-                System.out.printf("For this lesson, enter the day\n");
+                int newLessonType = -1;
+                while (newLessonType == -1){
+                    int temp = sc.nextInt();
+                    if (temp > 0 && temp < 5){
+                        newLessonType = temp;
+                        break;
+                    }
+                    System.out.println("Wrong input!");
+                }
+                System.out.printf("For this lesson, enter the day (Monday is 1, Friday is 5)\n");
                 int newLessonDay = sc.nextInt();
-                System.out.printf("For this lesson, enter the start period\n");
+                System.out.printf("For this lesson, enter the start period (0830 is 0, 2030 is 12)\n");
                 int newLessonStartPeriod = sc.nextInt();
-                System.out.printf("For this lesson, enter the end period\n");
+                System.out.printf("For this lesson, enter the end period (0830 is 0, 2030 is 12)\n");
                 int newLessonEndPeriod = sc.nextInt();
                 System.out.printf("For this lesson, enter the venue\n");
+                sc.next();
                 String newLessonVenue = sc.nextLine();
-                newLessonList.set(j, new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
+                newLessonList.add(new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
             }
             System.out.printf("Enter the index ID: ");
             int newIndexID = sc.nextInt();
@@ -174,11 +190,11 @@ public class AdminManager{
              */
             System.out.println("What is the maximum number of students this new index has?");
             int newIndexMaxStudents = sc.nextInt();
-            newIndexList.set(i, new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexID, newIndexMaxStudents, newIndexMaxStudents, newLessonList));   
+            newIndexList.add(new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexMaxStudents, newIndexMaxStudents, newIndexID, newLessonList));   
         }
         courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
         System.out.println("Updated course list: ");
-        int i = 1;
+        i = 1;
         for (Course course: courses){
             System.out.printf("%d %s %s\n", i, course.getCourseCode(), course.getCourseName());
             i++;
@@ -244,8 +260,11 @@ public class AdminManager{
         switch(changeIndexChoice){
             case 1:
                 System.out.printf("The number of max students now is %d, what do you want to change it to?", index.getMaxStudents());
-                index.setMaxStudents(sc.nextInt());
+                int newMaxStudents = sc.nextInt();
+                int change = newMaxStudents - index.getMaxStudents();
+                index.setMaxStudents(newMaxStudents);
                 System.out.printf("Successfully changed max students to %d", index.getMaxStudents());
+                index.setVacancies(index.getVacancies()+change);
                 break;
 
             case 2:
