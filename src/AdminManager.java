@@ -79,7 +79,7 @@ public class AdminManager{
         System.out.println("Current student list: ");
         int i = 1;
         for (Student student: students){
-            System.out.printf("%d %s %s\n", i, student.getStudentID(), student.getStudentName());
+            System.out.printf("%d %s %s %s %s\n", i, student.getStudentID(), student.getStudentName(), student.getStudentNationality(), student.getStudentGender());
             i++;
         }
         String studentName = "0";

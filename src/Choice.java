@@ -86,7 +86,7 @@ public class Choice {
                                 System.out.println("Choose index of course to view student namelist: ");
                                 indexChoice = sc.nextInt() - 1;
                                 for (int i = 1; i < courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().size() + 1; i++){
-                                    System.out.printf("%d %s %s\n", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentName());
+                                    System.out.printf("%d %s %s %s %s\n", i, courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentID(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentName(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentNationality(), courses.get(courseChoice).getIndex().get(indexChoice).listRegisteredStudents().get(i - 1).getStudentGender());
                                 }
                                 break;
     
@@ -98,7 +98,7 @@ public class Choice {
                                 for (int i = 1; i < courses.get(courseChoice).getIndex().size() + 1; i++){
                                     System.out.printf("Namelist of Index %d\n", courses.get(courseChoice).getIndex().get(i - 1).getIndexID());
                                     for (int j = 1; j < courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().size() + 1; j++) {
-                                        System.out.printf("%d %s %s\n", j, courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentID(), courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentName());
+                                        System.out.printf("%d %s %s %s %s\n", j, courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentID(), courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentName(), courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentNationality(), courses.get(courseChoice).getIndex().get(i - 1).listRegisteredStudents().get(j - 1).getStudentGender());
                                     }
                                 }
                                 break;
@@ -249,12 +249,15 @@ public class Choice {
                                             if (student.getStudentID().equals(curStudent.getStudentID())){
                                                 System.out.printf("Waitlisted course: ");
                                                 System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
+                                                break;
                                             }
                                         }
                                         for (Student student: index.listRegisteredStudents()){
+                                            if (student.getStudentID().equals(curStudent.getStudentID())){
                                             System.out.printf("Confirmed course: ");
                                             System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
-
+                                            break;
+                                            }
                                         }
                                     }
                                 }
