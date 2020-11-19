@@ -1,4 +1,3 @@
-//TODO: add error checking in case the admin is an idiot that gives string for ints and whatever... basically if else statement.. yippee for a 1k line main function <3 
 import java.util.*;
 import java.io.*;
 import java.text.DateFormat;
@@ -163,6 +162,7 @@ public class Choice {
                         }
                     }
                     do {
+                        System.out.println();
                         System.out.println("Welcome to NTU Stars Planner!");
                         System.out.println("1. Add Course");
                         System.out.println("2. Drop Course");
@@ -278,7 +278,7 @@ public class Choice {
                                 printCourses(courses);
                                 indexChoice = -1;
                                 while (indexChoice == -1){
-                                    System.out.println("Choose index to be added: ");
+                                    System.out.println("Choose index to view vacancies: ");
                                     int temp = sc.nextInt() - 1;
                                     if (temp >= 0 && temp < courses.size()){
                                         indexChoice = temp;
@@ -302,7 +302,7 @@ public class Choice {
                                         int i = 1;
                                         if (course.getIndex().size() > 1){
                                             for (Index index:course.getIndex()){
-                                                System.out.printf("%d) Index ID:%d \nVacancy:%d\n Index Total Size:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
+                                                System.out.printf("\n%d) Index ID:%d \nVacancy:%d\n Index Total Size:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
                                                 i++;
                                             }
                                             System.out.println("Choose new index: ");
@@ -347,32 +347,60 @@ public class Choice {
                                 }
                                 String currentStudentCourseCode = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                                 Index currentStudentIndex = curStudent.getRegisteredIndices().get(courseChoice);
-                                int newIndexID = 0;
+                                String affectedCourseCode = "0";
+                                int curStudentsNewIndexID = 0;
+                                int swapperStudentsNewIndexID = 0;
                                 for (Index index: swapperStudent.getRegisteredIndices()){
-                                    if (index.getCourseCode().equals(currentStudentCourseCode)){
-                                        // curStudent.dropIndex(currentStudentIndex.getIndexID(), index.getCourseAU());
+                                    for (Index index1: curStudent.getRegisteredIndices()){
+                                        if (index1.getCourseCode() == index.getCourseCode()){
+                                            curStudent.registerIndex(index);
+                                            curStudentsNewIndexID = index.getIndexID();
+                                            curStudent.dropIndex(index1.getIndexID(), index1.getCourseAU());
+                                            swapperStudent.registerIndex(index1);
+                                            swapperStudentsNewIndexID = index1.getIndexID();
+                                            swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
+                                        }
+                                    }
+                                }
+                                //for (Index index: swapperStudent.getRegisteredIndices()){
+                                    //if (index.getCourseCode().equals(currentStudentCourseCode)){
+                                        //if (curStudent.getRegisteredIndices().)
+                                        //curStudent.dropIndex(currentStudentIndex.getIndexID(), index.getCourseAU());
                                         //curStudent.registerIndex(index);
-                                        curStudent.swapIndex(index, currentStudentIndex);
-                                        swapperStudent.swapIndex(currentStudentIndex, index);
+                                        ////curStudent.swapIndex(index, currentStudentIndex);
+                                        ////swapperStudent.swapIndex(currentStudentIndex, index);
                                         //newIndexID = index.getIndexID();
                                         //swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
                                         //swapperStudent.registerIndex(currentStudentIndex);
-                                        System.out.println("Successfully swapped index with student!");
-                                    }
-                                }
+                                        //System.out.println("Successfully swapped index with student!");
+                                    //}
+                                //}
                                 for (Course course: courses){
-                                    if (course.getCourseCode().equals(currentStudentCourseCode)){
+                                    if (course.getCourseCode().equals(affectedCourseCode)){
                                         for (Index index: course.getIndex()){
-                                            if (index.getIndexID() == currentStudentIndex.getIndexID()){
-                                                index.addRegisteredStudent(swapperStudent);
-                                                index.removeRegisteredStudent(curStudent);
-                                            }
-                                            else if (index.getIndexID() == newIndexID){
-                                                index.addRegisteredStudent(curStudent);
+                                            if (index.getIndexID() == curStudentsNewIndexID){
                                                 index.removeRegisteredStudent(swapperStudent);
+                                                index.addRegisteredStudent(curStudent);
+                                            }
+                                            
+                                            else if (index.getIndexID() == swapperStudentsNewIndexID){
+                                                index.removeRegisteredStudent(curStudent);
+                                                index.addRegisteredStudent(swapperStudent);
                                             }
                                         }
                                     }
+                                    //if (course.getCourseCode().equals(currentStudentCourseCode)){
+                                        //for (Index index: course.getIndex()){
+                                            //if (index.getIndexID() == currentStudentIndex.getIndexID()){
+                                                //index.addRegisteredStudent(swapperStudent);
+                                                //index.removeRegisteredStudent(curStudent);
+                                            //}
+                                            //else if (index.getIndexID() == newIndexID){
+                                                //index.addRegisteredStudent(curStudent);
+                                                //index.removeRegisteredStudent(swapperStudent);
+                                            //}
+                                        //}
+                                    //}
                                 }
                                 break;
                             case 7:
@@ -404,7 +432,7 @@ public class Choice {
     public static void printIndices(ArrayList <Index> indices){
         int i = 1;
         for (Index index: indices){
-            System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\n Index Total Size:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
+            System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\nIndex Total Size:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
             System.out.printf("%s\n", "--------------------");
             for(Lesson lesson: index.getLessonList()){
                 System.out.printf("%s %s %s-%s %s \n", lesson.getLessonTypeStr(), lesson.getLessonDayStr(), lesson.getStartTime(), lesson.getEndTime(), lesson.getVenue());

@@ -121,19 +121,15 @@ public class Index implements java.io.Serializable{
     //new methods by cloud
     public void addRegisteredStudent(Student student1){
         registeredStudents.add(student1);
-        System.out.println(student1.getStudentID() + " successfully added to registered student list");
     }
 
     public void removeRegisteredStudent(Student student1){
-        System.out.printf("size of array list before removal: %d\n",registeredStudents.size());
         for(int i = 0; i < registeredStudents.size(); i++){
             if(student1.getStudentID().equals(registeredStudents.get(i).getStudentID())){
                 registeredStudents.remove(i);
                 break;
             }
         }
-        System.out.println("Successfully removed registered student");
-        System.out.printf("size of array list after removal: %d\n",registeredStudents.size());
     }
 
     public ArrayList<Student> listRegisteredStudents(){
@@ -150,7 +146,6 @@ public class Index implements java.io.Serializable{
 
     public void addWaitlistStudent(Student student1) {
         studentWaitlist.add(student1);
-        System.out.println("Successfully added to waitlist");
     }
 
     public void removeWaitlistedStudent(Student student1){
@@ -175,7 +170,6 @@ public class Index implements java.io.Serializable{
         if (vacancies > 0){
             addRegisteredStudent(student1);
             vacancies--;
-            System.out.println("The current vacancy is" + vacancies);
         }
         else {
             addWaitlistStudent(student1);
@@ -189,7 +183,6 @@ public class Index implements java.io.Serializable{
                 if (student1.getStudentID().equals(student.getStudentID())){
                     removeRegisteredStudent(student1);
                     vacancies++;
-                    System.out.println("The vacancy now is: " + vacancies);
                     break;
                 }
             }
