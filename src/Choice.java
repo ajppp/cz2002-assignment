@@ -30,8 +30,8 @@ public class Choice {
                         switch(adminChoice){
                             case 1:
                                 loginTiming = AdminManager.editAccessPeriod(loginTiming);
-                                System.out.println(loginTiming.getStartLoginTime().toGMTString());
-                                System.out.println(loginTiming.getEndLoginTime().toGMTString());
+                                System.out.println(loginTiming.getStartLoginTime().toLocaleString());
+                                System.out.println(loginTiming.getEndLoginTime().toLocaleString());
                                 SerialEditor.writeLoginTiming(loginTiming);
                                 break;
                             case 2:
@@ -151,7 +151,7 @@ public class Choice {
                 Student curStudent = new Student();
                 String studentLoginResult = StudentManager.studentLogin(loginManager, loginTiming, students, curStudent);
                 if(studentLoginResult.equals("0")){
-                    System.out.println("Thanks for using NTU Stars. Ciao");
+                    System.out.println("Thanks for using NTU Stars.");
                     return;
                 }
                 else{
@@ -184,6 +184,9 @@ public class Choice {
                                     if (temp >= 0 && temp < courses.size()){
                                         courseChoice = temp;
                                     }
+                                    else{
+                                        System.out.println("The course does not exist. Please enter a valid number from the option given above");
+                                    }
                                 }
                                 int sameCourse = 0;
                                 for (Index index: curStudent.getRegisteredIndices()){
@@ -202,6 +205,9 @@ public class Choice {
                                         int temp = sc.nextInt() - 1;
                                         if (temp >= 0 && temp < courses.get(courseChoice).getIndex().size()){
                                             indexChoice = temp;
+                                        }
+                                        else{
+                                            System.out.println("The course does not exist. Please enter a valid number from the option given above");
                                         }
                                     }
                                     if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
@@ -262,8 +268,18 @@ public class Choice {
                             case 4:
                                 System.out.println("Choose the course to view vacancies: ");
                                 printCourses(courses);
-                                courseChoice = sc.nextInt() - 1;
-                                printIndices(courses.get(courseChoice).getIndex());
+                                indexChoice = -1;
+                                while (indexChoice == -1){
+                                    System.out.println("Choose index to be added: ");
+                                    int temp = sc.nextInt() - 1;
+                                    if (temp >= 0 && temp < courses.size()){
+                                        indexChoice = temp;
+                                    }
+                                    else{
+                                        System.out.println("The course does not exist. Please enter a valid number from the option given above");
+                                    }
+                                }
+                                printIndices(courses.get(indexChoice).getIndex());
                                 break;
                             case 5:
                                 printRegisteredCourses(curStudent);
@@ -431,13 +447,28 @@ public class Choice {
                         int registeredLessonStartPeriod = curStudent.getRegisteredIndices().get(j).getLessonList().get(k).getStartPeriod();
                         int registeredLessonEndPeriod = curStudent.getRegisteredIndices().get(j).getLessonList().get(k).getEndPeriod();
                         if (addedLessonDay == registeredLessonDay){
-                            if (addedLessonStartPeriod > registeredLessonStartPeriod && addedLessonStartPeriod < registeredLessonEndPeriod){
-                                System.out.println("clash");
+                            if (addedLessonStartPeriod < registeredLessonStartPeriod && addedLessonEndPeriod < registeredLessonEndPeriod && addedLessonEndPeriod > registeredLessonStartPeriod){
+                                System.out.println("There is a clash");
                                 clash = true;
                                 return clash;
                             }
-                            else if (addedLessonEndPeriod > registeredLessonStartPeriod && addedLessonEndPeriod < registeredLessonEndPeriod){
-                                System.out.println("clash");
+                            else if (addedLessonStartPeriod > registeredLessonStartPeriod && addedLessonStartPeriod < registeredLessonEndPeriod && addedLessonEndPeriod > registeredLessonEndPeriod){
+                                System.out.println("There is a clash");
+                                clash = true;
+                                return clash;
+                            }
+                            else if (addedLessonStartPeriod < registeredLessonStartPeriod && addedLessonEndPeriod > registeredLessonEndPeriod){
+                                System.out.println("There is a clash");
+                                clash = true;
+                                return clash;
+                            }
+                            else if (addedLessonStartPeriod > registeredLessonStartPeriod && addedLessonStartPeriod < registeredLessonEndPeriod){
+                                System.out.println("There is a clash");
+                                clash = true;
+                                return clash;
+                            }
+                            else if (addedLessonStartPeriod == registeredLessonStartPeriod && addedLessonEndPeriod == registeredLessonEndPeriod){
+                                System.out.println("There is a clash");
                                 clash = true;
                                 return clash;
                             }
@@ -445,7 +476,6 @@ public class Choice {
                     }
                 }
             }
-        //}
         return clash;
     }
 }

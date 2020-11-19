@@ -5,16 +5,16 @@ import java.util.*;
 
 public class LoginManager implements java.io.Serializable{
     private static final long serialVersionUID = 7L;
-    public Dictionary<String, String> studentLogin = new Hashtable<String, String>();
-    public Dictionary<String, String> adminLogin = new Hashtable<String, String>();
+    public HashMap<String, String> studentLogin = new HashMap<String, String>();
+    public HashMap<String, String> adminLogin = new HashMap<String, String>();
 
     public LoginManager(){}
 
-    public Dictionary<String, String> getStudentLogin(){
+    public HashMap<String, String> getStudentLogin(){
         return studentLogin;
     }
 
-    public Dictionary<String, String> getAdminLogin(){
+    public HashMap<String, String> getAdminLogin(){
         return adminLogin;
     }
 
@@ -66,4 +66,12 @@ public class LoginManager implements java.io.Serializable{
     public String returnAdminPassword(String adminUsername){
         return studentLogin.get(adminUsername);
     }
+
+    public int checkUserID(String inputStudentUsername){
+        if (getStudentLogin().containsKey(inputStudentUsername)){
+            return 1;
+        }
+        return 0;
+    }
+
 }

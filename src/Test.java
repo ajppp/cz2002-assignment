@@ -7,11 +7,10 @@ public class Test{
         ArrayList <Lesson> lessonList = new ArrayList<>();
         ArrayList <Student> studentWaitlist = new ArrayList<>();
         ArrayList <Student> registeredStudentList = new ArrayList<>();
-        Date startTime = new Date(120, 10, 3, 14, 30);
+        Date startTime = new Date(120, 10, 10, 14, 30);
         Date endTime = new Date(120, 10, 30, 11, 30);
         LoginPage login = new LoginPage(startTime, endTime);
         LoginManager loginManager = new LoginManager();
-        Student cloud = new Student("Claudia", "SCSE", "M", "Singaporean", "dummyemailforoodp@gmail.com");
         Student a = new Student("Sarah Lim", "SCSE", "F", "Malaysian", "dummyemailforoodp@gmail.com");
         Student b = new Student("Hazel Wang", "FASS", "F", "PRC", "dummyemailforoodp@gmail.com");
         Student c = new Student("Jackson Quek", "MAE", "M", "Singaporean", "dummyemailforoodp@gmail.com");
@@ -22,6 +21,11 @@ public class Test{
         Student h = new Student("Priyaa Singh", "NIE", "F", "Indian", "dummyemailforoodp@gmail.com");
         Student i = new Student("That Mhu Khin", "CEE", "F", "Burmese", "dummyemailforoodp@gmail.com");
         Student j = new Student("Brandon Tiong", "REP", "M", "Singaporean", "dummyemailforoodp@gmail.com");
+        Student k = new Student("Aurelio Jethro", "SCSE", "M", "Indonesian", "dummyemailforoodp@gmail.com");
+        Student l = new Student( "Elroy Ang", "SCSE", "M", "Singaporean", "dummyemailforoodp@gmail.com");
+        Student m = new Student( "Lian Ran", "SCSE", "F", "Singaporean", "dummyemailforoodp@gmail.com");
+        Student n = new Student( "Claudia", "SCSE", "F", "Singaporean", "dummyemailforoodp@gmail.com");
+        Student o = new Student( "Isabela Angus", "SCSE", "F", "Singaporean", "dummyemailforoodp@gmail.com");
         
         students.add(a);
         students.add(b);
@@ -33,6 +37,12 @@ public class Test{
         students.add(h);
         students.add(i);
         students.add(j);
+        students.add(k);
+        students.add(l);
+        students.add(m);
+        students.add(n);
+        students.add(o);
+
         // creating MH2500
         ArrayList <Lesson> lessonList71050 = new ArrayList<>();
         lessonList71050.add(new Lesson(1, 5, 0, 2, "online"));
@@ -55,12 +65,12 @@ public class Test{
         lessonList71054.add(new Lesson(2, 4, 3, 4, "LHS-TR+24"));
 
         ArrayList <Index> indexList2500 = new ArrayList<>();
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 4, 20, 20, 71050, lessonList71050, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 4, 20, 20, 71051, lessonList71051, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 4, 20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 4, 20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71050, lessonList71050, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71051, lessonList71051, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
 
-        courses.add(new Course("Probability and Introduction to Statistics", "SPMS", "MH2500", 4, indexList2500));
+        courses.add(new Course("Probability and Introduction to Statistics", "SPMS", "MH2500", 6, indexList2500));
 
         // creating CM1031
         ArrayList <Lesson> lessonList70089 = new ArrayList<>();
@@ -70,18 +80,18 @@ public class Test{
         lessonList70089.add(new Lesson(3, 1, 5, 8, "CBC Lab"));
 
         ArrayList <Index> indexList1031 = new ArrayList<>();
-        indexList1031.add(new Index("Basic Organic Chemistry with Laboratory","SPMS", "CM1031", 4, 50, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        indexList1031.add(new Index("Basic Organic Chemistry with Laboratory","SPMS", "CM1031", 5, 50, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
-        courses.add(new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 4, indexList1031));
+        courses.add(new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 5, indexList1031));
 
         // creating HC4050
         ArrayList <Lesson> lessonList17048 = new ArrayList<>();
         lessonList17048.add(new Lesson(4, 1, 2, 3, "TR+64"));
 
         ArrayList <Index> indexList4050 = new ArrayList<>();
-        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 4, 1, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
+        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 5, 1, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
 
-        courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 4, indexList4050));
+        courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 5, indexList4050));
 
         // creating BF2209
         ArrayList <Lesson> lessonList00224 = new ArrayList<>();
@@ -101,9 +111,9 @@ public class Test{
         lessonList39686.add(new Lesson(1, 2, 7, 10, "3A-B2-03"));
 
         ArrayList <Index> indexList26D = new ArrayList<>();
-        indexList26D.add(new Index( "Theatre & Technology", "NIE", "ADP26D", 3, 5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
+        indexList26D.add(new Index( "Theatre & Technology", "NIE", "ADP26D", 5, 5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
 
-        courses.add(new Course("Theatre & Technology", "NIE", "ADP26D", 3, indexList26D));
+        courses.add(new Course("Theatre & Technology", "NIE", "ADP26D", 5, indexList26D));
 
         // Generate Password for each student
         for (Student student: students){

@@ -18,7 +18,6 @@ public class AdminManager{
             String inputAdminPassword = new String(passwordChars);
             result = loginManager.adminCompare(inputAdminID, inputAdminPassword);
             if (result == 1){
-                System.out.println("we are in the if block");
                 return 1;
             }
             else if (result == 0){
@@ -48,7 +47,7 @@ public class AdminManager{
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         System.out.println("Enter new start login date (in format dd-mm-yyyy): ");
         newStartLogin.append(sc.nextLine());
-        System.out.println("Enter new start login date (in format hh:mm) ");
+        System.out.println("Enter new start login time (in format hh:mm) ");
         newStartLogin.append(" ");
         newStartLogin.append(sc.nextLine());
         Date startLoginTime = new Date();
@@ -61,7 +60,7 @@ public class AdminManager{
         StringBuilder newEndLogin = new StringBuilder();
         System.out.println("Enter new end login date (in format dd-mm-yyyy): ");
         newEndLogin.append(sc.nextLine());
-        System.out.println("Enter new end login date (in format hh:mm) ");
+        System.out.println("Enter new end login time (in format hh:mm) ");
         newEndLogin.append(" ");
         newEndLogin.append(sc.nextLine());
         try{
@@ -83,12 +82,16 @@ public class AdminManager{
             System.out.printf("%d %s %s\n", i, student.getStudentID(), student.getStudentName());
             i++;
         }
-        System.out.println("Input new Student name: ");
-        String studentName = sc.nextLine();
-        for (Student student: students){
-            if (studentName.equals(student.getStudentName())){
-                System.out.println("Student already exists!");
-                break;
+        String studentName = "0";
+        while (studentName.equals("0")){
+            System.out.println("Input new Student name: ");
+            studentName = sc.nextLine();
+            for (Student student: students){
+                if (studentName.equals(student.getStudentName())){
+                    System.out.println("Student already exists! Please input a new student");
+                    studentName = "0";
+                    break;
+                }
             }
         }
         System.out.println("Input new Student school: ");
@@ -98,7 +101,7 @@ public class AdminManager{
         do{
             System.out.println("Input new Student gender (M/F): ");
             studentGender = sc.nextLine();
-            if (!(studentGender.equals('M')) && !(studentGender.equals('M'))){
+            if (!(studentGender.equals('M')) || !(studentGender.equals('M'))){
                 System.out.println("Not valid entry! Try again");
             }
             else{

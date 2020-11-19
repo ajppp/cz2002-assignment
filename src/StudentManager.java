@@ -10,16 +10,25 @@ public class StudentManager{
         boolean correctPassword = false;
         if (loginTiming.compareCurrentTime(dateNow) == false){
             System.out.println("Please try again during the stipulated time!");
-            System.out.printf("Start login time: " + loginTiming.getStartLoginTime());
-            System.out.printf("End login time: " + loginTiming.getEndLoginTime());
+            System.out.println("Start login time: " + loginTiming.getStartLoginTime());
+            System.out.println("End login time: " + loginTiming.getEndLoginTime());
             return "0";
         }
         else{
             int i = 0;
             do { 
-                console.printf("Please type your Student ID: ");
-                String inputUserID = console.readLine();
-                console.printf(inputUserID + "\n");
+                boolean correctUserID = false;
+                String inputUserID = "0";
+                while(!correctUserID){
+                    console.printf("Please type your Student ID: ");
+                    inputUserID = console.readLine();
+                    if (loginManager.checkUserID(inputUserID) == 1){
+                        correctUserID = true;
+                    }
+                    else{
+                        console.printf("User ID does not exist. Please try again\n");
+                    }
+                }
                 console.printf("Please type your password: ");
                 char[] passwordChars = console.readPassword();
                 String inputStudentPassword = new String(passwordChars);
