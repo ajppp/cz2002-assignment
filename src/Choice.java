@@ -213,9 +213,10 @@ public class Choice {
                                     if(compareClash(curStudent, courses.get(courseChoice).getIndex().get(indexChoice)))
                                         System.out.println("There is a clash");
                                     else {
-                                        curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
+                                        boolean added = curStudent.registerIndex(courses.get(courseChoice).getIndex().get(indexChoice));
                                         // changing course details
-                                        courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(curStudent);
+                                        if (added == true)
+                                            courses.get(courseChoice).getIndex().get(indexChoice).studentAddedToIndex(curStudent);
                                     }
                                 }
                                 break;
@@ -238,18 +239,22 @@ public class Choice {
                                 }
                                 curStudent.dropIndex(indexIDToBeDropped, curStudent.getRegisteredIndices().get(indexChoice).getCourseAU());
                                 break;
+
                             case 3:
                                 System.out.println("These are your registered courses:");
                                 System.out.printf("%s\n", "--------------------");
                                 for (Course course:courses){
                                     for (Index index: course.getIndex()){
-                                        if (index.listRegisteredStudents().contains(curStudent)){
+                                        for (Student student: index.listStudentWaitlist()){
+                                            if (student.getStudentID().equals(curStudent.getStudentID())){
+                                                System.out.printf("Waitlisted course: ");
+                                                System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
+                                            }
+                                        }
+                                        for (Student student: index.listRegisteredStudents()){
                                             System.out.printf("Confirmed course: ");
                                             System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
-                                        }
-                                        else if (index.listStudentWaitlist().contains(curStudent)){
-                                            System.out.printf("Waitlisted course: ");
-                                            System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
+
                                         }
                                     }
                                 }
