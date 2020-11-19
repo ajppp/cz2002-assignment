@@ -40,7 +40,10 @@ clean:
 
 test: 
 	$(RM) $(DATA)
-	java -cp "$(CLASSPATH):$(DEPENDENCIES)" Test
+	java -cp "$(CLASSPATH):$(DEPENDENCIES)" Test > data/student.txt
 
-run:
+run: show
 	java -cp "$(CLASSPATH):$(DEPENDENCIES)" Choice
+
+show:
+	cat data/student.txt

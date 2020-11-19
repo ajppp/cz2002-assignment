@@ -261,17 +261,6 @@ public class Choice {
                                         }
                                     }
                                 }
-                                    /* for (Index index: curStudent.getRegisteredIndices()){
-                                        if (index.listRegisteredStudents().contains(curStudent)){
-                                            System.out.printf("Confirmed course: ");
-                                            System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
-                                        }
-                                        else{
-                                            System.out.printf("Waitlisted course: ");
-                                            System.out.printf("%d|%s\n", index.getIndexID(), index.getCourseName());
-                                        }
-                                    } */
-                                System.out.println("Finished printing registered courses \n");
                                 break;
                             case 4:
                                 System.out.println("Choose the course to view vacancies: ");
@@ -352,13 +341,15 @@ public class Choice {
                                 int swapperStudentsNewIndexID = 0;
                                 for (Index index: swapperStudent.getRegisteredIndices()){
                                     for (Index index1: curStudent.getRegisteredIndices()){
-                                        if (index1.getCourseCode() == index.getCourseCode()){
+                                        if (index1.getCourseCode().equals(index.getCourseCode())){
                                             curStudent.registerIndex(index);
                                             curStudentsNewIndexID = index.getIndexID();
                                             curStudent.dropIndex(index1.getIndexID(), index1.getCourseAU());
                                             swapperStudent.registerIndex(index1);
                                             swapperStudentsNewIndexID = index1.getIndexID();
                                             swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
+                                            System.out.println("finished swapping students");
+                                            break;
                                         }
                                     }
                                 }
@@ -379,11 +370,12 @@ public class Choice {
                                     if (course.getCourseCode().equals(affectedCourseCode)){
                                         for (Index index: course.getIndex()){
                                             if (index.getIndexID() == curStudentsNewIndexID){
+                                                System.out.println("changing new index");
                                                 index.removeRegisteredStudent(swapperStudent);
                                                 index.addRegisteredStudent(curStudent);
                                             }
-                                            
                                             else if (index.getIndexID() == swapperStudentsNewIndexID){
+                                                System.out.println("changing old index");
                                                 index.removeRegisteredStudent(curStudent);
                                                 index.addRegisteredStudent(swapperStudent);
                                             }
@@ -449,22 +441,6 @@ public class Choice {
             System.out.printf("%d|%d|%s\n", i+1, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
         }
     }
-
-   /*  public static void printConfirmedCourses (Student curStudent){
-        System.out.println("These are your registered courses:");
-        for (int i = 0; i < curStudent.getRegisteredIndices().size(); i++){
-            System.out.printf("%s\n", "--------------------");
-            for (Course course: courses){ // how to access courses ?
-                for (Index index : course.getIndex()){
-                    for (Student student: index.listRegisteredStudents()){
-                        if (curStudent.getStudentID()) == student.getStudentID()){
-                            System.out.printf("%d|%d|%s\n", i+1, curStudent.getRegisteredIndices().get(i).getIndexID(), curStudent.getRegisteredIndices().get(i).getCourseName());
-                        }
-                    }
-                }
-            }
-        }
-    } */
 
     public static boolean compareClash(Student curStudent, Index addedIndex){
         boolean clash = false;
