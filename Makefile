@@ -1,5 +1,6 @@
 JFLAGS = -g
 JC = javac
+JAVADOC = javadoc
 
 RM = rm -rf
 
@@ -26,7 +27,7 @@ DEPENDENCIES = lib/*
 
 DATA = data/*
 
-SOURCE = src/*
+SOURCE = src/com/dsai2group2/*
 		
 default: compile
 
@@ -47,3 +48,6 @@ run: show
 
 show:
 	cat data/student.txt
+
+javadoc:
+	$(JAVADOC) -cp "$(DEPENDENCIES)"

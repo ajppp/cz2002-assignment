@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 public class AdminManager{
+	/**
+	 * The admin will only be allowed to log in if he enters the correct username and password.
+	 * The maximum number of wrong entries is 3 times.
+	 * @param loginManager stores the login details on the admin and compares if the login details are correct
+	 * @return a boolean whether the admin has entered the correct username and password or not
+	 */
     public static int login(LoginManager loginManager){
         Console console = System.console();
         Scanner sc = new Scanner(System.in);
@@ -27,6 +33,9 @@ public class AdminManager{
         return 0;
     }
 
+    /**
+     * Prints out the 6 options that the admin can choose to do after logging in.
+     */
     public static void printAdminOptions(){
         System.out.println("Welcome to NTU Stars Planner!");
         System.out.println("1. Edit student access period");
@@ -39,6 +48,11 @@ public class AdminManager{
         System.out.println("8. Save your progress and exit");
     }
 
+    /**
+     * Allows the admin to change the allowed login date and time for students.
+     * @param loginTiming the time period during which the student is allowed to log in
+     * @return the allowed log in time period for the students
+     */
     public static LoginPage editAccessPeriod(LoginPage loginTiming){
         Scanner sc = new Scanner(System.in);
         System.out.println("Current start login timing: " + loginTiming.getStartLoginTime());
@@ -74,6 +88,12 @@ public class AdminManager{
         return loginTiming;
     }
     
+    /**
+     * Allows the admin to register a new student and his relevant information into the STARS system.
+     * The information includes the student's name, school, gender, nationality and email.
+     * @param students a list of all the students registered under the STARS system
+     * @return a newly registered student object
+     */
     public static Student addStudent(ArrayList<Student> students){
         Scanner sc = new Scanner(System.in);
         System.out.println("Current student list: ");
@@ -123,6 +143,11 @@ public class AdminManager{
         return addedStudent;
     }
 
+    /**
+     * Allows the admin to add a new course into the STARS system for students to register.
+     * The information about the course includes the course name, the course school, course code, number of AU, number of indices and the lessons for each index
+     * @param courses a list of all the courses under the STARS registration system
+     */
     public static void addCourse(ArrayList<Course> courses){
         Scanner sc = new Scanner(System.in);
         String newCourseCode = "0";
@@ -198,6 +223,10 @@ public class AdminManager{
         }
     }
 
+    /**
+     * Allows the admin to update the details of a particular course such as the name, school, and course code
+     * @param course the object course that admin wants to update
+     */
     public static void updateCourse(Course course){
         Scanner sc = new Scanner(System.in);
         System.out.printf("Details of course %s", course.getCourseName());
@@ -244,12 +273,16 @@ public class AdminManager{
                     String newLessonVenue = sc.nextLine();
                     newIndexLessonArrayList.add(new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
                 }
-                course.getIndex().add(new Index(course.getCourseName(), course.getCourseSchool(), course.getCourseCode(), course.getCourseAU(), newIndexMaxStudents, newIndexMaxStudents, newIndexID, newIndexLessonArrayList));
+                course.getCourseIndex().add(new Index(course.getCourseName(), course.getCourseSchool(), course.getCourseCode(), course.getCourseAU(), newIndexMaxStudents, newIndexMaxStudents, newIndexID, newIndexLessonArrayList));
                 System.out.println("successfully added index to course");
                 
             }
         }
 
+    /**
+     * Allows the admin to update an index of a particular course such as the number of students and the lessons.
+     * @param index the object index of a course that the admin wants to update
+     */
     public static void updateIndex(Index index){
         Scanner sc = new Scanner(System.in);
         System.out.printf("(1) Change the max number of students\n (2) Change the lessons");
@@ -277,6 +310,10 @@ public class AdminManager{
         }
     }
 
+    /**
+     * Allows the admin to update the details of the lesson for an index, such as lesson type, which day, start and end time, venue.
+     * @param lesson the object lesson that the admin want to update
+     */
     public static void updateLesson(Lesson lesson){
         Scanner sc = new Scanner(System.in);
         System.out.printf("(1) Change lesson type (2) Change lesson day (3) Change lesson start time (4) Change lesson end time (5) Change lesson venue\n");

@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * The class contains the details about all the courses in the STARS system.
+ */
 public class Course implements java.io.Serializable{
     
     private String courseName;
@@ -9,6 +12,14 @@ public class Course implements java.io.Serializable{
     private ArrayList<Index> courseIndex = new ArrayList<>(0);
     private static final long serialVersionUID = 2L;
 
+    /**
+     * This constructor defines a course
+     * @param name the full name of the course
+     * @param school the school which offers the course
+     * @param code the course code
+     * @param AU the number of Academic Units of the course
+     * @param index the different indices available under the course
+     */
     public Course (String name, String school, String code, int AU, ArrayList<Index> index){
         courseName = name;
         courseSchool = school;
@@ -17,49 +28,72 @@ public class Course implements java.io.Serializable{
         courseIndex = index;
     }
 
-    /* public Course (String name, String school, String code, int AU){
-        courseName = name;
-        courseSchool = school;
-        courseCode = code;
-        courseAU = AU;
-    }
- */
-    public ArrayList<Index> getIndex(){
+    /**
+     * @return an array list of course indices
+     */
+    public ArrayList<Index> getCourseIndex(){
         return courseIndex;
     }
 
-    public void setIndex(ArrayList<Index> index){
+    /**
+     * @param index the different indices available under the course
+     */
+    public void setCourseIndex(ArrayList<Index> index){
         courseIndex = index;
     }
 
+    /**
+     * @return the full name of the course
+     */
     public String getCourseName(){
         return this.courseName;
     }
 
+    /**
+     * @param name the full name of the course
+     */
     public void setCourseName(String name){
         courseName = name;
     }
 
+    /**
+     * @return the school which offers the course
+     */
     public String getCourseSchool(){
         return courseSchool;
     }
 
+    /**
+     * @param school the school which offers the course
+     */
     public void setCourseSchool(String school){
         courseSchool = school;
     }
 
+    /**
+     * @return the course code
+     */
     public String getCourseCode(){
         return courseCode;
     }
 
+    /**
+     * @param code the course code
+     */
     public void setCourseCode(String code){
         courseCode = code;
     }
 
+    /**
+     * @return the number of Academic Units of the course
+     */
     public int getCourseAU(){
         return courseAU;
     }
 
+    /**
+     * @param AU the number of Academic Units of the course
+     */
     public void setCourseAU(int AU){
         courseAU = AU;
     }

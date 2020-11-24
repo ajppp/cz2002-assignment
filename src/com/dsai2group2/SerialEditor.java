@@ -1,6 +1,9 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * Reads, writes and stores in a file
+ */
 public class SerialEditor{
     public static final String studentFileName = "data/student.ser";
     public static final String courseFileName = "data/course.ser";
@@ -8,6 +11,10 @@ public class SerialEditor{
     public static final String loginTimingFileName = "data/loginTiming.ser";
     public static final String loginDetailsFileName = "data/loginDetails.ser";
 
+    /**
+     * writes into the student file
+     * @param student the student to be added
+     */
     public static void writeStudents(ArrayList<Student> student){
         try {
             FileOutputStream fileOut = new FileOutputStream(studentFileName);
@@ -19,6 +26,10 @@ public class SerialEditor{
         }
     }
 
+    /**
+     * reads from the student file
+     * @return all the students in the file
+     */
     public static ArrayList<Student> loadStudents(){
         ArrayList<Student> students = new ArrayList<Student>(0);
         try { 
@@ -32,6 +43,10 @@ public class SerialEditor{
         return students;
     }
 
+    /**
+     * writes into the index file
+     * @param index the index to be added
+     */
     public static void writeIndices(ArrayList<Index> index){
         try {
             FileOutputStream fileOut = new FileOutputStream(indexFileName);
@@ -43,6 +58,10 @@ public class SerialEditor{
         }
     }
 
+    /**
+     * reads from the index file
+     * @return the array list of the indices from the index file
+     */
     public static ArrayList<Index> loadIndices(){
         ArrayList<Index> index = new ArrayList<Index>(0);
         try { 
@@ -56,6 +75,10 @@ public class SerialEditor{
         return index;
     }
 
+    /**
+     * writes into the course file
+     * @param course the course to be added
+     */
     public static void writeCourses(ArrayList<Course> course){
         try {
             FileOutputStream fileOut = new FileOutputStream(courseFileName);
@@ -67,6 +90,10 @@ public class SerialEditor{
         }
     }
 
+    /**
+     * reads from the course file
+     * @return the array list of courses from the course file
+     */
     public static ArrayList<Course> loadCourses(){
         ArrayList<Course> course = new ArrayList<Course>(0);
         try { 
@@ -80,6 +107,10 @@ public class SerialEditor{
         return course;
     }
 
+    /**
+     * writes into the loginTiming file
+     * @param login an object of class loginPage
+     */
     public static void writeLoginTiming(LoginPage login){
         try {
             FileOutputStream fileOut = new FileOutputStream(loginTimingFileName);
@@ -91,6 +122,10 @@ public class SerialEditor{
         }
     }
 
+    /**
+     * reads  from the loginTiming file
+     * @return an object of class loginPage
+     */
     public static LoginPage loadLoginTiming(){
         LoginPage login = new LoginPage();
         try { 
@@ -104,6 +139,10 @@ public class SerialEditor{
         return login;
     }
 
+    /**
+     * writes into the loginDetails file
+     * @param loginManager an object of class loginManager
+     */
     public static void writeLoginDetails(LoginManager loginManager){
         try {
             FileOutputStream fileOut = new FileOutputStream(loginDetailsFileName);
@@ -115,6 +154,10 @@ public class SerialEditor{
         }
     }
 
+    /**
+     * reads from the loginDetails file
+     * @return an object of class loginManager
+     */
     public static LoginManager loadLoginDetails(){
         LoginManager loginManager = new LoginManager();
         try { 

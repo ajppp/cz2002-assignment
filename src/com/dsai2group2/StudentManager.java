@@ -1,7 +1,17 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * This class manages the student's log in process
+ */
 public class StudentManager{
+	/**
+	 * @param loginManager
+	 * @param loginTiming
+	 * @param students
+	 * @param curStudent
+	 * @return
+	 */
     public static String studentLogin(LoginManager loginManager, LoginPage loginTiming, ArrayList<Student> students, Student curStudent){
         Console console = System.console();
         Scanner sc = new Scanner(System.in);

@@ -1,5 +1,9 @@
 import java.util.*;
 
+/**
+ * This class contains all the information about a particular student 
+ * It includes the studentID, name, school, gender, nationality, email, number of academic units, the registered indices
+ */
 public class Student implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
     private String studentID;
@@ -15,6 +19,17 @@ public class Student implements java.io.Serializable{
     /*
      *used to initialise the student method with all attributes
      *only used when reading in student's information from file
+     */
+    /**
+     * This constructor defines a student
+     * @param ID the matriculation number of the student
+     * @param Name the student's name
+     * @param School the school which the student is enrolled in
+     * @param Gender the gender of the student
+     * @param Nationality the nationality of the student
+     * @param Email the school email address of the student
+     * @param AU the number of academic units the student has registered
+     * @param index the indices which the student has registered for
      */
     public Student(String ID, String Name, String School, String Gender, String Nationality, String Email, int AU, ArrayList<Index> index){
         studentID = ID;
@@ -39,55 +54,95 @@ public class Student implements java.io.Serializable{
     
     public Student(){}
 
+    /**
+     * @return the matriculation number of the student
+     */
     public String getStudentID(){
         return studentID;
     }
 
+    /**
+     * @return the student's name
+     */
     public String getStudentName(){
         return studentName;
     }
 
+    /**
+     * @param name the student's name
+     */
     public void setStudentName(String name){
         this.studentName = name;
     }
 
+    /**
+     * @return the school which the student is enrolled in
+     */
     public String getStudentSchool(){
         return studentSchool;
     }
 
+    /**
+     * @param school the school which the student is enrolled in
+     */
     public void setStudentSchool(String school){
         this.studentSchool = school;
     }
 
+    /**
+     * @return the gender of the student
+     */
     public String getStudentGender(){
         return studentGender;
     }
 
+    /**
+     * @param gender the gender of the student
+     */
     public void setStudentGender(String gender){
         this.studentGender = gender;
     }
 
+    /**
+     * @return the nationality of the student
+     */
     public String getStudentNationality(){
         return studentNationality;
     }
 
+    /**
+     * @return the school email address of the student
+     */
     public String getStudentEmail(){
         return studentEmail;
     }
 
+    /**
+     * @param email the school email address of the student
+     */
     public void setStudentEmail(String email){
         this.studentEmail = email;
     }
 
+    /**
+     * @return the number of academic units the student has registered
+     */
     public int getStudentRegisteredAU(){
         return studentRegisteredAU;
     }
 
+    /**
+     * @param nationality the nationality of the student
+     */
     public void setStudentNationality(String nationality){
         this.studentNationality = nationality;
     }
     // check is done in main on whether it can be added
     // this method is just to add to student
+    /**
+     * Allows the student to register a new index
+     * @param index the index that the student is trying to register for
+     */
     public boolean registerIndex(Index index){
         int newAU = studentRegisteredAU + index.getCourseAU();
         if (newAU > MAX_AU){
@@ -101,6 +156,11 @@ public class Student implements java.io.Serializable{
                 }
     }
 
+    /**
+     * Allows the student to drop an index
+     * @param indexID the number that represents the index which the student wishes to drop
+     * @param au the number of academic units attached to the index
+     */
     public void dropIndex(int indexID, int au){
         int i = 0, indexLocation = 0;
         for(Index index: registeredIndex){
@@ -114,6 +174,9 @@ public class Student implements java.io.Serializable{
         studentRegisteredAU -= au;
     }
 
+    /**
+     * @return the indices which the student has registered for
+     */
     public ArrayList<Index> getRegisteredIndices(){
         return registeredIndex;
     }
@@ -124,6 +187,9 @@ public class Student implements java.io.Serializable{
 
     /*
      *Method that generates a random student ID for any new Student
+     */
+    /**
+     * @return the matriculation number as the studentID
      */
     private String createStudentID(){
         StringBuilder createdStudentID = new StringBuilder("U");
@@ -147,6 +213,11 @@ public class Student implements java.io.Serializable{
         return createdStudentID.toString();
     }
 
+    /**
+     * Allows the student to swap index
+     * @param index1 the index that the student wants to swap to
+     * @param index2 the index that the student currently has and is dropping
+     */
     public void swapIndex(Index index1, Index index2){
         registeredIndex.add(index1);
         dropIndex(index2.getIndexID(), index2.getCourseAU());

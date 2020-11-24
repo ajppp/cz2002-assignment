@@ -1,3 +1,6 @@
+/**
+ * The class contains the details about all lessons for a particular index
+ */
 public class Lesson implements java.io.Serializable{
     private static final long serialVersionUID = 8L;
     private int lessonType;
@@ -6,6 +9,14 @@ public class Lesson implements java.io.Serializable{
     private int endPeriod;
     private String venue;
 
+    /**
+     * This constructor defines a lesson
+     * @param lessonType the type which the lesson is conducted; whether it is lecture, tutorial, lab or seminar
+     * @param lessonDay the day which the lesson falls on
+     * @param startPeriod the starting time of the lesson
+     * @param endPeriod the ending time of the lesson
+     * @param venue the venue which the lesson is held at
+     */
     public Lesson(int lessonType, int lessonDay, int startPeriod, int endPeriod, String venue){
         this.lessonType = lessonType;
         this.lessonDay = lessonDay;
@@ -14,15 +25,24 @@ public class Lesson implements java.io.Serializable{
         this.venue = venue;
     }
 
+    /**
+     * @return the type which the lesson is conducted; whether it is lecture, tutorial, lab or seminar
+     */
     public int getLessonType() {
         return lessonType;
     }
 
 
+    /**
+     * @param lessonType the type which the lesson is conducted; whether it is lecture, tutorial, lab or seminar
+     */
     public void setLessonType(int lessonType){
         this.lessonType = lessonType;
     }
 
+    /**
+     * @return the conversion from integer to string version of lessonType
+     */
     public String getLessonTypeStr() {
         String lessonTypeStr;
         switch (lessonType){
@@ -43,10 +63,17 @@ public class Lesson implements java.io.Serializable{
         }
         return lessonTypeStr;
     }
+    
+    /**
+     * @return the day which the lesson falls on
+     */
     public int getLessonDay() {
         return lessonDay;
     }
 
+    /**
+     * @return the conversion from integer to string version of lessonDay
+     */
     public String getLessonDayStr(){
         String lessonDayStr;
         switch (lessonDay){
@@ -72,66 +99,65 @@ public class Lesson implements java.io.Serializable{
         return lessonDayStr;
     }
 
+    /**
+     * @param lessonDay the day which the lesson falls on
+     */
     public void setLessonDay(int lessonDay){
         this.lessonDay = lessonDay;
     }
 
-/*
- *    public Date getStartTime() throws Exception {
- *        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
- *        try {
- *            Date d = dateFormat.parse(startTime);
- *            return d;
- *        } catch (java.text.ParseException e) {
- *            e.printStackTrace();
- *        }
- *        Date date = new Date("12:00");
- *        return date;
- *    }
- *
- *    public void setStartTime(String startTime){
- *        this.startTime = startTime;
- *    }
- *    
- *    public Date getEndTime() throws Exception {
- *        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
- *        Date d = dateFormat.parse(endTime);
- *        return d;
- *    }
- *
- *    public void setEndTime(String endTime){
- *        this.endTime = endTime;
- *    }
- */
-
+    /**
+     * @return the starting time of the lesson
+     */
     public int getStartPeriod(){
         return startPeriod;
     }
 
+    /**
+     * @param startPeriod the starting time of the lesson
+     */
     public void setStartPeriod(int startPeriod){
         this.startPeriod = startPeriod;
     }
 
+    /**
+     * @return the ending time of the lesson
+     */
     public int getEndPeriod(){
         return endPeriod;
     }
 
+    /**
+     * @param endPeriod the ending time of the lesson
+     */
     public void setEndPeriod(int endPeriod){
         this.endPeriod = endPeriod;
     }
 
+    /**
+     * @return the conversion from datetime format to string version of startPeriod
+     */
     public String getStartTime(){
         return Integer.toString((100 * startPeriod) + 830);
     }
 
+    /**
+     * @return the conversion from datetime format to string version of endPeriod
+     */
     public String getEndTime(){
         return Integer.toString((100 * endPeriod) + 830);
     }
 
+    /**
+     * @return the venue which the lesson is held at
+     */
     public String getVenue() {
         return this.venue;
     }
 
+    /**
+     * @param venue the venue which the lesson is held at
+     */
     public void setVenue(String venue){
         this.venue = venue;
     }
