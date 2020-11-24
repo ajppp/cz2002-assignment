@@ -160,6 +160,7 @@ public class AdminManager{
         ArrayList<Index> newIndexList = new ArrayList<Index>(numCourseIndices);
         ArrayList<Lesson> newLessonList = new ArrayList<Lesson>(numLessons);
         for (i = 0; i < numCourseIndices; i++){
+            newLessonList.clear();
             for (int j = 0; j < numLessons; j++){
                 System.out.printf("For index %d of %s, insert the lesson type for lesson number %d (1 for lecture, 2 for tutorial, 3 for lab, 4 for seminar)\n", i + 1, newCourseName, j + 1);
                 int newLessonType = -1;
