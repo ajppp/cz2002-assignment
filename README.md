@@ -1,21 +1,52 @@
 # CZ2002-MySTARS
----
 
-The application is a terminal-based application to handle the management and registration of courses by students. Assignment done for Academic Year 2020-2021 Sem 1 for CZ2002
+MySTARS is a terminal-based application to handle the management and registration of courses by students. This assignment was done for CZ2002 Object Oriented Design and Programming in the academic Year 2020-2021 Sem 1.
 
----
-## How to Run
+## Usage
 
-1.  compile the .java files with all its dependencies 
-`$ make`
+### MacOS or Linux
 
-2. generate the data (this will be located in the data directory)
-`$ make test`
+This will compile, run and initialise the application with pre-loaded data and students. It will also show the student IDs which can be used to log in to the student accounts. 
+The text file containing the student IDs is in the directory data
 
-3. run the main function
+`$ make all`
+
+To continue running the application after exiting
+
 `$ make run`
 
----
-If you made a mistake and want to reset to the initial state with the preloaded data, repeat steps two and three
+If you want to clear all the changes made and delete all data
 
-Cheers!
+`$ make clear`
+
+To create new data
+
+`$ make test`
+
+for any other functions, please check the Makefile
+
+### Windows
+
+Compile the .java files with
+
+## Built With
+
+Vim
+
+## Tested
+
+Tried on Linux, MacOS and Windows terminal, working as of 25-11-2020
+
+## Authors
+
+DSAI2 Group 2
+
+- Aurelio Jethro Prahara
+- Claudia Beth Ong
+- Lian Ran
+- Isabela Angus
+- Elroy Ang
+
+## Documentation
+
+JavaDoc is in the doc directory. 
