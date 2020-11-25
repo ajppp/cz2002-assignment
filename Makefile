@@ -27,9 +27,11 @@ DEPENDENCIES = lib/*
 
 DATA = data/*
 
-SOURCE = src/com/dsai2group2/*
+SOURCE = src/*
 		
 default: compile
+
+all: compile test run
 
 classes: $(CLASSES:.java=.class)
 

@@ -308,8 +308,17 @@ public class Choice {
                                 break;
                             case 5:
                                 printRegisteredCourses(curStudent);
-                                System.out.println("Choose the course to change index: ");
-                                courseChoice = sc.nextInt() - 1;
+                                courseChoice = -1;
+                                while (courseChoice == -1){
+                                    System.out.println("Choose the course to change index: ");
+                                    int temp = sc.nextInt() - 1;
+                                    if (temp >= 0 && temp < curStudent.getRegisteredIndices().size()){
+                                        courseChoice = temp;
+                                    }
+                                    else{
+                                        System.out.println("The course does not exist. Please enter a valid number from the option given above");
+                                    }
+                                }
                                 String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
                                 Index indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
                                 indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
@@ -321,6 +330,17 @@ public class Choice {
                                             for (Index index:course.getCourseIndex()){
                                                 System.out.printf("\n%d) Index ID:%d \nVacancy:%d\n Index Total Size:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
                                                 i++;
+                                            }
+                                            indexChoice = -1;
+                                            while (indexChoice == -1){
+                                                System.out.println("Choose the index to change to: ");
+                                                int temp = sc.nextInt() - 1;
+                                                if (temp >= 0 && temp < course.getCourseIndex().size()){
+                                                    indexChoice = temp;
+                                                }
+                                                else{
+                                                    System.out.println("The index does not exist. Please enter a valid number from the option given above");
+                                                }
                                             }
                                             System.out.println("Choose new index: ");
                                             indexChoice = sc.nextInt() - 1;

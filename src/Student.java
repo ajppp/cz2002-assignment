@@ -192,24 +192,29 @@ public class Student implements java.io.Serializable{
      * @return the matriculation number as the studentID
      */
     private String createStudentID(){
-        StringBuilder createdStudentID = new StringBuilder("U");
-        boolean used;
+        //ArrayList <Student> students = SerialEditor.loadStudents();
+        StringBuilder createdStudentID = new StringBuilder("U202");
+        //boolean used = true;
          //while (true) {
             //generate random seven digit number
-            int idNumber = (int) (Math.random() * (1999999 - 1000000)) + 1000000; 
-            createdStudentID.append(Integer.toString(idNumber)); 
+            Random rand = new Random();
+            String idString = String.format("%04d", rand.nextInt(10000));
+            //int idNumber = (int) (Math.random() * (9999 - 1000)) + 1000; 
+            createdStudentID.append(idString);
             createdStudentID.append("C");
             //check if id has been in use
-            //for (Student student:Main.students){
-                //if (createdStudentID.equals(student.getStudentID())){
-                    //used = true;
-                    //break;
-                //}
-            //}
-            ////if id is not in use, break out of loop and assign student the id
-            //if (!used)
-                //break;
-        //} 
+        /*
+         *    for (Student student: students){
+         *        if (createdStudentID.equals(student.getStudentID())){
+         *            used = true;
+         *            break;
+         *        }
+         *    }
+         *    //if id is not in use, break out of loop and assign student the id
+         *    if (!used)
+         *        break;
+         *} 
+         */
         return createdStudentID.toString();
     }
 
