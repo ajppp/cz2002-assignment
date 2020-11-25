@@ -1,6 +1,7 @@
 JFLAGS = -g
 JC = javac
 JAVADOC = javadoc
+JAR = jar
 
 RM = rm -rf
 
@@ -28,6 +29,7 @@ DEPENDENCIES = lib/*
 DATA = data/*
 
 SOURCE = src/*
+
 		
 default: compile
 
@@ -40,6 +42,9 @@ compile:
 
 clean:
 	$(RM) $(DATA) $(CLASSPATH)
+
+jar:
+	$(JAR) cfm stars.jar MANIFEST.MF -C $(CLASSPATH) .
 
 test: 
 	$(RM) $(DATA)

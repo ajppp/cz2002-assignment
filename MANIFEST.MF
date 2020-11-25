@@ -1,0 +1,2 @@
+Class-Path: stars.jar lib/mail.jar lib/activation.jar lib/javax.mail.jar
+Main-Class: Choice
