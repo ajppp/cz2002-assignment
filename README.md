@@ -47,6 +47,28 @@ There are 5 admins and their ID and Password are as follows:
 - Lianran Lianran123
 - Jethro Jethro123
 
+## Built With
+
+Vim
+
+## Tested
+
+Tried on Linux, MacOS and Windows terminal, working as of 25-11-2020
+
+## Authors
+
+DSAI2 Group 2
+
+- Aurelio Jethro Prahara
+- Claudia Beth Ong
+- Lian Ran
+- Isabela Angus
+- Elroy Ang
+
+## Documentation
+
+JavaDoc is in the doc directory. 
+
 ## Directory Structure
 
 ```
@@ -193,24 +215,3 @@ cz2002-assignment
 └── stars.jar
 ```
 
-## Built With
-
-Vim
-
-## Tested
-
-Tried on Linux, MacOS and Windows terminal, working as of 25-11-2020
-
-## Authors
-
-DSAI2 Group 2
-
-- Aurelio Jethro Prahara
-- Claudia Beth Ong
-- Lian Ran
-- Isabela Angus
-- Elroy Ang
-
-## Documentation
-
-JavaDoc is in the doc directory. 
