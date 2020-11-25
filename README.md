@@ -92,6 +92,11 @@ cz2002-assignment
 │   ├── loginTiming.ser
 │   ├── student.ser
 │   └── student.txt
+├── diagrams
+│   ├── class diagram.png
+│   ├── class diagram.vpp
+│   ├── sequence diagram.png
+│   └── sequence diagram.vpp
 ├── doc
 │   ├── AdminManager.html
 │   ├── allclasses-index.html
@@ -197,6 +202,8 @@ cz2002-assignment
 │   └── mail.jar
 ├── Makefile
 ├── MANIFEST.MF
+├── mv
+├── OODP Report.pdf
 ├── README.md
 ├── src
 │   ├── AdminManager.java
