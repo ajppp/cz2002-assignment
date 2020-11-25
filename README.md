@@ -47,6 +47,152 @@ There are 5 admins and their ID and Password are as follows:
 - Lianran Lianran123
 - Jethro Jethro123
 
+## Directory Structure
+
+```
+cz2002-assignment
+├── classes
+│   ├── AdminManager.class
+│   ├── Choice.class
+│   ├── Course.class
+│   ├── CourseIndex$1.class
+│   ├── CourseIndex.class
+│   ├── Index$1.class
+│   ├── Index.class
+│   ├── Lesson.class
+│   ├── LoginManager.class
+│   ├── LoginPage.class
+│   ├── SerialEditor.class
+│   ├── Student.class
+│   ├── StudentManager.class
+│   └── Test.class
+├── data
+│   ├── course.ser
+│   ├── loginDetails.ser
+│   ├── loginTiming.ser
+│   ├── student.ser
+│   └── student.txt
+├── doc
+│   ├── AdminManager.html
+│   ├── allclasses-index.html
+│   ├── allpackages-index.html
+│   ├── Choice.html
+│   ├── class-use
+│   │   ├── AdminManager.html
+│   │   ├── Choice.html
+│   │   ├── Course.html
+│   │   ├── CourseIndex.html
+│   │   ├── Index.html
+│   │   ├── Lesson.html
+│   │   ├── LoginManager.html
+│   │   ├── LoginPage.html
+│   │   ├── SerialEditor.html
+│   │   ├── Student.html
+│   │   ├── StudentManager.html
+│   │   └── Test.html
+│   ├── constant-values.html
+│   ├── Course.html
+│   ├── CourseIndex.html
+│   ├── deprecated-list.html
+│   ├── element-list
+│   ├── help-doc.html
+│   ├── index-files
+│   │   ├── index-10.html
+│   │   ├── index-11.html
+│   │   ├── index-12.html
+│   │   ├── index-13.html
+│   │   ├── index-14.html
+│   │   ├── index-15.html
+│   │   ├── index-1.html
+│   │   ├── index-2.html
+│   │   ├── index-3.html
+│   │   ├── index-4.html
+│   │   ├── index-5.html
+│   │   ├── index-6.html
+│   │   ├── index-7.html
+│   │   ├── index-8.html
+│   │   └── index-9.html
+│   ├── index.html
+│   ├── Lesson.html
+│   ├── LoginManager.html
+│   ├── LoginPage.html
+│   ├── member-search-index.js
+│   ├── member-search-index.zip
+│   ├── overview-tree.html
+│   ├── package-search-index.js
+│   ├── package-search-index.zip
+│   ├── package-summary.html
+│   ├── package-tree.html
+│   ├── package-use.html
+│   ├── resources
+│   │   ├── glass.png
+│   │   └── x.png
+│   ├── script-dir
+│   │   ├── external
+│   │   │   └── jquery
+│   │   │       └── jquery.js
+│   │   ├── images
+│   │   │   ├── ui-bg_glass_55_fbf9ee_1x400.png
+│   │   │   ├── ui-bg_glass_65_dadada_1x400.png
+│   │   │   ├── ui-bg_glass_75_dadada_1x400.png
+│   │   │   ├── ui-bg_glass_75_e6e6e6_1x400.png
+│   │   │   ├── ui-bg_glass_95_fef1ec_1x400.png
+│   │   │   ├── ui-bg_highlight-soft_75_cccccc_1x100.png
+│   │   │   ├── ui-icons_222222_256x240.png
+│   │   │   ├── ui-icons_2e83ff_256x240.png
+│   │   │   ├── ui-icons_454545_256x240.png
+│   │   │   ├── ui-icons_888888_256x240.png
+│   │   │   └── ui-icons_cd0a0a_256x240.png
+│   │   ├── jquery-3.4.1.js
+│   │   ├── jquery-ui.css
+│   │   ├── jquery-ui.js
+│   │   ├── jquery-ui.min.css
+│   │   ├── jquery-ui.min.js
+│   │   ├── jquery-ui.structure.css
+│   │   ├── jquery-ui.structure.min.css
+│   │   ├── jszip
+│   │   │   └── dist
+│   │   │       ├── jszip.js
+│   │   │       └── jszip.min.js
+│   │   └── jszip-utils
+│   │       └── dist
+│   │           ├── jszip-utils-ie.js
+│   │           ├── jszip-utils-ie.min.js
+│   │           ├── jszip-utils.js
+│   │           └── jszip-utils.min.js
+│   ├── script.js
+│   ├── search.js
+│   ├── SerialEditor.html
+│   ├── serialized-form.html
+│   ├── Student.html
+│   ├── StudentManager.html
+│   ├── stylesheet.css
+│   ├── system-properties.html
+│   ├── Test.html
+│   ├── type-search-index.js
+│   └── type-search-index.zip
+├── lib
+│   ├── activation.jar
+│   ├── javax.mail.jar
+│   └── mail.jar
+├── Makefile
+├── MANIFEST.MF
+├── README.md
+├── src
+│   ├── AdminManager.java
+│   ├── Choice.java
+│   ├── CourseIndex.java
+│   ├── Course.java
+│   ├── Lesson.java
+│   ├── LoginManager.java
+│   ├── LoginPage.java
+│   ├── SerialEditor.java
+│   ├── Student.java
+│   ├── StudentManager.java
+│   └── Test.java
+└── stars.jar
+```
+
 ## Built With
 
 Vim
