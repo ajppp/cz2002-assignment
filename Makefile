@@ -12,7 +12,7 @@ RM = rm -rf
 CLASSES = Choice.java \
 		  AdminManager.java \
 		  Course.java \
-		  Index.java \
+		  CourseIndex.java \
 		  Lesson.java \
 		  LoginManager.java \
 		  LoginPage.java \

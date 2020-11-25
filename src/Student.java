@@ -13,7 +13,7 @@ public class Student implements java.io.Serializable{
     private String studentNationality;
     private String studentEmail;
     private int studentRegisteredAU = 0;
-    private ArrayList<Index> registeredIndex = new ArrayList<>();
+    private ArrayList<CourseIndex> registeredIndex = new ArrayList<>();
     private static final int MAX_AU = 21;
 
     /*
@@ -31,7 +31,7 @@ public class Student implements java.io.Serializable{
      * @param AU the number of academic units the student has registered
      * @param index the indices which the student has registered for
      */
-    public Student(String ID, String Name, String School, String Gender, String Nationality, String Email, int AU, ArrayList<Index> index){
+    public Student(String ID, String Name, String School, String Gender, String Nationality, String Email, int AU, ArrayList<CourseIndex> index){
         studentID = ID;
         studentName = Name;
         studentSchool = School;
@@ -143,7 +143,7 @@ public class Student implements java.io.Serializable{
      * Allows the student to register a new index
      * @param index the index that the student is trying to register for
      */
-    public boolean registerIndex(Index index){
+    public boolean registerIndex(CourseIndex index){
         int newAU = studentRegisteredAU + index.getCourseAU();
         if (newAU > MAX_AU){
             System.out.println("You have exceeded the total AUs. Please drop a course before adding");
@@ -163,7 +163,7 @@ public class Student implements java.io.Serializable{
      */
     public void dropIndex(int indexID, int au){
         int i = 0, indexLocation = 0;
-        for(Index index: registeredIndex){
+        for(CourseIndex index: registeredIndex){
             if (index.getIndexID() == indexID){
                 indexLocation = i;
                 break;
@@ -177,7 +177,7 @@ public class Student implements java.io.Serializable{
     /**
      * @return the indices which the student has registered for
      */
-    public ArrayList<Index> getRegisteredIndices(){
+    public ArrayList<CourseIndex> getRegisteredIndices(){
         return registeredIndex;
     }
 
@@ -223,7 +223,7 @@ public class Student implements java.io.Serializable{
      * @param index1 the index that the student wants to swap to
      * @param index2 the index that the student currently has and is dropping
      */
-    public void swapIndex(Index index1, Index index2){
+    public void swapIndex(CourseIndex index1, CourseIndex index2){
         registeredIndex.add(index1);
         dropIndex(index2.getIndexID(), index2.getCourseAU());
         studentRegisteredAU += index1.getCourseAU();

@@ -182,7 +182,7 @@ public class AdminManager{
         int numCourseIndices = sc.nextInt();    
         System.out.println("How many lessons in each index? ");
         int numLessons = sc.nextInt();
-        ArrayList<Index> newIndexList = new ArrayList<Index>(numCourseIndices);
+        ArrayList<CourseIndex> newIndexList = new ArrayList<CourseIndex>(numCourseIndices);
         ArrayList<Lesson> newLessonList = new ArrayList<Lesson>(numLessons);
         for (i = 0; i < numCourseIndices; i++){
             newLessonList.clear();
@@ -212,7 +212,7 @@ public class AdminManager{
             int newIndexID = sc.nextInt();
             System.out.println("What is the maximum number of students this new index has?");
             int newIndexMaxStudents = sc.nextInt();
-            newIndexList.add(new Index(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexMaxStudents, newIndexMaxStudents, newIndexID, newLessonList));   
+            newIndexList.add(new CourseIndex(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexMaxStudents, newIndexMaxStudents, newIndexID, newLessonList));   
         }
         courses.add(new Course(newCourseName, newCourseSchool, newCourseCode, newCourseAU, newIndexList));
         System.out.println("Updated course list: ");
@@ -273,7 +273,7 @@ public class AdminManager{
                     String newLessonVenue = sc.nextLine();
                     newIndexLessonArrayList.add(new Lesson(newLessonType, newLessonDay, newLessonStartPeriod, newLessonEndPeriod, newLessonVenue));
                 }
-                course.getCourseIndex().add(new Index(course.getCourseName(), course.getCourseSchool(), course.getCourseCode(), course.getCourseAU(), newIndexMaxStudents, newIndexMaxStudents, newIndexID, newIndexLessonArrayList));
+                course.getCourseIndex().add(new CourseIndex(course.getCourseName(), course.getCourseSchool(), course.getCourseCode(), course.getCourseAU(), newIndexMaxStudents, newIndexMaxStudents, newIndexID, newIndexLessonArrayList));
                 System.out.println("successfully added index to course");
                 
             }
@@ -283,7 +283,7 @@ public class AdminManager{
      * Allows the admin to update an index of a particular course such as the number of students and the lessons.
      * @param index the object index of a course that the admin wants to update
      */
-    public static void updateIndex(Index index){
+    public static void updateIndex(CourseIndex index){
         Scanner sc = new Scanner(System.in);
         System.out.printf("(1) Change the max number of students\n (2) Change the lessons");
         int changeIndexChoice = sc.nextInt();

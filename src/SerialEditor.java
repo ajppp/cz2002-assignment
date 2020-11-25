@@ -47,7 +47,7 @@ public class SerialEditor{
      * writes into the index file
      * @param index the index to be added
      */
-    public static void writeIndices(ArrayList<Index> index){
+    public static void writeIndices(ArrayList<CourseIndex> index){
         try {
             FileOutputStream fileOut = new FileOutputStream(indexFileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -62,12 +62,12 @@ public class SerialEditor{
      * reads from the index file
      * @return the array list of the indices from the index file
      */
-    public static ArrayList<Index> loadIndices(){
-        ArrayList<Index> index = new ArrayList<Index>(0);
+    public static ArrayList<CourseIndex> loadIndices(){
+        ArrayList<CourseIndex> index = new ArrayList<CourseIndex>(0);
         try { 
             FileInputStream fileIn = new FileInputStream(indexFileName);
             ObjectInputStream in = new ObjectInputStream(fileIn); 
-            index = (ArrayList <Index>)in.readObject();
+            index = (ArrayList <CourseIndex>)in.readObject();
             in.close();
         } catch (Exception e) {
                 e.printStackTrace();

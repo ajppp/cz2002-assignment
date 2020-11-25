@@ -142,7 +142,7 @@ public class Choice {
                                 courseChoice = sc.nextInt() - 1;
 
                                 int sameCourse = 0;
-                                for (Index index: addedStudent.getRegisteredIndices()){
+                                for (CourseIndex index: addedStudent.getRegisteredIndices()){
                                     if (courses.get(courseChoice).getCourseCode().equals(index.getCourseCode())){
                                         System.out.println("You have been registered or are in the waitlist for this course. Please drop the index before trying to add. Thanks");
                                         sameCourse = 1;
@@ -217,7 +217,7 @@ public class Choice {
                                     }
                                 }
                                 int sameCourse = 0;
-                                for (Index index: curStudent.getRegisteredIndices()){
+                                for (CourseIndex index: curStudent.getRegisteredIndices()){
                                     if (courses.get(courseChoice).getCourseCode().equals(index.getCourseCode())){
                                         System.out.println("You have been registered or are in the waitlist for this course. Please drop the index before trying to add. Thanks");
                                         sameCourse = 1;
@@ -257,7 +257,7 @@ public class Choice {
                                 // changing course details
                                 for(Course course: courses){
                                     if(course.getCourseCode().equals(courseCodeToDrop)){
-                                        for(Index index: course.getCourseIndex()){
+                                        for(CourseIndex index: course.getCourseIndex()){
                                             if(index.getIndexID() == indexIDToBeDropped){
                                                 index.removeStudentFromIndex(curStudent);
                                                 break;
@@ -272,7 +272,7 @@ public class Choice {
                                 System.out.println("These are your registered courses:");
                                 System.out.printf("%s\n", "--------------------");
                                 for (Course course:courses){
-                                    for (Index index: course.getCourseIndex()){
+                                    for (CourseIndex index: course.getCourseIndex()){
                                         for (Student student: index.listStudentWaitlist()){
                                             if (student.getStudentID().equals(curStudent.getStudentID())){
                                                 System.out.printf("Waitlisted course: ");
@@ -320,14 +320,14 @@ public class Choice {
                                     }
                                 }
                                 String codeOfCourseToBeChanged = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
-                                Index indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
+                                CourseIndex indexToBeDropped = curStudent.getRegisteredIndices().get(courseChoice);
                                 indexIDToBeDropped = curStudent.getRegisteredIndices().get(courseChoice).getIndexID();
                             
                                 for (Course course:courses){
                                     if (course.getCourseCode().equals(codeOfCourseToBeChanged)){
                                         int i = 1;
                                         if (course.getCourseIndex().size() > 1){
-                                            for (Index index:course.getCourseIndex()){
+                                            for (CourseIndex index:course.getCourseIndex()){
                                                 System.out.printf("\n%d) Index ID:%d \nVacancy:%d\n Index Total Size:%d\nWaitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
                                                 i++;
                                             }
@@ -344,7 +344,7 @@ public class Choice {
                                             }
                                             System.out.println("Choose new index: ");
                                             indexChoice = sc.nextInt() - 1;
-                                            Index indexToSwapTo = new Index();
+                                            CourseIndex indexToSwapTo = new CourseIndex();
                                             for (Course course1:courses){
                                                 if (course1.getCourseCode().equals(codeOfCourseToBeChanged)){
                                                     indexToSwapTo = course1.getCourseIndex().get(indexChoice);
@@ -383,11 +383,11 @@ public class Choice {
                                     }
                                 }
                                 String affectedCourseCode = curStudent.getRegisteredIndices().get(courseChoice).getCourseCode();
-                                Index currentStudentIndex = curStudent.getRegisteredIndices().get(courseChoice);
+                                CourseIndex currentStudentIndex = curStudent.getRegisteredIndices().get(courseChoice);
                                 // String affectedCourseCode = "0";
                                 int curStudentsNewIndexID = 0;
                                 int swapperStudentsNewIndexID = 0;
-                                for (Index index: swapperStudent.getRegisteredIndices()){
+                                for (CourseIndex index: swapperStudent.getRegisteredIndices()){
                                     if (index.getCourseCode().equals(affectedCourseCode)){
                                         curStudent.registerIndex(index);
                                         curStudentsNewIndexID = index.getIndexID();
@@ -399,22 +399,10 @@ public class Choice {
                                         break;
                                     }
                                 }
-                                //for (Index index: swapperStudent.getRegisteredIndices()){
-                                    //if (index.getCourseCode().equals(currentStudentCourseCode)){
-                                        //if (curStudent.getRegisteredIndices().)
-                                        //curStudent.dropIndex(currentStudentIndex.getIndexID(), index.getCourseAU());
-                                        //curStudent.registerIndex(index);
-                                        ////curStudent.swapIndex(index, currentStudentIndex);
-                                        ////swapperStudent.swapIndex(currentStudentIndex, index);
-                                        //newIndexID = index.getIndexID();
-                                        //swapperStudent.dropIndex(index.getIndexID(), index.getCourseAU());
-                                        //swapperStudent.registerIndex(currentStudentIndex);
-                                        //System.out.println("Successfully swapped index with student!");
-                                    //}
-                                //}
+
                                 for (Course course: courses){
                                     if (course.getCourseCode().equals(affectedCourseCode)){
-                                        for (Index index: course.getCourseIndex()){
+                                        for (CourseIndex index: course.getCourseIndex()){
                                             if (index.getIndexID() == curStudentsNewIndexID){
                                                 System.out.println("changing new index");
                                                 index.removeRegisteredStudent(swapperStudent);
@@ -467,9 +455,9 @@ public class Choice {
         }
     }
 
-    public static void printIndices(ArrayList <Index> indices){
+    public static void printIndices(ArrayList <CourseIndex> indices){
         int i = 1;
-        for (Index index: indices){
+        for (CourseIndex index: indices){
             System.out.printf("\n%d) Index ID: %d\nIndex Vacancy:%d\nIndex Total Size:%d\nIndex Waitlist Size:%d\n", i, index.getIndexID(), index.getVacancies(), index.getMaxStudents(), index.getStudentWaitlist().size());
             System.out.printf("%s\n", "--------------------");
             for(Lesson lesson: index.getLessonList()){
@@ -488,7 +476,7 @@ public class Choice {
         }
     }
 
-    public static boolean compareClash(Student curStudent, Index addedIndex){
+    public static boolean compareClash(Student curStudent, CourseIndex addedIndex){
         boolean clash = false;
         // get timing of all lessons in the index to be added
         //while (!clash){

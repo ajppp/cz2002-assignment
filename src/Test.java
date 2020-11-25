@@ -2,7 +2,6 @@ import java.util.*;
 public class Test{
    public static void main(String[] args){
         ArrayList <Student> students = new ArrayList<>();
-        // ArrayList <Index> indices = new ArrayList<>();
         ArrayList <Course> courses = new ArrayList<>();
         ArrayList <Lesson> lessonList = new ArrayList<>();
         ArrayList <Student> studentWaitlist = new ArrayList<>();
@@ -64,11 +63,11 @@ public class Test{
         lessonList71054.add(new Lesson(1, 2, 1, 2, "online"));
         lessonList71054.add(new Lesson(2, 4, 3, 4, "LHS-TR+24"));
 
-        ArrayList <Index> indexList2500 = new ArrayList<>();
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71050, lessonList71050, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71051, lessonList71051, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
-        indexList2500.add(new Index("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        ArrayList <CourseIndex> indexList2500 = new ArrayList<>();
+        indexList2500.add(new CourseIndex("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71050, lessonList71050, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new CourseIndex("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71051, lessonList71051, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new CourseIndex("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71052, lessonList71052, new ArrayList<Student>(), new ArrayList<Student>(20)));
+        indexList2500.add(new CourseIndex("Probability and Introduction to Statistics","SPMS", "MH2500", 6, 20, 20, 71054, lessonList71054, new ArrayList<Student>(), new ArrayList<Student>(20)));
 
         courses.add(new Course("Probability and Introduction to Statistics", "SPMS", "MH2500", 6, indexList2500));
 
@@ -79,8 +78,8 @@ public class Test{
         lessonList70089.add(new Lesson(2, 4, 2, 3, "SPMS-TR+5"));
         lessonList70089.add(new Lesson(3, 1, 5, 8, "CBC Lab"));
 
-        ArrayList <Index> indexList1031 = new ArrayList<>();
-        indexList1031.add(new Index("Basic Organic Chemistry with Laboratory","SPMS", "CM1031", 5, 50, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        ArrayList <CourseIndex> indexList1031 = new ArrayList<>();
+        indexList1031.add(new CourseIndex("Basic Organic Chemistry with Laboratory","SPMS", "CM1031", 5, 50, 50, 70089, lessonList70089, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
         courses.add(new Course("Basic Organic Chemistry with Laboratory", "SPMS", "CM1031", 5, indexList1031));
 
@@ -88,8 +87,8 @@ public class Test{
         ArrayList <Lesson> lessonList17048 = new ArrayList<>();
         lessonList17048.add(new Lesson(4, 1, 2, 3, "TR+64"));
 
-        ArrayList <Index> indexList4050 = new ArrayList<>();
-        indexList4050.add(new Index("Chinese Semantics", "SOH", "HC4050", 5, 1, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
+        ArrayList <CourseIndex> indexList4050 = new ArrayList<>();
+        indexList4050.add(new CourseIndex("Chinese Semantics", "SOH", "HC4050", 5, 1, 50, 17048, lessonList17048, new ArrayList<Student>(), new ArrayList<Student>(40)));
 
         courses.add(new Course("Chinese Semantics", "SOH", "HC4050", 5, indexList4050));
 
@@ -100,9 +99,9 @@ public class Test{
         ArrayList <Lesson> lessonList00225 = new ArrayList<>();
         lessonList00225.add(new Lesson(4, 4, 0, 4, "LHS-TR+47"));
 
-        ArrayList <Index> indexList2209 = new ArrayList<>();
-        indexList2209.add(new Index("Derivative Securities", "NBS", "BF2209", 4, 50, 50, 00224, lessonList00224, new ArrayList<Student>(), new ArrayList<Student>(50)));
-        indexList2209.add(new Index("Derivative Securities", "NBS", "BF2209", 4, 50, 50, 00225, lessonList00225, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        ArrayList <CourseIndex> indexList2209 = new ArrayList<>();
+        indexList2209.add(new CourseIndex("Derivative Securities", "NBS", "BF2209", 4, 50, 50, 00224, lessonList00224, new ArrayList<Student>(), new ArrayList<Student>(50)));
+        indexList2209.add(new CourseIndex("Derivative Securities", "NBS", "BF2209", 4, 50, 50, 00225, lessonList00225, new ArrayList<Student>(), new ArrayList<Student>(50)));
 
         courses.add(new Course("Derivative Securities", "NBS", "BF2209", 4, indexList2209));
 
@@ -110,8 +109,8 @@ public class Test{
         ArrayList <Lesson> lessonList39686 = new ArrayList<>();
         lessonList39686.add(new Lesson(1, 2, 7, 10, "3A-B2-03"));
 
-        ArrayList <Index> indexList26D = new ArrayList<>();
-        indexList26D.add(new Index( "Theatre & Technology", "NIE", "ADP26D", 5, 5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
+        ArrayList <CourseIndex> indexList26D = new ArrayList<>();
+        indexList26D.add(new CourseIndex( "Theatre & Technology", "NIE", "ADP26D", 5, 5, 5, 39686, lessonList39686, new ArrayList<Student>(), new ArrayList<Student>(5)));
 
         courses.add(new Course("Theatre & Technology", "NIE", "ADP26D", 5, indexList26D));
 

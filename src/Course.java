@@ -9,7 +9,7 @@ public class Course implements java.io.Serializable{
     private String courseSchool;
     private String courseCode;
     private int courseAU;
-    private ArrayList<Index> courseIndex = new ArrayList<>(0);
+    private ArrayList<CourseIndex> courseIndex = new ArrayList<>(0);
     private static final long serialVersionUID = 2L;
 
     /**
@@ -20,7 +20,7 @@ public class Course implements java.io.Serializable{
      * @param AU the number of Academic Units of the course
      * @param index the different indices available under the course
      */
-    public Course (String name, String school, String code, int AU, ArrayList<Index> index){
+    public Course (String name, String school, String code, int AU, ArrayList<CourseIndex> index){
         courseName = name;
         courseSchool = school;
         courseCode = code;
@@ -31,14 +31,14 @@ public class Course implements java.io.Serializable{
     /**
      * @return an array list of course indices
      */
-    public ArrayList<Index> getCourseIndex(){
+    public ArrayList<CourseIndex> getCourseIndex(){
         return courseIndex;
     }
 
     /**
      * @param index the different indices available under the course
      */
-    public void setCourseIndex(ArrayList<Index> index){
+    public void setCourseIndex(ArrayList<CourseIndex> index){
         courseIndex = index;
     }
 

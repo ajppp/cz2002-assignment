@@ -14,7 +14,7 @@ import java.lang.reflect.Array;
  /**
   * The class contains the details about all the indices for the courses available
   */
-public class Index implements java.io.Serializable{
+public class CourseIndex implements java.io.Serializable{
     private String courseName;
     private String courseSchool;
     private String courseCode;
@@ -40,7 +40,7 @@ public class Index implements java.io.Serializable{
      * @param studentWaitlist a list of students who are in the waitlist for the particular index
      * @param registeredStudents a list of students who are registered for the particular index
      */
-    public Index (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
+    public CourseIndex (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList, ArrayList<Student> studentWaitlist, ArrayList<Student> registeredStudents){
         this.courseName = courseName; this.courseSchool = courseSchool;
         this.courseCode = courseCode;
         this.courseAU = courseAU;
@@ -52,7 +52,7 @@ public class Index implements java.io.Serializable{
         this.registeredStudents = registeredStudents;
     }
 
-    public Index (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList){
+    public CourseIndex (String courseName, String courseSchool, String courseCode, int courseAU, int vacancies, int maxStudents, int indexID, ArrayList<Lesson> lessonList){
         this.courseName = courseName;
         this.courseSchool = courseSchool;
         this.courseCode = courseCode;
@@ -63,7 +63,7 @@ public class Index implements java.io.Serializable{
         this.lessonList = lessonList;
     }
 
-    public Index(){}
+    public CourseIndex(){}
 
     /**
      * @return the full name of the course
