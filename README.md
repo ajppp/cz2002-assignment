@@ -4,9 +4,23 @@ MySTARS is a terminal-based application to handle the management and registratio
 
 ## Usage
 
+### Data
+
+Data is already generated for you using Test. There are 15 student and 5 admin accounts. The student user IDs are stored in student.txt which is in the data directory. This file is not used in the run-time of the application and is only used for ease of use and testing. The password for all students are set to be password
+
+There are 5 admins and their ID and Password are as follows:
+
+- Claudia Claudia123
+- Elroy Elroy123
+- Isabela Isabela123
+- Lianran Lianran123
+- Jethro Jethro123
+
+### How to run
+
 Clone or download this repository and follow the instructions below:
 
-### MacOS or Linux
+#### MacOS or Linux
 
 This will compile, run and initialise the application with pre-loaded data and students. It will also show the student IDs which can be used to log in to the student accounts. 
 The text file containing the student IDs is in the directory data
@@ -27,25 +41,13 @@ To create new data
 
 For any other functions, please check the Makefile
 
-### Windows
+#### Windows
 
 Run the jar file from the command prompt with:
 
 `$ java -jar stars.jar`
 
 If you need to restart the application with only the pre-loaded data without any changes, please delete this directory and download a new copy from [the repository](https://github.com/ajppp/cz2002-assignment)
-
-### Data
-
-Data is already generated for you under the Test class. There are 15 students and 5 admin accounts. The student user IDs are stored in data/student.txt This file is not used in the run-time of the application and is only used for ease of use and testing. The password for all students are set to be password
-
-There are 5 admins and their ID and Password are as follows:
-
-- Claudia Claudia123
-- Elroy Elroy123
-- Isabela Isabela123
-- Lianran Lianran123
-- Jethro Jethro123
 
 ## Built With
 
@@ -56,8 +58,6 @@ Vim
 Tried on Linux, MacOS and Windows terminal, working as of 25-11-2020
 
 ## Authors
-
-DSAI2 Group 2
 
 - Aurelio Jethro Prahara
 - Claudia Beth Ong
