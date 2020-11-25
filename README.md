@@ -79,8 +79,6 @@ cz2002-assignment
 │   ├── Course.class
 │   ├── CourseIndex$1.class
 │   ├── CourseIndex.class
-│   ├── Index$1.class
-│   ├── Index.class
 │   ├── Lesson.class
 │   ├── LoginManager.class
 │   ├── LoginPage.class
