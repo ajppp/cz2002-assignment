@@ -236,6 +236,7 @@ public class AdminManager{
         switch(courseAttributeToChange){
             case 1:
                 System.out.printf("Set new course name: ");
+                sc.nextLine();
                 String case2newCourseName = sc.nextLine();
                 course.setCourseName(case2newCourseName);
                 for (CourseIndex index: course.getCourseIndex()){
@@ -245,6 +246,7 @@ public class AdminManager{
                 break;
             case 2:
                 System.out.println("Change course of school: ");
+                sc.nextLine();
                 String case2newCourseSchool = sc.nextLine();
                 course.setCourseSchool(case2newCourseSchool);
                 for (CourseIndex index:course.getCourseIndex()){
@@ -254,6 +256,7 @@ public class AdminManager{
                 break;
             case 3:
                 System.out.println("Change course code: ");
+                sc.nextLine();
                 String case2newCourseCode = sc.nextLine();
                 course.setCourseCode(case2newCourseCode);
                 for (CourseIndex index:course.getCourseIndex()){
