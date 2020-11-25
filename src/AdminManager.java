@@ -229,35 +229,44 @@ public class AdminManager{
      */
     public static void updateCourse(Course course){
         Scanner sc = new Scanner(System.in);
-        System.out.printf("Details of course %s", course.getCourseName());
-        System.out.printf("(1) Course Name: %s\n (2) Course School: %s\n (3) Course Code: %s\n, (4) Add New Index ", course.getCourseName(), course.getCourseSchool(), course.getCourseCode());
+        System.out.printf("Details of course:\n");
+        System.out.printf("(1) Course Name: %s\n(2) Course School: %s\n(3) Course Code: %s\n(4) Add New Index \n", course.getCourseName(), course.getCourseSchool(), course.getCourseCode());
         System.out.printf("Choose detail of course to change: ");
         int courseAttributeToChange = sc.nextInt();
         switch(courseAttributeToChange){
             case 1:
-                System.out.println("Set new course name: ");
+                System.out.printf("Set new course name: ");
                 String case2newCourseName = sc.nextLine();
                 course.setCourseName(case2newCourseName);
-                System.out.printf("New course name %s has been changed successfully!", case2newCourseName);
+                for (CourseIndex index: course.getCourseIndex()){
+                    index.setCourseName(case2newCourseName);
+                }
+                System.out.printf("New course name %s has been changed successfully!\n", case2newCourseName);
                 break;
             case 2:
                 System.out.println("Change course of school: ");
                 String case2newCourseSchool = sc.nextLine();
                 course.setCourseSchool(case2newCourseSchool);
-                System.out.printf("Course school has been changed to %s successfully!", case2newCourseSchool);
+                for (CourseIndex index:course.getCourseIndex()){
+                    index.setCourseSchool(case2newCourseSchool);
+                }
+                System.out.printf("Course school has been changed to %s successfully!\n", case2newCourseSchool);
                 break;
             case 3:
                 System.out.println("Change course code: ");
                 String case2newCourseCode = sc.nextLine();
                 course.setCourseCode(case2newCourseCode);
-                System.out.printf("Course code has been changed to %s successfully!", case2newCourseCode);
+                for (CourseIndex index:course.getCourseIndex()){
+                    index.setCourseCode(case2newCourseCode);
+                }
+                System.out.printf("Course code has been changed to %s successfully!\n", case2newCourseCode);
                 break;
             case 4:   
                 System.out.printf("Enter the index ID: ");
                 int newIndexID = sc.nextInt();
-                System.out.println("What is the maximum number of students this new index has?");
+                System.out.println("What is the maximum number of students this new index has?\n");
                 int newIndexMaxStudents = sc.nextInt();
-                System.out.println("How many lessons does this index have?");
+                System.out.println("How many lessons does this index have?\n");
                 int numLessons = sc.nextInt();
                 ArrayList<Lesson> newIndexLessonArrayList = new ArrayList<Lesson>();
                 for (int i = 0; i < numLessons; i++){
