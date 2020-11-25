@@ -203,7 +203,6 @@ cz2002-assignment
 ├── Makefile
 ├── MANIFEST.MF
 ├── mv
-├── OODP Report.pdf
 ├── README.md
 ├── src
 │   ├── AdminManager.java
